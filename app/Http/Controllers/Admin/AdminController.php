@@ -26,12 +26,12 @@ class AdminController extends Controller
 
     public function adminSignup(Request $request) {
         // Validation rules
-        $rules = [
+        $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:customers',
             'phone' => 'required|string|max:20|unique:customers|regex:/^[0-9]{10,20}$/',
             'password' => 'required|string|min:8',
-        ];
+        ]);
     
         // Proceed with saving data if validation passes
         $admin = Admin::create([
