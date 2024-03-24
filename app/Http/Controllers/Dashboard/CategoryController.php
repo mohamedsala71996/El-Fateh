@@ -14,6 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+
         $categories = Category::all();
         return view('dashboard.category.index', compact('categories'));
     }
@@ -57,7 +58,7 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, Category $category)
     {
         $category->update($request->all());
-        return redirect()->route('categories.index')->with('success', 'Data saved successfully');
+        return redirect()->route('categories.index')->with('success', 'Data saved successfully.');
     }
 
     /**
@@ -66,6 +67,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('categories.index')->with('success', 'Data deleted successfully');
+        return redirect()->route('categories.index')->with('success', 'Data deleted successfully.');
     }
+
 }
