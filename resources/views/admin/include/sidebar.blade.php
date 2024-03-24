@@ -27,7 +27,7 @@
                 </li>
 
                 <li>
-                    <a class="m-link" href="./docs/index.html">
+                    <a class="m-link" href="{{ url('admin/AllperviousWorks') }}">
                         <span class="ms-2">previous works</span>
                     </a>
                 </li>
