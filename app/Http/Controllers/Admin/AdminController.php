@@ -27,9 +27,10 @@ class AdminController extends Controller
     public function adminSignup(Request $request) {
         // Validation rules
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:customers',
-            'phone' => 'required|string|max:20|unique:customers|regex:/^[0-9]{10,20}$/',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:admins',
+            'phone' => 'required|string|max:20|unique:admins|regex:/^[0-9]{10,20}$/',
             'password' => 'required|string|min:8',
         ]);
     
@@ -42,9 +43,8 @@ class AdminController extends Controller
             'password' =>  Hash::make($request->password),
         ]);
         Auth::guard('admin')->loginUsingId($admin->id);
-        // toastr()->success('تم تسجيل الدخول بنجاح ');
-
         return redirect()->route('dashboard');
+
     }
     
 
@@ -61,13 +61,12 @@ class AdminController extends Controller
             return redirect()->route('dashboard');
         }
 
-        return redirect()->back()->with('error', 'فشل تسجيل الدخول، يرجى التحقق من البريد الإلكتروني وكلمة المرور');
+        return redirect()->back()->with('error', 'Login failed, please check your email and password');
     }
 
     public function logout()
     {
         Auth::guard('admin')->logout();
-        // toastr()->success('تم تسجيل الخروج بنجاح ');
         return redirect()->route('login');
         
     }

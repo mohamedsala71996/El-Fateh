@@ -33,11 +33,13 @@ Route::post('check', [AdminController::class, 'adminSignin'])
 Route::get('signup-admin', [AdminController::class, 'signupView'])
 ->name('signupView');
 
-Route::middleware('auth:admin')->group(function () {
-Route::get('dashboard', [AdminController::class, 'siginedin'])
-->name('dashboard');
 Route::post('signup-admin', [AdminController::class, 'adminSignup'])
 ->name('adminSignup');
+
+Route::middleware('auth:admin')->group(function () {
+    
+Route::get('dashboard', [AdminController::class, 'siginedin'])
+->name('dashboard');
 
 Route::post('/logout/admin', [AdminController::class, 'logout'])->name('logout.admin');
 

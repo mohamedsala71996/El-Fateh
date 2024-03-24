@@ -9,13 +9,13 @@
         <div class="main-menu  ">
             <ul class="menu-list my-0">
                 <li>
-                    <a class="m-link active" href="layouts.html">
+                    <a class="m-link" href="layouts.html">
                         <span class="ms-2">Admins</span>
                     </a>
                 </li>
 
                 <li>
-                    <a class="m-link" href="modals.html">
+                    <a class="m-link" href="{{ route('categories.index') }}">
                         <span class="ms-2">category </span>
                     </a>
                 </li>
@@ -42,3 +42,4 @@
     </div>
 
 </div>
+
