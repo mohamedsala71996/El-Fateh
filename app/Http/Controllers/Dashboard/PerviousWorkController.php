@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Pervious_work;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\PreviousworkRequest;
-use App\Models\Category;
 
 class PerviousWorkController extends Controller
 {
@@ -18,22 +19,9 @@ class PerviousWorkController extends Controller
         $allperviousWorks = Pervious_work::all();
         // $categories = Category::all();
 
-        return view('perviousworks.index', compact('allperviousWorks'));
+        return view('dashboard.perviousworks.index', compact('allperviousWorks'));
     }
 
-
-
-
-
-
-    public function PerviousWork($id)
-    {
-
-        $Pervious_work = Pervious_work::FindOrFail($id);
-
-
-        return view('oneperviousWorks', compact('Pervious_work'));
-    }
 
 
 
@@ -43,7 +31,7 @@ class PerviousWorkController extends Controller
     {
 
         $categories = Category::all();
-        return view('perviousworks.create', compact('categories'));
+        return view('dashboard.perviousworks.create', compact('categories'));
     }
 
     public function CreatePreviousWork(Request $request)
@@ -89,7 +77,7 @@ class PerviousWorkController extends Controller
     {
         $Perviouswork = Pervious_work::FindOrFail($id);
         $categories = Category::all();
-        return view('perviousworks.update', compact('Perviouswork', 'categories'));
+        return view('dashboard.perviousworks.update', compact('Perviouswork', 'categories'));
     }
 
     public function updatePreviousWork(Request $request, $id)
@@ -128,7 +116,7 @@ class PerviousWorkController extends Controller
 
         $Pervious_work = Pervious_work::FindOrFail($id);
 
-        // dd($Pervious_work);
+
         Storage::delete($Pervious_work->image);
 
         $Pervious_work->delete();

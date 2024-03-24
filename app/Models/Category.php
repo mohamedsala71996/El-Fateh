@@ -10,12 +10,12 @@ class Category extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'en_name',
         'ar_name',
+        'en_name',
 
     ];
 
-    public function comments(): HasMany
+    public function perviousWorks(): HasMany
     {
         return $this->hasMany(Pervious_work::class);
     }
