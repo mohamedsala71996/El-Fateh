@@ -30,7 +30,7 @@
             Categories List
           </div>
           <div class="card-body">
-            <table class="table table-bordered">
+            <table class="table table-bordered text-center">
                 <thead>
                     <tr>
                         <th>Name (Arabic)</th>
@@ -54,7 +54,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="3" class="text-center">There is no data available.</td>
+                        <td colspan="3" class="text-center" >There is no data available.</td>
                     </tr>
                     @endforelse
                 </tbody>

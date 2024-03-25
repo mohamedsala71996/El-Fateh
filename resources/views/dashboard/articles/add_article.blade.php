@@ -42,7 +42,7 @@
       </div>
       <div class="mb-3">
         <label for="ar_content" class="form-label">الموضوع</label>
-        <p contenteditable="true" id="ar_content" name="ar_content">{{ old('ar_content') }}</p>
+        <textarea class="form-control" id="ar_content" name="ar_content" rows="3">{{ old('ar_content') }}</textarea>
         @error('ar_content')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror

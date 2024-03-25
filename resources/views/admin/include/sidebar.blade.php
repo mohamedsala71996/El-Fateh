@@ -21,7 +21,7 @@
                 </li>
 
                 <li>
-                    <a class="m-link" href="docs/w-cards.html">
+                    <a class="m-link" href="{{ route('all_articles') }}">
                         <span class="ms-2">article</span>
                     </a>
                 </li>

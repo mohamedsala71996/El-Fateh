@@ -16,10 +16,11 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->string('en_title');
+            $table->string('en_title');  
             $table->string('ar_title');
             $table->text('en_content');
             $table->text('ar_content');
+            $table->string('image');
             $table->foreignId('admin_id')->constrained('admins');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
