@@ -61,11 +61,7 @@
 </div>
 <div class="col-lg-6 d-flex justify-content-center align-items-center">
 <div class="card shadow-sm w-100 p-4 p-md-5" style="max-width: 32rem;">
-	@if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
+
 <form class="row g-3" action="{{ route('register') }}" method="POST">
 	@csrf
 <div class="col-12 text-center mb-5">
@@ -78,23 +74,32 @@
 <img class="avatar xs me-2" src="{{ url('/') }}/admin/assets/img/google.svg" alt="Image Description"> Sign in with Google </span>
 </a>
 <span class="dividers text-muted mt-4">OR</span>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 </div>
 <div class="col-12">
 <div class="mb-2">
 <label class="form-label">First Name</label>
-<input type="text" class="form-control form-control-lg" name="first_name" placeholder="first name">
+<input type="text" class="form-control form-control-lg" name="first_name" value="{{ old('first_name') }}"  placeholder="first name" required>
 </div>
 <div class="mb-2">
 <label class="form-label">Last Name</label>
-<input type="text" class="form-control form-control-lg" name="last_name" placeholder="last name">
+<input type="text" class="form-control form-control-lg" name="last_name" value="{{ old('last_name') }}" placeholder="last name" required>
 </div>
 <div class="mb-2">
 <label class="form-label">Phone number</label>
-<input type="text" class="form-control form-control-lg" name="phone" placeholder="phone number">
+<input type="text" class="form-control form-control-lg" name="phone" value="{{ old('phone') }}" placeholder="phone number" required>
 </div>
 <div class="mb-2">
 <label class="form-label">Email address</label>
-<input type="email" class="form-control form-control-lg" name="email" placeholder="name@example.com">
+<input type="email" class="form-control form-control-lg" name="email" value="{{ old('email') }}" placeholder="name@example.com" required>
 </div>
 </div>
 <div class="col-12">
@@ -103,7 +108,7 @@
 {{-- <span class="d-flex justify-content-between align-items-center"> Password <a class="text-primary" href="auth-password-reset.html">Forgot Password?</a>
 </span> --}}
 </div>
-<input id="password" class="form-control form-control-lg" type="password" name="password" maxlength="10" placeholder="Enter the password">
+<input id="password" class="form-control form-control-lg" type="password" name="password" maxlength="255" placeholder="Enter the password" required>
 </div>
 </div>
 <div class="col-12">

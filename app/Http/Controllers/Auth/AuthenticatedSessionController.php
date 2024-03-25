@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('website');
         }
 
-        return redirect()->back()->with('error', 'فشل تسجيل الدخول، يرجى التحقق من البريد الإلكتروني وكلمة المرور');
+        return redirect()->back()->with('error', 'Login failed, please check your email and password');
 
     }
 

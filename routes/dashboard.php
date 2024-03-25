@@ -30,3 +30,8 @@ Route::prefix('admin')->controller(PerviousWorkController::class)->group(functio
 ////////////////////// Pervious work //////////////////////////////////
 
 
+
+
+
+
+Route::resource('categories', CategoryController::class);
