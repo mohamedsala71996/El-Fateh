@@ -1,18 +1,37 @@
 <?php
 
-use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\PerviousWorkController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WebSite\HomeController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+
+
+
+
+////////////////////// Pervious work //////////////////////////////////
+
+Route::prefix('admin')->controller(PerviousWorkController::class)->group(function (){
+    Route::get('AllperviousWorks','AllperviousWorks');
+    Route::get('PerviousWork','PerviousWork');
+
+
+    Route::get('PerviousWork','FromPreviousWork');
+    Route::post('create/PerviousWork','CreatePreviousWork');
+
+
+    Route::get('edit/PerviousWork/{id}','EditPreviousWork');
+    Route::put('update/PerviousWork/{id}','updatePreviousWork');
+
+
+    Route::delete('delete/PerviousWork/{id}','deletePreviousWork');
+});
+
+////////////////////// Pervious work //////////////////////////////////
+
+
+
+
 
 
 Route::resource('categories', CategoryController::class);

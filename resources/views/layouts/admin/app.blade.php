@@ -76,7 +76,7 @@
         {{-- Start header --}}
         {{-- ***************** --}}
         {{-- Start Body --}}
-        @yield('content')
+      @yield('content')
         {{-- Start Body --}}
         {{-- ***************** --}}
 
