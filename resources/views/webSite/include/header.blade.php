@@ -16,10 +16,10 @@
                     <a class="nav-link" href="" style="margin: 10; color: darkgoldenrod;" > Community</a>
                 </li>
                 <li class="nav-item" style="margin: 20px;">
-                    <a class="nav-link" href="" style="color: darkgoldenrod;" >Why Us</a>
+                    <a class="nav-link" href="{{ route('whyUs.index') }}" style="color: darkgoldenrod;" >Why Us</a>
                 </li>
                 <li class="nav-item" style="margin: 20px;">
-                    <a class="nav-link" href="" style="color: darkgoldenrod;" >About</a>
+                    <a class="nav-link" href="{{ route('about.index') }}" style="color: darkgoldenrod;" >About</a>
                 </li>
                 <li class="nav-item" style="margin: 20px;">
                     <img src="{{ url('/') }}/assets/images/logo.jpeg" id="navbar-brand" style="position: relative; width:40px"  alt="">

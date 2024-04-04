@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Dashboard\PerviousWorkController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WebSite\AboutController;
 use App\Http\Controllers\WebSite\HomeController;
+use App\Http\Controllers\WebSite\WhyUsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('website');
+
+Route::get('/whyUs', [WhyUsController::class, 'index'])->name('whyUs.index');
+
+Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 
 
 Route::middleware('auth')->group(function () {

@@ -16,19 +16,29 @@
 
                 <li>
                     <a class="m-link" href="{{ route('categories.index') }}">
-                        <span class="ms-2">category </span>
+                        <span class="ms-2">Categories </span>
                     </a>
                 </li>
 
                 <li>
                     <a class="m-link" href="{{ route('all_articles') }}">
-                        <span class="ms-2">article</span>
+                        <span class="ms-2">Articles</span>
                     </a>
                 </li>
 
                 <li>
                     <a class="m-link" href="{{ url('admin/AllperviousWorks') }}">
-                        <span class="ms-2">previous works</span>
+                        <span class="ms-2">Previous works</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="m-link" href="{{ route('contact-us.index') }}">
+                        <span class="ms-2">Contact us</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="m-link" href="{{ route('about-us.index') }}">
+                        <span class="ms-2">About us</span>
                     </a>
                 </li>
 

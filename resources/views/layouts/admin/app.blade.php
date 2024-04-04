@@ -81,7 +81,7 @@
         {{-- ***************** --}}
 
         {{-- Start Footer --}}
-        @include('admin.include.footer')
+        {{-- @include('admin.include.footer') --}}
         {{-- Start Footer --}}
         </div>
 

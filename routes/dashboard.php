@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AboutUsController;
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\ArticleController;
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\ContactUsController;
 use App\Http\Controllers\Dashboard\PerviousWorkController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\ProfileController;
@@ -50,6 +52,10 @@ Route::prefix('dashboard')->group(function () {
     Route::resource('admins', AdminController::class);
 
     Route::resource('setting', SettingController::class);
+
+    Route::resource('about-us', AboutUsController::class);
+
+    Route::resource('contact-us', ContactUsController::class);
 
 
 });
