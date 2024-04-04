@@ -9,7 +9,7 @@
         <div class="main-menu  ">
             <ul class="menu-list my-0">
                 <li>
-                    <a class="m-link" href="layouts.html">
+                    <a class="m-link" href="{{ route('admins.index') }}">
                         <span class="ms-2">Admins</span>
                     </a>
                 </li>
@@ -33,7 +33,7 @@
                 </li>
 
                 <li>
-                    <a class="m-link" href="./docs/doc-changelog.html">
+                    <a class="m-link" href="{{ route('setting.index') }}">
                         <span class="ms-2">setting </span>
                     </a>
                 </li>

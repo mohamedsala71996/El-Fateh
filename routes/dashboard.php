@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\ArticleController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\PerviousWorkController;
+use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebSite\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -43,9 +45,15 @@ Route::prefix('dashboard')->group(function () {
     Route::get('edit_article/{id}', [ArticleController::class, 'edit_article'])->name('edit_article');
     Route::put('update_article/{id}', [ArticleController::class, 'update_article'])->name('update_article');
 
+    Route::resource('categories', CategoryController::class);
+    
+    Route::resource('admins', AdminController::class);
+
+    Route::resource('setting', SettingController::class);
+
+
 });
 
 
 
 
-Route::resource('categories', CategoryController::class);

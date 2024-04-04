@@ -12,7 +12,6 @@
       </div> 
     <div class="row align-items-center">
   <div class="col">
-    <h1 class="fs-5 color-900 mt-1 mb-0">Welcome back, Allie!</h1>
-    <small class="text-muted">You have 12 new messages and 7 new notifications.</small>
+    <h1 class="fs-5 color-900 mt-1 mb-0">Welcome back, {{ Auth::guard('admin')->user()->first_name }}!</h1>
 </div>
 @endsection
