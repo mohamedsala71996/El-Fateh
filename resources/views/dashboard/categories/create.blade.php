@@ -23,7 +23,7 @@
                     <div class="card-header">{{ __('Add Category') }}</div>
     
                     <div class="card-body">
-                        <form method="POST" action="{{ route('categories.store') }}">
+                        <form method="POST" action="{{ route('categories.store') }}" enctype="multipart/form-data">
                             @csrf
     
                             <div class="form-group mb-4">
@@ -42,6 +42,39 @@
                                 <input id="en_name" type="text" class="form-control @error('en_name') is-invalid @enderror" name="en_name" value="{{ old('en_name') }}" required autocomplete="en_name">
     
                                 @error('en_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+    
+                            <div class="form-group mb-4">
+                                <label for="en_content">{{ __('Category Content (English)') }}</label>
+                                <textarea id="en_content" class="form-control @error('en_content') is-invalid @enderror" name="en_content" required>{{ old('en_content') }}</textarea>
+    
+                                @error('en_content')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label for="ar_content">{{ __('Category Content (Arabic)') }}</label>
+                                <textarea id="ar_content" class="form-control @error('ar_content') is-invalid @enderror" name="ar_content" required>{{ old('ar_content') }}</textarea>
+    
+                                @error('ar_content')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label for="photo">{{ __('Category Photo') }}</label>
+                                <input type="file" class="form-control-file @error('photo') is-invalid @enderror" id="photo" name="photo" accept="image/*">
+    
+                                @error('photo')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

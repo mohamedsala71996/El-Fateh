@@ -16,13 +16,13 @@
         </ol>
       </div>
     </div>
-    <!-- Add New Article Button -->
+    <!-- Add New Category Button -->
     <div class="row mb-3">
       <div class="col">
         <a href="{{ route('categories.create') }}" class="btn btn-success">Add New Category</a>
       </div>
     </div>
-    <!-- Table to display articles -->
+    <!-- Table to display categories -->
     <div class="row">
       <div class="col">
         <div class="card">
@@ -35,6 +35,9 @@
                     <tr>
                         <th>Name (Arabic)</th>
                         <th>Name (English)</th>
+                        <th>Content (Arabic)</th>
+                        <th>Content (English)</th>
+                        <th>Photo</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -43,6 +46,9 @@
                     <tr class="align-middle">
                         <td>{{ $category->ar_name }}</td>
                         <td>{{ $category->en_name }}</td>
+                        <td>{{ $category->ar_content }}</td>
+                        <td>{{ $category->en_content }}</td>
+                        <td><img src="{{ asset("storage/$category->photo") }}" alt="Category Photo" style="max-width: 100px;"></td>
                         <td>
                             <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary">Edit</a>
                             <form action="{{ route('categories.destroy',$category->id) }}" method="POST" style="display: inline-block; margin-top: 10px;">
@@ -54,7 +60,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="3" class="text-center" >There is no data available.</td>
+                        <td colspan="6" class="text-center" >There is no data available.</td>
                     </tr>
                     @endforelse
                 </tbody>

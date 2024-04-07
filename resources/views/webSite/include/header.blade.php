@@ -16,6 +16,9 @@
                     <a class="nav-link" href="" style="margin: 10; color: darkgoldenrod;" > Community</a>
                 </li>
                 <li class="nav-item" style="margin: 20px;">
+                    <a class="nav-link" href="" style="margin: 10; color: darkgoldenrod;" > Requests</a>
+                </li>
+                <li class="nav-item" style="margin: 20px;">
                     <a class="nav-link" href="{{ route('whyUs.index') }}" style="color: darkgoldenrod;" >Why Us</a>
                 </li>
                 <li class="nav-item" style="margin: 20px;">

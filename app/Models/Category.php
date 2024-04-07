@@ -13,7 +13,9 @@ class Category extends Model
     protected $fillable = [
         'ar_name',
         'en_name',
-
+        'ar_content',
+        'en_content',
+        'photo',
     ];
 
     public function perviousWorks(): HasMany

@@ -23,7 +23,10 @@ class CategoryRequest extends FormRequest
     {
         return [
             'ar_name' => 'required|string|max:255|unique:categories,ar_name,'.$this->id, 
-            'en_name' => 'required|string|max:255|unique:categories,en_name,'.$this->id, 
+            'en_name' => 'required|string|max:255|unique:categories,en_name,'.$this->id,
+            'ar_content' => 'required|string',
+            'en_content' => 'required|string',
+            'photo' => 'image|mimes:jpeg,png,jpg,gif', 
         ];
     }
 }
