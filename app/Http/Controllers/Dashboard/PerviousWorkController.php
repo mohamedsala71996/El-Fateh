@@ -50,7 +50,7 @@ class PerviousWorkController extends Controller
             'category_id' => "required|exists:categories,id"
         ]);
 
-        $imageName = Storage::putFile('Works',  $request->image);
+        $imageName = $request->file('image')->store('dist/img/previos_works', 'public');
 
 
         $work =  Pervious_work::create([
@@ -99,8 +99,8 @@ class PerviousWorkController extends Controller
         $Pervious_work = Pervious_work::FindOrFail($id);
 
         if ($request->has('image')) {
-            Storage::delete($Pervious_work->image);
-            $data['image'] = Storage::putFile('Works',  $data['image']);
+            Storage::disk('public')->delete($Pervious_work->image);
+            $data['image'] = $request->file('image')->store('dist/img/previos_works', 'public');
         }
 
 
@@ -117,7 +117,7 @@ class PerviousWorkController extends Controller
         $Pervious_work = Pervious_work::FindOrFail($id);
 
 
-        Storage::delete($Pervious_work->image);
+        Storage::disk('public')->delete($Pervious_work->image);
 
         $Pervious_work->delete();
 

@@ -18,6 +18,9 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('en_name');
             $table->string('ar_name');
+            $table->string('en_content'); 
+            $table->string('ar_content'); 
+            $table->string('photo'); 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

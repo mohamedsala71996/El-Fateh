@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->text('content');
             $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('article_id')->constrained('articles');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

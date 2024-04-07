@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AdminController extends Controller
 {
@@ -15,7 +16,6 @@ class AdminController extends Controller
  
     public function index()
     {
-
         $admins = Admin::all();
         return view('dashboard.admins.index', compact('admins'));
     }
@@ -25,6 +25,7 @@ class AdminController extends Controller
      */
     public function create()
     {
+    
         return view('dashboard.admins.create');
     }
 
@@ -33,6 +34,7 @@ class AdminController extends Controller
      */
     public function store(AdminRequest $request)
     {
+
         Admin::create($request->all());
         return redirect()->route('admins.index')->with('success', 'Data saved successfully');
     }
@@ -50,6 +52,7 @@ class AdminController extends Controller
      */
     public function edit(Admin $admin)
     {
+
         return view('dashboard.admins.edit', compact('admin'));
     }
 
@@ -58,6 +61,7 @@ class AdminController extends Controller
      */
     public function update(AdminRequest $request, Admin $admin)
     {
+
         $admin->update($request->all());
         return redirect()->route('admins.index')->with('success', 'Data saved successfully.');
     }
@@ -67,6 +71,7 @@ class AdminController extends Controller
      */
     public function destroy(Admin $admin)
     {
+
         $admin->delete();
         return redirect()->route('admins.index')->with('success', 'Data deleted successfully.');
     }

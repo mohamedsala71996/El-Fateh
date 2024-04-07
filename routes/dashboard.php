@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 ////////////////////// Pervious work //////////////////////////////////
 
-Route::prefix('admin')->controller(PerviousWorkController::class)->group(function (){
+Route::prefix('admin')->middleware(['admin'])->controller(PerviousWorkController::class)->group(function (){
     Route::get('AllperviousWorks','AllperviousWorks');
     Route::get('PerviousWork','PerviousWork');
 
@@ -35,7 +35,7 @@ Route::prefix('admin')->controller(PerviousWorkController::class)->group(functio
 
 ////////////////////// Pervious work //////////////////////////////////
 
-Route::prefix('dashboard')->group(function () {
+Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::get('articles', [ArticleController::class, 'all_articles'])->name('all_articles');
 
 
