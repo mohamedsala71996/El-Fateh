@@ -32,6 +32,11 @@
                     </a>
                 </li>
                 <li>
+                    <a class="m-link" href="{{ route('reasons.index') }}">
+                        <span class="ms-2">Why us</span>
+                    </a>
+                </li>
+                <li>
                     <a class="m-link" href="{{ route('contact-us.index') }}">
                         <span class="ms-2">Contact us</span>
                     </a>
