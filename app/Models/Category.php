@@ -20,7 +20,7 @@ class Category extends Model
 
     public function perviousWorks(): HasMany
     {
-        return $this->hasMany(Pervious_work::class);
+        return $this->hasMany(PreviousWork::class);
     }
 
 }

@@ -6,22 +6,28 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Pervious_work extends Model
+class PreviousWork extends Model
 {
     use HasFactory;
     protected $table = "previous_works";
     protected $fillable = [
         'image',
-        'en_engineer',
+        'en_engineer_name',
         'en_title',
-        'starts_at',
+        'ar_engineer_name',
+        'ar_title',
+        'started_at',
         'ended_at',
         'en_description',
         'ar_description',
-        'ar_engineer',
-        'ar_title',
+        'en_location',
+        'ar_location',
+        'en_client',
+        'ar_client',
+        'total_area',
+        'total_units',
+        'total_concrete',
         'category_id',
-
     ];
 
     public function category(): BelongsTo

@@ -3,7 +3,9 @@
 use App\Http\Controllers\Dashboard\PerviousWorkController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebSite\AboutController;
+use App\Http\Controllers\WebSite\ArticleController;
 use App\Http\Controllers\WebSite\HomeController;
+use App\Http\Controllers\WebSite\RequestUserController;
 use App\Http\Controllers\WebSite\WhyUsController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +22,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('website');
 
+Route::get('/previousWorks/{category_id}', [HomeController::class, 'allPreviousWorks'])->name('allPreviousWorks');
+Route::get('/previousWork/{previousWork_id}', [HomeController::class, 'previousWork'])->name('previousWork');
+
 Route::get('/whyUs', [WhyUsController::class, 'index'])->name('whyUs.index');
 
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
+
+Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+
+Route::resource('requests', RequestUserController::class);
 
 
 Route::middleware('auth')->group(function () {

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PreviousworkRequest extends FormRequest
+class PreviousWorkRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,17 +22,23 @@ class PreviousworkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image'=>"nullable|array",
-            'image.*'=>"nullable|image|mimes:png,jpg",
-            'en_engineer'=>"required|string|max:255",
-            'ar_engineer'=>"required|string|max:255",
-            'en_title'=>"required|string|max:255",
-            'ar_title'=>"required|string|max:255",
-            'starts_at'=>"required|date_format:Y-m",
-            'ended_at'=>"required|date_format:Y-m",
-            'en_description'=>"required|string|max:255",
-            'ar_description'=>"required|string|max:255",
-            'category_id'=>"required|exists:categories,category_id"
+            'image' => 'image|mimes:jpeg,png,jpg,gif',
+            'en_engineer_name' => 'required|string|max:255',
+            'en_title' => 'required|string|max:255',
+            'ar_engineer_name' => 'required|string|max:255',
+            'ar_title' => 'required|string|max:255',
+            'started_at' => 'required|date',
+            'ended_at' => 'required|date|after_or_equal:started_at',
+            'en_description' => 'required|string',
+            'ar_description' => 'required|string',
+            'en_location' => 'required|string|max:255',
+            'ar_location' => 'required|string|max:255',
+            'en_client' => 'nullable|string|max:255',
+            'ar_client' => 'nullable|string|max:255',
+            'total_area' => 'nullable|string|max:255',
+            'total_units' => 'nullable|string|max:255',
+            'total_concrete' => 'nullable|string|max:255',
+            'category_id' => 'required|exists:categories,id',
         ];
     }
 }
