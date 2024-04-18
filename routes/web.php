@@ -7,6 +7,7 @@ use App\Http\Controllers\WebSite\ArticleController;
 use App\Http\Controllers\WebSite\HomeController;
 use App\Http\Controllers\WebSite\RequestUserController;
 use App\Http\Controllers\WebSite\WhyUsController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,25 +21,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('website');
-
-Route::get('/previousWorks/{category_id}', [HomeController::class, 'allPreviousWorks'])->name('allPreviousWorks');
-Route::get('/previousWork/{previousWork_id}', [HomeController::class, 'previousWork'])->name('previousWork');
-
-Route::get('/whyUs', [WhyUsController::class, 'index'])->name('whyUs.index');
-
-Route::get('/about', [AboutController::class, 'index'])->name('about.index');
-
-Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
-
-Route::resource('requests', RequestUserController::class);
+// Route::get('/{locale}', function (string $locale) {
+//     if (!in_array($locale, ['en', 'ar'])) {
+//         // session()->put('locale', $locale);
+//         abort(400);
+//     }
+//     App::setLocale($locale);
+//     return redirect()->back();
+// })->name('localeChange');
 
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+
+    Route::get('/', [HomeController::class, 'index'])->name('website');
+
+    Route::get('/previousWorks/{category_id}', [HomeController::class, 'allPreviousWorks'])->name('allPreviousWorks');
+    
+    Route::get('/previousWork/{previousWork_id}', [HomeController::class, 'previousWork'])->name('previousWork');
+    
+    Route::get('/whyUs', [WhyUsController::class, 'index'])->name('whyUs.index');
+    
+    Route::get('/about', [AboutController::class, 'index'])->name('about.index');
+    
+    Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+
+    Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
+    
+    Route::resource('requests', RequestUserController::class);
 
 
 
