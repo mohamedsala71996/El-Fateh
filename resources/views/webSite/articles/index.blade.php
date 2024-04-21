@@ -1,7 +1,7 @@
 @extends('layouts.site.app')
 
 @section('content')
-<div data-wow-duration="3s" data-wow-delay="0.7s" style="padding:10px;" id="box2">
+{{-- <div data-wow-duration="3s" data-wow-delay="0.7s" style="padding:10px;" id="box2">
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active" id="background-div">
@@ -24,98 +24,25 @@
     </a>
   </div>
 
-</div>
+</div> --}}
 <div data-wow-duration="3s" data-wow-delay="0.7s" id="box2">
   <div class="container">
-    @foreach ($articles as $article)
     <div class="cards m-auto gap-4 row" style="align-items: center; justify-content: center; ">
+      @foreach ($articles as $article)
       <div class="cards  col-lg-5 col-md-6 col-12" style="width: 20rem; margin: 10px; border: 1px solid #000000 !important;
       box-shadow: 0px 0px 10px 0px #0000000D !important;">
         <img src="{{ asset('dist/img/articles/' . $article->image) }}" class="card-img-top" style="height: 300px; padding-top:10px ;"
           alt="card image">
         <div class="card-body">
-          <p class="card-text">بعض الأمثلة السريعة للنصوص التي يمكن البناء عليها على عنوان البطاقة وتشكل الجزء
-            الأكبر من البطاقة
-            محتوى.</p>
+          <h5>{{ $article->{app()->getLocale().'_title'} }}</h3>
+          <p class="card-text">{{ $article->{app()->getLocale().'_content'} }}</p>
           <div class="d-flex flex-column align-items-center" id="app">
             <a href="{{ route('articles.show',$article->id) }}" class="btn btn-primary w-30 mt-2 "
-              style="background-color: darkgoldenrod; outline: none;  border: none;">ألق نظرة</a>
+              style="background-color: darkgoldenrod; outline: none;  border: none;">{{ __('Take a look') }}</a>
           </div>
         </div>
       </div>
       @endforeach
-      {{-- <div class="cards  col-lg-5 col-md-6 col-12" style="width: 20rem; margin: 10px; border: 1px solid #000000 !important;
-      box-shadow: 0px 0px 10px 0px #cca3a30d !important;">
-        <img src="assets/images/Articles2.jpg" class="card-img-top" style="height: 300px; padding-top:10px ;"
-          alt="card image">
-        <div class="card-body">
-          <p class="card-text">بعض الأمثلة السريعة للنصوص التي يمكن البناء عليها على عنوان البطاقة وتشكل الجزء
-            الأكبر من البطاقة
-            محتوى.</p>
-          <div class="d-flex flex-column align-items-center">
-            <a href="Paragraph.html" class="btn btn-primary w-30 mt-2"
-              style="background-color:darkgoldenrod;  outline: none;  border: none;">ألق نظرة</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="cards  col-lg-5 col-md-6 col-12" style="width: 20rem; margin: 10px; border: 1px solid #000000 !important;
-      box-shadow: 0px 0px 10px 0px #0000000D !important;">
-        <img src="assets/images/Articles3.jpg" class="card-img-top" style="height: 300px;padding-top:10px ;"
-          alt="card image">
-        <div class="card-body">
-          <p class="card-text">بعض الأمثلة السريعة للنصوص التي يمكن البناء عليها على عنوان البطاقة وتشكل الجزء
-            الأكبر من البطاقة
-            محتوى.</p>
-          <div class="d-flex flex-column align-items-center">
-            <a href="Paragraph.html" class="btn btn-primary w-30 mt-2"
-              style="background-color:darkgoldenrod;  outline: none;  border: none;">ألق نظرة</a>
-          </div>
-        </div>
-      </div>
-      <div class="cards  col-lg-5 col-md-6 col-12" style="width: 20rem; margin: 10px; border: 1px solid #000000 !important;
-      box-shadow: 0px 0px 10px 0px #0000000D !important;">
-        <img src="assets/images/Articles4.jpg" class="card-img-top" style="height: 300px; padding-top:10px ;"
-          alt="card image">
-        <div class="card-body">
-          <p class="card-text">بعض الأمثلة السريعة للنصوص التي يمكن البناء عليها على عنوان البطاقة وتشكل الجزء
-            الأكبر من البطاقة
-            محتوى.</p>
-          <div class="d-flex flex-column align-items-center" id="app">
-            <a href="Paragraph.html" class="btn btn-primary w-30 mt-2"
-              style="background-color:darkgoldenrod;  outline: none;  border: none;">ألق نظرة</a>
-          </div>
-        </div>
-      </div>
-      <div class="cards  col-lg-5 col-md-6 col-12" style="width: 20rem; margin: 10px; border: 1px solid #000000 !important;
-      box-shadow: 0px 0px 10px 0px #cca3a30d !important;">
-        <img src="assets/images/Articles5.jpg" class="card-img-top" style="height: 300px; padding-top:10px ;"
-          alt="card image">
-        <div class="card-body">
-          <p class="card-text">بعض الأمثلة السريعة للنصوص التي يمكن البناء عليها على عنوان البطاقة وتشكل الجزء
-            الأكبر من البطاقة
-            محتوى.</p>
-          <div class="d-flex flex-column align-items-center">
-            <a href="Paragraph.html" class="btn btn-primary w-30 mt-2"
-              style="background-color:darkgoldenrod;  outline: none;  border: none;">ألق نظرة</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="cards  col-lg-5 col-md-6 col-12" style="width: 20rem; margin: 10px; border: 1px solid #000000 !important;
-      box-shadow: 0px 0px 10px 0px #0000000D !important;">
-        <img src="assets/images/Articles6.jpg" class="card-img-top" style="height: 300px;padding-top:10px ;"
-          alt="card image">
-        <div class="card-body">
-          <p class="card-text">بعض الأمثلة السريعة للنصوص التي يمكن البناء عليها على عنوان البطاقة وتشكل
-            الجزء الأكبر من البطاقة
-            محتوى.</p>
-          <div class="d-flex flex-column align-items-center">
-            <a href="Paragraph.html" class="btn btn-primary w-30 mt-2"
-              style="background-color:darkgoldenrod; outline: none;  border: none;">ألق نظرة</a>
-          </div>
-        </div>
-      </div> --}}
     </div>
   </div>
 </div>

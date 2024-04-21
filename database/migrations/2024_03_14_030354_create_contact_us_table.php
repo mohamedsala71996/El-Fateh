@@ -16,16 +16,13 @@ class CreateContactUsTable extends Migration
     {
         Schema::create('contact_us', function (Blueprint $table) {
             $table->id();
-            $table->string('en_name');
-            $table->string('ar_name');
             $table->string('phone_number');
-            $table->text('en_message');
-            $table->text('ar_message');
-            $table->string('contact_email');
+            $table->string('email');
+            $table->text('en_address');
+            $table->text('ar_address');
             $table->text('en_terms_conditions');
             $table->text('ar_terms_conditions');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

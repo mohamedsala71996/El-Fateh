@@ -18,16 +18,11 @@ class CreateAboutUsTable extends Migration
             $table->id();
             $table->string('en_company_name');
             $table->string('ar_company_name');
-            $table->string('en_location');
-            $table->string('ar_location');
             $table->text('en_about_text');
             $table->text('ar_about_text');
             $table->date('founded_date');
             $table->string('website');
-            $table->string('contact_email');
-            $table->string('phone_number');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\PerviousWorkController;
+use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebSite\AboutController;
 use App\Http\Controllers\WebSite\ArticleController;
@@ -23,13 +24,17 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/{locale}', function (string $locale) {
 //     if (!in_array($locale, ['en', 'ar'])) {
-//         // session()->put('locale', $locale);
 //         abort(400);
 //     }
-//     App::setLocale($locale);
 //     return redirect()->back();
-// })->name('localeChange');
+// })->middleware(['locale'])->name('localeChange');
 
+Route::get('/localization/{locale}',[LocaleController::class, 'changeLocale'])->name('localeChange');
+
+// Route::get('/', function(){
+
+//     return redirect()->to(session('locale'));
+// });
 
 
     Route::get('/', [HomeController::class, 'index'])->name('website');
@@ -45,10 +50,10 @@ use Illuminate\Support\Facades\Route;
     Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 
     Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
+
+    Route::post('/articles', [ArticleController::class, 'show'])->name('articles.store');
     
     Route::resource('requests', RequestUserController::class);
-
-
 
 
 require __DIR__.'/admin.php';

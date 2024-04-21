@@ -30,28 +30,20 @@
                 @method('PUT')
               @endisset
               <div class="mb-3">
-                <label for="en_name" class="form-label">Name (English)</label>
-                <input type="text" class="form-control" id="en_name" name="en_name" value="{{ $contactUs->en_name ?? '' }}">
-              </div>
-              <div class="mb-3">
-                <label for="ar_name" class="form-label">Name (Arabic)</label>
-                <input type="text" class="form-control" id="ar_name" name="ar_name" value="{{ $contactUs->ar_name ?? '' }}">
-              </div>
-              <div class="mb-3">
                 <label for="phone_number" class="form-label">Phone Number</label>
                 <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ $contactUs->phone_number ?? '' }}">
               </div>
               <div class="mb-3">
-                <label for="en_message" class="form-label">Message (English)</label>
-                <textarea class="form-control" id="en_message" name="en_message">{{ $contactUs->en_message ?? '' }}</textarea>
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ $contactUs->email ?? '' }}">
               </div>
               <div class="mb-3">
-                <label for="ar_message" class="form-label">Message (Arabic)</label>
-                <textarea class="form-control" id="ar_message" name="ar_message">{{ $contactUs->ar_message ?? '' }}</textarea>
+                <label for="en_address" class="form-label">ِAddress (English)</label>
+                <textarea class="form-control" id="en_address" name="en_address">{{ $contactUs->en_address ?? '' }}</textarea>
               </div>
               <div class="mb-3">
-                <label for="contact_email" class="form-label">Contact Email</label>
-                <input type="email" class="form-control" id="contact_email" name="contact_email" value="{{ $contactUs->contact_email ?? '' }}">
+                <label for="ar_address" class="form-label">ِAddress (Arabic)</label>
+                <textarea class="form-control" id="ar_address" name="ar_address">{{ $contactUs->ar_address ?? '' }}</textarea>
               </div>
               <div class="mb-3">
                 <label for="en_terms_conditions" class="form-label">Terms & Conditions (English)</label>

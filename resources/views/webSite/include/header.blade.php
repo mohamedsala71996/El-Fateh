@@ -2,8 +2,8 @@
 <div data-wow-duration="2s" data-wow-delay="0.5s" class="navbar navbar-expand-lg  position-fixed w-100 top-0" style=" z-index: 100;box-shadow: 0px 4px 8px 0px darkgoldenrod;" id="box1">
     <a class="navbar-brand" style="color: darkgoldenrod; font-size: xx-large;" href="{{ route('website') }}" >{{ __('EL-fateh') }}</a>
     <div class="nav-link btn">
-        {{-- <a href="{{ route('localeChange','ar') }}">{{ __('Arabic') }}</a> --}}
-        {{-- <a href="{{ route('localeChange','en') }}">{{ __('English') }}</a> --}}
+        <a href="{{ route('localeChange','ar') }}">{{ __('Arabic') }}</a>
+        <a href="{{ route('localeChange','en') }}">{{ __('English') }}</a>
     </div>
     <button class="nav-link btn" id="dark-mode-toggle">
         <img class="al" src="{{ url('/') }}/assets/images/light-mode.png" style="width: 20px; background-color:darkgoldenrod;border-radius: 5px;" alt="{{ __('Light Mode') }}">

@@ -37,9 +37,8 @@ use Illuminate\Support\Facades\Route;
 
 ////////////////////// Pervious work //////////////////////////////////
 
-Route::prefix('dashboard')->middleware(['admin'])->group(function () {
+Route::prefix('/dashboard')->middleware(['admin'])->group(function () {
     Route::get('articles', [ArticleController::class, 'all_articles'])->name('all_articles');
-
 
     Route::get('create_article', [ArticleController::class, 'create_article'])->name('create_article');
     Route::post('store_article', [ArticleController::class, 'store_article'])->name('store_article');

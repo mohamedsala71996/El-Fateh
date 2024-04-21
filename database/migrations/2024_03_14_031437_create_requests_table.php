@@ -22,8 +22,7 @@ class CreateRequestsTable extends Migration
             $table->string('city');
             $table->text('detailed_address'); // العنوان بالتفصيل
             $table->text('description');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

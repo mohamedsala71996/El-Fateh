@@ -24,23 +24,17 @@ use App\Http\Controllers\signController;
 // Route::get('/admin-dashboard', [HomeController::class , 'index'])->name('admin.index');
 // // Why Us
 
-Route::get('login-admin', [AdminController::class, 'login'])
-->name('login');
+Route::get('login-admin', [AdminController::class, 'login'])->name('login');
 
-Route::post('check', [AdminController::class, 'adminSignin'])
-->name('checkAdmin');
+Route::post('check', [AdminController::class, 'adminSignin'])->name('checkAdmin');
 
-Route::get('signup-admin', [AdminController::class, 'signupView'])
-->name('signupView');
+Route::get('signup-admin', [AdminController::class, 'signupView'])->name('signupView');
 
-Route::post('signup-admin', [AdminController::class, 'adminSignup'])
-->name('adminSignup');
+Route::post('signup-admin', [AdminController::class, 'adminSignup'])->name('adminSignup');
 
 Route::middleware('auth:admin')->group(function () {
-    
-Route::get('dashboard', [AdminController::class, 'siginedin'])
-->name('dashboard');
 
-Route::post('/logout/admin', [AdminController::class, 'logout'])->name('logout.admin');
+    Route::get('dashboard', [AdminController::class, 'siginedin'])->name('dashboard');
 
+    Route::post('/logout/admin', [AdminController::class, 'logout'])->name('logout.admin');
 });

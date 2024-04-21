@@ -24,13 +24,10 @@ class AboutUsRequest extends FormRequest
         return [
             'en_company_name' => 'required|string|max:255',
             'ar_company_name' => 'required|string|max:255',
-            'en_location' => 'required|string|max:255',
-            'ar_location' => 'required|string|max:255',
             'en_about_text' => 'required|string',
             'ar_about_text' => 'required|string',
             'founded_date' => 'required|date',
             'website' => 'required|string|max:255',
-            'contact_email' => 'required|email|max:255',
-            'phone_number' => 'required|string|max:255',        ];
+       ];
     }
 }

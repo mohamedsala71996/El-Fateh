@@ -17,5 +17,10 @@ class ArticleController extends Controller
         return view('website.articles.show',compact('article'));
     }
 
+    public function store(Request $request){
+        
+        return view('website.articles.create');
+    }
+
 
 }

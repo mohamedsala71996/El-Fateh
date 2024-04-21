@@ -13,12 +13,10 @@ class ContactUs extends Model
 
 
     protected $fillable = [
-        'en_name',
-        'ar_name',
         'phone_number',
-        'en_message',
-        'ar_message',
-        'contact_email',
+        'en_address',
+        'ar_address',
+        'email',
         'en_terms_conditions',
         'ar_terms_conditions',
     ];
