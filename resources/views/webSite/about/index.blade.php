@@ -3,20 +3,17 @@
 @section('content')
 <div class="containere" style="padding-top: 9%">
     <!-- فيديو -->
-    <div class="video-container">
+    {{-- <div class="video-container">
         <!-- إضافة فيديو هنا -->
         <video autoplay loop muted style="width: 100%; height: 100%; object-fit: cover;">
             <source src="assets/video/veedeoabout.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
-                </div>
+                </div> --}}
     <!-- معلومات الشركة -->
     <div class="info-container">
-        <h2>معلومات الشركة</h2>
-        <p>لوريم إيبسوم طريقة لكتابة النصوص في النشر والتصميم الجرافيكي تستخدم بشكل شائع لتوضيح الشكل المرئي للمستند أو الخط دون الاعتماد على محتوى ذي معنى. يمكن استخدام لوريم إيبسوم قبل نشر النسخة النهائية
-            لوريم إيبسوم طريقة لكتابة النصوص في النشر والتصميم الجرافيكي تستخدم بشكل شائع لتوضيح الشكل المرئي للمستند أو الخط دون الاعتماد على محتوى ذي معنى. يمكن استخدام لوريم إيبسوم قبل نشر النسخة النهائية
-            لوريم إيبسوم طريقة لكتابة النصوص في النشر والتصميم الجرافيكي تستخدم بشكل شائع لتوضيح الشكل المرئي للمستند أو الخط دون الاعتماد على محتوى ذي معنى. يمكن استخدام لوريم إيبسوم قبل نشر النسخة النهائية
-            لوريم إيبسوم طريقة لكتابة انشر النسخة النهائية</p>
+        <h2>{{ $aboutUs->{app()->getLocale().'_company_name'} }}</h2>
+        <p>{{ $aboutUs->{app()->getLocale().'_about_text'} }}</p>
     </div>
 </div>
 @endsection

@@ -3,23 +3,17 @@
 @section('content')
 <div class="container">
     <hr class="line">
-    <p class="word" data-ar="خدماتنا" data-en="Our services">خدماتنا</p>
+    <p class="word" data-ar="{{ __('Our services') }}" data-en="Our services">{{ __('Our services') }}</p>
 
 </div>
-
+@foreach ($reasons as $reason)
 <div style="padding: 20px;">
-<div style="margin: 15px;">
-    <h2 style="font-size: large; text-align: right; margin: 20px;">التصميمات الهندسية </h2>
-    <p style="font-size: large; text-align: right; margin: 20px;">
-        نعمل على جميع أنواع المشاريع و المبانى بمختلف تخصصاتها الوظيفية و على مختلف طرازها المعمارية ومهما كانت
-        ثقافة المجتمع المحيطة بها وكذلك على مختلف ميزانياتها. أى كل ما له علاقه بتصميم المبنى أو المنشأة إلى أن
-        يتم تنفيذها على أرض الواقع جميع مهندسينا بهذا القسم لا تقل خبراتهم عن 5 سنوات و لهم خبرة عمل بدول الخليج
-        و ملمين بالذوق العام و قوانين البناء واشتراطات البلديات. نحرص دائماً على أن يحصل عميلنا على مشروعه بدقه
-        و وضوح عالى بالتفاصيل و فى الوقت المناسب.ويقدم القسم الخدمات الآتية:إعداد كافة المخططات التصميمية فى
-        مختلف التخصصات من التصميمات المعمارية - الإنشائية - الصحية – الكهربائية -التكييف - إدارة الدخان والحريق
-        - التنسيق الحدائقى - التصميم الحضري والعمرانى للقري السياحية والمنتجعات والمدن</p>
-</div>
-<div style="margin: 15px;">
+    <div style="margin: 15px;">
+        <h1 style=" large; text-align: right; margin: 20px; color: darkgoldenrod;">{{ $reason->{app()->getLocale().'_title'} }}</h2>
+        <p style="font-size: large; text-align: right; margin: 20px;">{{ $reason->{app()->getLocale().'_content'} }}</p>
+    </div>     
+@endforeach
+{{-- <div style="margin: 15px;">
     <a href="decor.html">
         <h2 style="font-size: large; text-align: right; margin: 20px; color: darkgoldenrod;">التصميم الديكوري 
         </h2>
@@ -53,6 +47,6 @@
         بشرائها فى كل شىء له علاقة بمشروعه وبهذه الطريقة يستطيع معرفة إجمالى التكلفة الكلية للمشروع وكيفية
         تنظيمه له .تبعاً لإمكانياته وذلك بناءاً على كل من الأعمال سابقة الذكر بالأعلى.
     </p>
-</div>
+</div> --}}
 </div>
 @endsection
