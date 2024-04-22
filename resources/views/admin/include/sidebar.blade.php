@@ -46,6 +46,11 @@
                         <span class="ms-2">About us</span>
                     </a>
                 </li>
+                <li>
+                    <a class="m-link" href="{{ route('contactRequest.index') }}">
+                        <span class="ms-2">Requests To Contacts Us</span>
+                    </a>
+                </li>
 
                 <li>
                     <a class="m-link" href="{{ route('setting.index') }}">
