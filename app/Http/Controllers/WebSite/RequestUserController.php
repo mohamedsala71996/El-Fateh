@@ -16,21 +16,33 @@ class RequestUserController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('website.requests.create');
     }
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'phone_number' => 'required',
+            'governorate' => 'required',
+            'city' => 'required',
+            'detailed_address' => 'required',
+            'description' => 'required',
+        ]);
+
+        RequestUser::create($request->all());
+
+        return redirect()->back()->with('success', 'Request sent successfully!');
     }
+
 
     /**
      * Display the specified resource.
