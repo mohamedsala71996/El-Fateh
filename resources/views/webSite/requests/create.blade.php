@@ -13,7 +13,7 @@
             <div class="row mt-4" style="margin: 40px; padding-top: 20px;">
                 <div class="col">
                     <h3>{{ __('Send request')}}</h3>
-                    <form action="{{ route('contactRequests.store') }}" method="POST" id="newRequestForm">
+                    <form action="{{ route('contactRequest.store') }}" method="POST" id="newRequestForm">
                         @csrf
                         <div class="form-group">
                             <label for="newRequestName">{{ __('Name')}}:</label>
