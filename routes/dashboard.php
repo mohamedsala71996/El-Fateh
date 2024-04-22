@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\ContactUsController;
 use App\Http\Controllers\Dashboard\PerviousWorkController;
 use App\Http\Controllers\Dashboard\PreviousWorkController;
+use App\Http\Controllers\Dashboard\RequestController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\WhyUsController;
 use App\Http\Controllers\ProfileController;
@@ -47,7 +48,7 @@ Route::prefix('/dashboard')->middleware(['admin'])->group(function () {
     Route::delete('delete/{id}', [ArticleController::class, 'delete_article'])->name('delete_article');
 
     Route::get('edit_article/{id}', [ArticleController::class, 'edit_article'])->name('edit_article');
-    
+
     Route::put('update_article/{id}', [ArticleController::class, 'update_article'])->name('update_article');
 
     Route::get('comments/{id}', [ArticleController::class, 'show_comments'])->name('show_comments');
@@ -57,7 +58,7 @@ Route::prefix('/dashboard')->middleware(['admin'])->group(function () {
     Route::resource('previousWorks', PreviousWorkController::class);
 
     Route::resource('categories', CategoryController::class);
-    
+
     Route::resource('admins', AdminController::class);
 
     Route::resource('setting', SettingController::class);
@@ -67,6 +68,8 @@ Route::prefix('/dashboard')->middleware(['admin'])->group(function () {
     Route::resource('contact-us', ContactUsController::class);
 
     Route::resource('reasons', WhyUsController::class);
+
+    Route::resource('contactRequest', RequestController::class);
 
 
 });
