@@ -10,6 +10,7 @@
     "Login":"تسجيل الدخول",
     "Take a look":"ألق نظرة",
     "Contact us":"اتصل بنا",
+    "Phone number":"رقم التليفون",
     "Address":"العنوان",
     "Add comment":"إضافة تعليق",
     "Add":"إضافة",
@@ -17,7 +18,17 @@
     "Title":"العنوان ",
     "The content":"المحتوى ",
     "No comments exist":"لا توجد تعليقات",
-    "Login to add a comment":"سجل الدخول حتى تستطيع التعليق"
-    
+    "Login to add a comment":"سجل الدخول حتى تستطيع التعليق",
+    "Client":"العميل",
+    "Engineer name":"اسم المهندس",
+    "Location":"الموقع",
+    "Started At":"بدأ في",
+    "Ended At":"انتهى في",
+    "Total Building Area":"إجمالي مساحة البناء",
+    "Total Units":"إجمالي الوحدات",
+    "Total Concrete":"إجمالي الخرسانة",
+    "Our services":"خدماتنا"
+
+
 
 }
