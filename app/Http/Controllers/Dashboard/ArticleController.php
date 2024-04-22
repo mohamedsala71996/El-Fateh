@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Http\traits\media;
+use App\Models\Comment;
 
 class ArticleController extends Controller
 {
@@ -94,5 +95,12 @@ class ArticleController extends Controller
 
         DB::table('articles')->where('id', $id)->delete();
         return redirect()->back()->with('success', 'Article deleted successfully.');
+    }
+
+   public function show_comments($article_id)
+    {
+        $comments = Comment::where('article_id',$article_id)->get();
+        return view('dashboard.articles.show_comments', compact('comments'));
+
     }
 }

@@ -38,6 +38,8 @@
               @method('DELETE')
               <button type="submit" class="btn btn-danger">Delete</button>
             </form>
+            <a href="{{ route('show_comments', $article->id) }}" class="btn btn-primary">Comments</a>
+
           </div>
         </div>
       </div>

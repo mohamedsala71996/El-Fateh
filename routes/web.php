@@ -51,7 +51,7 @@ Route::get('/localization/{locale}',[LocaleController::class, 'changeLocale'])->
 
     Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
 
-    Route::post('/articles', [ArticleController::class, 'show'])->name('articles.store');
+    Route::post('/comments', [ArticleController::class, 'store'])->name('comments.store');
     
     Route::resource('requests', RequestUserController::class);
 
