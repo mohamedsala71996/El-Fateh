@@ -25,31 +25,31 @@ class RequestController extends Controller
      *
      */
 
-    public function create(): View
+    public function create()
     {
-//        return view('dashboard.userRequests.create');
+    //    return view('dashboard.userRequests.create');
         //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateContactRequest $request, RequestUser $requestUser)
-    {
-        $validData = $request->validated();
-//        dd($validData);
-        try {
-            DB::beginTransaction();
-            $requestUser->create($validData);
-            DB::commit();
-            return redirect()->back()->with('success', 'Successfully Send Contact Request');
+//     public function store(CreateContactRequest $request, RequestUser $requestUser)
+//     {
+//         $validData = $request->validated();
+// //        dd($validData);
+//         try {
+//             DB::beginTransaction();
+//             $requestUser->create($validData);
+//             DB::commit();
+//             return redirect()->back()->with('success', 'Successfully Send Contact Request');
 
-        } catch (\Throwable $e) {
-            DB::rollBack();
-            return redirect()->back()->with('error', 'Error On Send Contact Request');
+//         } catch (\Throwable $e) {
+//             DB::rollBack();
+//             return redirect()->back()->with('error', 'Error On Send Contact Request');
 
-        }
-    }
+//         }
+//     }
 
     /**
      * Display the specified resource.

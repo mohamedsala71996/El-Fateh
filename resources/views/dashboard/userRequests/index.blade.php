@@ -39,6 +39,8 @@
                         <th>City</th>
                         <th>Detailed Address</th>
                         <th>Description</th>
+                        <th>Date</th>
+                        <th>Controll</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,6 +52,7 @@
                         <td>{{ $contactRequest->city }}</td>
                         <td>{{ $contactRequest->detailed_address }}</td>
                         <td>{{ $contactRequest->description }}</td>
+                        <td>{{ $contactRequest->created_at }}</td>
                         <td>
                             <form action="{{ route('contactRequest.destroy',$contactRequest->id) }}" method="POST" style="display: inline-block; margin-top: 10px;">
                                 @csrf

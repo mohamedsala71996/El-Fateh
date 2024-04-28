@@ -27,8 +27,15 @@
     "Total Building Area":"إجمالي مساحة البناء",
     "Total Units":"إجمالي الوحدات",
     "Total Concrete":"إجمالي الخرسانة",
-    "Our services":"خدماتنا"
-
+    "Our services":"خدماتنا",
+    "Send request":"ارسال طلب",
+    "Name":"الاسم",
+    "Governorate":"المحافظة",
+    "City":"المدينة",
+    "Detailed Address":"العنوان بالتفصيل",
+    "Description":"الوصف",
+    "Send":"ارسال",
+    "Login to send a request":"سجل الدخول لأرسال الطلب"
     
 
 }

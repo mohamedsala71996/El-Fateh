@@ -17,7 +17,7 @@
                 <a class="nav-link" href="{{ route('articles.index') }}" style="margin: 10; color: darkgoldenrod;" >{{ __('Articles') }}</a>
             </li>
             <li class="nav-item" style="margin: 20px;">
-                <a class="nav-link" href="{{ route('requests.create') }}" style="margin: 10; color: darkgoldenrod;" >{{ __('Requests') }}</a>
+                <a class="nav-link" href="{{ route('requestUser.index') }}" style="margin: 10; color: darkgoldenrod;" >{{ __('Requests') }}</a>
             </li>
             <li class="nav-item" style="margin: 20px;">
                 <a class="nav-link" href="{{ route('whyUs.index') }}" style="color: darkgoldenrod;" >{{ __('Why Us') }}</a>

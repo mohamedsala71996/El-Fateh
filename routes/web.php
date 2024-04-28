@@ -53,7 +53,7 @@ Route::get('/localization/{locale}',[LocaleController::class, 'changeLocale'])->
 
     Route::post('/comments', [ArticleController::class, 'store'])->name('comments.store');
     
-    Route::resource('requests', RequestUserController::class);
+    Route::resource('requestUser', RequestUserController::class);
 
 
 require __DIR__.'/admin.php';
