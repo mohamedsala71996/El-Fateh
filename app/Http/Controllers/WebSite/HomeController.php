@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index(){
         $categories=Category::get();
-        return view('website.index',compact('categories'));
+        return view('index',compact('categories'));
     }
     public function allPreviousWorks($category_id){
         $previousWorks=PreviousWork::where('category_id',$category_id)->get();

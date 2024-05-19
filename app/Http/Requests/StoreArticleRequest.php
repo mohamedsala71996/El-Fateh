@@ -27,7 +27,7 @@ class StoreArticleRequest extends FormRequest
             'ar_title' => 'required|string|max:255',
             'en_content' => 'required|string',
             'ar_content' => 'required|string',
-            'image' => ['required', 'max:1000', 'mimes:png,jpg,jpeg'],
+            'image' => ['required', 'mimes:png,jpg,jpeg'],
         ];
     }
 

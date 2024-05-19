@@ -1,21 +1,21 @@
 @extends('layouts.site.app')
 
 @section('content')
-<div data-wow-duration="3s" data-wow-delay="0.7s" style="padding:10px;" id="box2">
-  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-      <div  >
-        <div >
+  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"data-wow-duration="3s" data-wow-delay="0.7s"  style="text-align: center;">
           <img class="d-block w-100" src="{{ asset("storage/$previousWork->image") }}" >
-        </div>
-      </div>
     </div>
-  
-</div>
-<div>
-  <p class="word" style="margin: 40px;">{{ $previousWork->{app()->getLocale().'_title'} }}</p>
-  <p style="text-align: right;  margin-top: 30px; font-size: large; padding-inline:70px ; font-weight: bold;">{{ $previousWork->{app()->getLocale().'_description'} }}</p>
-<div  style="text-align: right; padding-right: 100px; font-size: larger;">
-  <ul class="list-unstyled" style="font-size: 16px;">
+
+   <style>
+ 
+#mbody2{
+  text-align: {{ app()->getLocale() == 'en' ? 'left' : 'right' }};
+
+}
+     </style>
+<div class="col" >
+<p id="mbody2" style="font-size: 50px;color: darkgoldenrod;margin:40px;">{{ $previousWork->{app()->getLocale().'_title'} }}</p>
+  <p  id="mbody2" style=" font-size: large;font-weight: bold;margin:40px;" class="row">{{ $previousWork->{app()->getLocale().'_description'} }}</p>
+  <ul  id="mbody2" class="list-unstyled" style="font-size: 16px;margin:40px;">
     <li><strong>{{ __('Client') }}:</strong> {{ $previousWork->{app()->getLocale().'_client'} }}</li>
     <li><strong>{{ __('Engineer name') }}:</strong> {{ $previousWork->{app()->getLocale().'_engineer_name'} }}</li>
     <li><strong>{{ __('Location') }}:</strong> {{ $previousWork->{app()->getLocale().'_location'} }}</li>
@@ -27,6 +27,7 @@
   </ul>
 
 </div>
-</div> 
+
+
 
 @endsection

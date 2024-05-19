@@ -5,10 +5,12 @@ use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\ArticleController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\ContactUsController;
+use App\Http\Controllers\Dashboard\MediaFileController;
 use App\Http\Controllers\Dashboard\PerviousWorkController;
 use App\Http\Controllers\Dashboard\PreviousWorkController;
 use App\Http\Controllers\Dashboard\RequestController;
 use App\Http\Controllers\Dashboard\SettingController;
+use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\WhyUsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebSite\HomeController;
@@ -16,27 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
-
-// ////////////////////// Pervious work //////////////////////////////////
-
-// Route::prefix('admin')->middleware(['admin'])->controller(PerviousWorkController::class)->group(function (){
-//     Route::get('AllperviousWorks','AllperviousWorks');
-//     Route::get('PerviousWork','PerviousWork');
-
-
-//     Route::get('PerviousWork','FromPreviousWork');
-//     Route::post('create/PerviousWork','CreatePreviousWork');
-
-
-//     Route::get('edit/PerviousWork/{id}','EditPreviousWork');
-//     Route::put('update/PerviousWork/{id}','updatePreviousWork');
-
-
-//     Route::delete('delete/PerviousWork/{id}','deletePreviousWork');
-// });
-
-////////////////////// Pervious work //////////////////////////////////
 
 Route::prefix('/dashboard')->middleware(['admin'])->group(function () {
     Route::get('articles', [ArticleController::class, 'all_articles'])->name('all_articles');
@@ -53,13 +34,19 @@ Route::prefix('/dashboard')->middleware(['admin'])->group(function () {
 
     Route::get('comments/{id}', [ArticleController::class, 'show_comments'])->name('show_comments');
 
+    Route::get('pending_comments', [ArticleController::class, 'pending_comments'])->name('pending_comments');
 
+    Route::put('comment_controll/{id}', [ArticleController::class, 'comment_controll'])->name('comment_controll');
+    
+    Route::delete('comments/{id}', [ArticleController::class, 'comment_destroy'])->name('comments.destroy');
 
     Route::resource('previousWorks', PreviousWorkController::class);
 
     Route::resource('categories', CategoryController::class);
 
     Route::resource('admins', AdminController::class);
+
+    Route::resource('users', UserController::class);
 
     Route::resource('setting', SettingController::class);
 
@@ -70,6 +57,8 @@ Route::prefix('/dashboard')->middleware(['admin'])->group(function () {
     Route::resource('reasons', WhyUsController::class);
 
     Route::resource('contactRequest', RequestController::class);
+
+    Route::resource('media-files', MediaFileController::class);
 
 
 });

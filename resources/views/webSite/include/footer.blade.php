@@ -1,6 +1,6 @@
 <!--Start Footer-->
 <footer data-wow-duration="2s" data-wow-delay="0.4s"
-  style="background-color:black; color: darkgoldenrod; padding: 30px; margin-top: 30px;">
+  style="background-color:black; color: darkgoldenrod; padding: 70px; margin-top: 30px;">
   <div class="row justify-content-center w-100">
     <section style="margin-bottom:30px ;" class="col-md-4 col-12 align-self-center">
       <h1 class="navbar-brand fs-1" href="#"><span style="color: darkgoldenrod; font-weight: bold;">{{ __('EL-fateh')
@@ -36,7 +36,7 @@
         letter-spacing: 0em;
         text-align: left;
         ">
-        {{ __('Address') }}:{{ \App\Models\ContactUs::first()->{app()->getLocale() . '_address'} }}</p>
+        {{ __('Address') }}: {{ (\App\Models\ContactUs::first()->{app()->getLocale() . '_address' } ?? '') }}</p>
       <p style="font-family: Poppins;
         font-size: 15px;
         font-weight: 400;
@@ -44,7 +44,7 @@
         letter-spacing: 0em;
         text-align: left;
         ">
-        {{ __('Phone number') }}: {{ \App\Models\ContactUs::first()->phone_number }}</p>
+        {{ __('Phone number') }}: {{ (\App\Models\ContactUs::first()->phone_number ?? '') }}</p>
     </section>
   </div>
 </footer>

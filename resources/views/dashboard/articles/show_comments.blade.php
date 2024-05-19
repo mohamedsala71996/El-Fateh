@@ -28,21 +28,27 @@
             <table class="table table-bordered text-center">
                 <thead>
                     <tr>
-                        <th>Title</th>
                         <th>Content</th>
                         <th>User name</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($comments as $comment)
                     <tr class="align-middle">
-                        <td>{{ $comment->title }}</td>
                         <td>{{ $comment->content }}</td>
                         <td>{{ $comment->user->first_name.' '.$comment->user->last_name }}</td>
+                        <td>
+                            <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" style="display: inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="text-center" >There is no data available.</td>
+                        <td colspan="6" class="text-center">There is no data available.</td>
                     </tr>
                     @endforelse
                 </tbody>

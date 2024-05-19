@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CommentRequest extends FormRequest
+class MediaFileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,10 @@ class CommentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'content' => 'required|string',    
+            'home_video' => 'required|file|mimes:mp4,mov,avi', 
+            'about_video' => 'required|file|mimes:mp4,mov,avi', 
+            'article_sliders.*' => 'required|image|mimes:jpeg,png,jpg,gif' 
+
         ];
     }
 }

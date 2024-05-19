@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
-use App\Http\traits\media;
+use App\Http\Traits\media;
 use App\Models\Comment;
 
 class ArticleController extends Controller
@@ -103,4 +103,27 @@ class ArticleController extends Controller
         return view('dashboard.articles.show_comments', compact('comments'));
 
     }
+   public function pending_comments()
+    {
+        $comments = Comment::where('status','pending')->get();
+        return view('dashboard.articles.pending_comments', compact('comments'));
+
+    }
+   public function comment_controll(Request $request, $id)
+    {
+        $comment = Comment::where('id',$id)->update([
+            'status' => $request->status
+        ]);
+        return redirect()->back()->with('success', 'Data saved successfully.');
+
+    }
+    
+       public function comment_destroy($id)
+    {
+        $comment = Comment::destroy($id);
+        return redirect()->back()->with('success', 'Comment deleted successfully.');
+
+    }
+
+
 }

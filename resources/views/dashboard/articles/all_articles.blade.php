@@ -23,6 +23,11 @@
         <a href="{{ route('create_article') }}" class="btn btn-success">Add New Article</a>
       </div>
     </div>
+    <div class="row mb-3">
+      <div class="col">
+        <a href="{{ route('pending_comments') }}" class="btn btn-info">Pending comments</a>
+      </div>
+    </div>
     <!-- Cards to display articles -->
     <div class="row">
       @foreach($articles as $article)

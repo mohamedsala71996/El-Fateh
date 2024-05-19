@@ -1,6 +1,14 @@
 @extends('layouts.site.app')
 @section('content')
-    <div class="containerr mt-5" style="margin-inline: 30px;">
+<style>
+          #mbody1{   
+            direction: {{ app()->getLocale() == 'en' ? 'ltr' : 'rtl' }};
+            text-align: {{ app()->getLocale() == 'en' ? 'left' : 'right' }};
+
+}
+</style>
+    <div class="containerr mt-5" id="mbody1" style="margin-inline: 30px;">
+
         @if (session('success'))
             <div class="alert alert-success" role="alert">
                 {{ session('success') }}

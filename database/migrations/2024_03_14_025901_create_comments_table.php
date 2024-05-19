@@ -16,8 +16,8 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
             $table->text('content');
+            $table->enum('status',['approved','pending','notApproved'])->default('pending');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('article_id')->constrained('articles');
             $table->timestamps();

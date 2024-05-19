@@ -9,6 +9,7 @@ use App\Http\Controllers\WebSite\HomeController;
 use App\Http\Controllers\WebSite\RequestUserController;
 use App\Http\Controllers\WebSite\WhyUsController;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,21 @@ Route::get('/localization/{locale}',[LocaleController::class, 'changeLocale'])->
 //     return redirect()->to(session('locale'));
 // });
 
+Route::get('/symlink', function () {
+   $target =$_SERVER['DOCUMENT_ROOT'].'/storage/app/public';
+   $link = $_SERVER['DOCUMENT_ROOT'].'/public/storage';
+   symlink($target, $link);
+   echo "Done";
+});
+
+
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    // Artisan::call('migrate:fresh --seed');
+    //  Artisan::call('storage:link');
+    return "Cache cleared successfully";
+ });//
 
     Route::get('/', [HomeController::class, 'index'])->name('website');
 
