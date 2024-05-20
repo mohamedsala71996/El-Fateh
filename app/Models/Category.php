@@ -16,6 +16,7 @@ class Category extends Model
         'ar_content',
         'en_content',
         'photo',
+        'pdf',
     ];
 
     public function perviousWorks(): HasMany

@@ -1,8 +1,8 @@
 @extends('layouts.site.app')
 
 @section('content')
+<h1 style="  margin-top: 30px; " class="word text-center" class="row ">{{ __('Previous works') }}</h1>
 <div class="col">
-  <p style="  margin-top: 30px; " class="word" class="row">{{ __('Previous works') }}</p>
 
 @foreach ($previousWorks as $previousWork)
 <div class="content" style="padding-top:20px ;">

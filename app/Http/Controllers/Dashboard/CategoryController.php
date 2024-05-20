@@ -38,6 +38,9 @@ class CategoryController extends Controller
         if ($request->hasFile('photo')) {
             $data['photo'] = $request->file('photo')->store('categories', 'public');
         }
+        if ($request->hasFile('pdf')) {
+            $data['pdf'] = $request->file('pdf')->store('categories', 'public');
+        }
         
         Category::create($data);
 
@@ -69,10 +72,17 @@ class CategoryController extends Controller
 
         // Handling photo upload
         if ($request->hasFile('photo')) {
-            // Delete previous photo
-            Storage::disk('public')->delete($category->photo);
+            if(isset($category->photo)){
+             Storage::disk('public')->delete($category->photo);
+            }
             // Store new photo
             $data['photo'] = $request->file('photo')->store('categories', 'public');
+        }
+        if ($request->hasFile('pdf')) {
+            if(isset($category->pdf)){
+                Storage::disk('public')->delete($category->pdf);
+            }
+            $data['pdf'] = $request->file('pdf')->store('categories', 'public');
         }
 
         $category->update($data);
@@ -85,9 +95,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        // Delete associated photo
         if ($category->photo) {
             Storage::disk('public')->delete($category->photo);
+        }
+        if ($category->pdf) {
+            Storage::disk('public')->delete($category->pdf);
         }
         
         $category->delete();

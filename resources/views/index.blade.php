@@ -37,7 +37,17 @@
                             {{ $category->{app()->getLocale() . '_content'} }}</p>
 
                         <a href="{{ route('allPreviousWorks', $category->id) }}"
-                            class="btnn btn-primary">{{ __('Take a look') }}</a>
+                            class="btn btn-warning">{{ __('Take a look') }}</a>
+
+                            @if($category->pdf)
+                                <a href="{{ asset("storage/$category->pdf") }}" target="_blank" class="btn btn-info">
+                                    <i class="fas fa-file-pdf"></i> {{ __('Preview PDF') }}
+                                </a>
+                                <a href="{{ asset("storage/$category->pdf") }}" download class="btn btn-danger">
+                                    <i class="fas fa-file-pdf"></i> {{ __('Download PDF') }}
+                                </a>
+                            @endif
+    
                     </div>
 
                 </div>

@@ -21,15 +21,16 @@
                     </a>
                 </li>
                 <li>
-                    <a class="m-link {{ Route::is('all_articles') ? 'active' : '' }}" href="{{ route('all_articles') }}">
-                        <span class="ms-2">Articles</span>
-                    </a>
-                </li>
-                <li>
                     <a class="m-link {{ Route::is('previousWorks.*') ? 'active' : '' }}" href="{{ route('previousWorks.index') }}">
                         <span class="ms-2">Previous works</span>
                     </a>
                 </li>
+                <li>
+                    <a class="m-link {{ Route::is('all_articles') ? 'active' : '' }}" href="{{ route('all_articles') }}">
+                        <span class="ms-2">Articles</span>
+                    </a>
+                </li>
+
                 <li>
                     <a class="m-link {{ Route::is('reasons.*') ? 'active' : '' }}" href="{{ route('reasons.index') }}">
                         <span class="ms-2">{{ __('Why us') }}</span>

@@ -38,6 +38,7 @@
                         <th>Content (Arabic)</th>
                         <th>Content (English)</th>
                         <th>Photo</th>
+                        <th>PDF</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -49,6 +50,14 @@
                         <td>{{ $category->ar_content }}</td>
                         <td>{{ $category->en_content }}</td>
                         <td><img src="{{ asset("storage/$category->photo") }}" alt="Category Photo" style="max-width: 100px;"></td>
+                        <td>
+                          @if($category->pdf)
+                          <a href="{{ asset("storage/$category->pdf") }}" target="_blank" class="btn btn-info">Preview</a>
+                          <a href="{{ asset("storage/$category->pdf") }}" download class="btn btn-secondary">Download</a>
+                          @else
+                          <span class="text-center">No PDF</span>
+                          @endif
+                      </td>
                         <td>
                             <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary">Edit</a>
                             <form action="{{ route('categories.destroy',$category->id) }}" method="POST" style="display: inline-block; margin-top: 10px;">

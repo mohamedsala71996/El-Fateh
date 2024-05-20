@@ -52,5 +52,7 @@
     "Last Name":"اسم العائلة",
     "Enter the password":"الرقم السري",
     "SIGN UP":"إنشاء الحساب",
-    "login":"تسجيل الدخول"
+    "login":"تسجيل الدخول",
+    "Preview PDF":"عرض الملف",
+    "Download PDF":"تحميل الملف"
 }

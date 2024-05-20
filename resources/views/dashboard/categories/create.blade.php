@@ -71,6 +71,7 @@
                             </div>
 
                             <div class="form-group mb-4">
+                            <div class="card">
                                 <label for="photo">{{ __('Category Photo') }}</label>
                                 <input type="file" class="form-control-file @error('photo') is-invalid @enderror" id="photo" name="photo" accept="image/*">
     
@@ -80,6 +81,21 @@
                                     </span>
                                 @enderror
                             </div>
+                            </div>
+
+                            <div class="form-group mb-4">
+                            <div class="card">
+                                <label for="pdf">{{ __('Category PDF') }}</label>
+                                <input type="file" class="form-control-file @error('pdf') is-invalid @enderror" id="pdf" name="pdf" accept="application/pdf">
+    
+                                @error('pdf')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            </div>
+
     
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">

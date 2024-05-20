@@ -27,6 +27,7 @@ class CategoryRequest extends FormRequest
             'ar_content' => 'required|string',
             'en_content' => 'required|string',
             'photo' => 'image|mimes:jpeg,png,jpg,gif', 
+            'pdf' => 'nullable|mimes:pdf'
         ];
     }
 }
