@@ -1,9 +1,9 @@
 @extends('layouts.site.app')
 
 @section('content')
-  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"data-wow-duration="3s" data-wow-delay="0.7s"  style="text-align: center;">
-          <img class="d-block w-100" src="{{ asset("storage/$previousWork->image") }}" >
-    </div>
+<div class="d-flex justify-content-center align-items-center" style="height: 100%;">
+  <img src="{{ asset('storage/' . $previousWork->image) }}" class="image">
+</div>
 
    <style>
  
@@ -21,9 +21,15 @@
     <li><strong>{{ __('Location') }}:</strong> {{ $previousWork->{app()->getLocale().'_location'} }}</li>
     <li><strong>{{ __('Started At') }}:</strong> {{ \Carbon\Carbon::parse($previousWork->started_at)->format('d/m/Y') }}</li>
     <li><strong>{{ __('Ended At') }}:</strong> {{ \Carbon\Carbon::parse($previousWork->ended_at)->format('d/m/Y') }}</li>
+    @if (isset($previousWork->total_area))
     <li><strong>{{ __('Total Building Area') }}:</strong> {{ $previousWork->total_area }}</li>
+    @endif
+    @if (isset($previousWork->total_units))
     <li><strong>{{ __('Total Units') }}:</strong> {{ $previousWork->total_units }}</li>
+    @endif
+    @if (isset($previousWork->total_concrete))
     <li><strong>{{ __('Total Concrete') }}:</strong> {{ $previousWork->total_concrete }}</li>
+    @endif
   </ul>
 
 </div>

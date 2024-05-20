@@ -57,16 +57,6 @@
                     <form action="{{ route('comments.store') }}" method="POST" id="newArticleForm">
                         @csrf
                         @method('post')
-                        <!--<div class="form-group">-->
-                        <!--    <label for="newArticleTitle">{{ __('Title') }}:</label>-->
-                        <!--    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"-->
-                        <!--        id="newArticleTitle" value="{{ old('title') }}">-->
-                        <!--    @error('title')-->
-                        <!--        <span class="invalid-feedback" role="alert">-->
-                        <!--            <strong>{{ $message }}</strong>-->
-                        <!--        </span>-->
-                        <!--    @enderror-->
-                        <!--</div>-->
                         <input type="hidden" name="article_id" value="{{ $article->id }}">
                         <div class="form-group">
                             <label for="newArticleContent">{{ __('The content') }}:</label>
