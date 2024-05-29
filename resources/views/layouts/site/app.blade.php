@@ -10,7 +10,15 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+        <style>
+            .fa-twitter { color: darkgoldenrod; }
+            .fa-linkedin-in { color:darkgoldenrod; }
+            .fa-facebook { color:darkgoldenrod; }
+            .fa-instagram { color:darkgoldenrod; }
+            .fa-youtube { color: darkgoldenrod; }
+          </style>
 
 
     </head>

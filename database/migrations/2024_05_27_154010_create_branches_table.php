@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('branches', function (Blueprint $table) {
             $table->id();
-            $table->string('phone_number');
+            // $table->string('phone_number');
             $table->text('en_address');
             $table->text('ar_address');
             $table->timestamps();

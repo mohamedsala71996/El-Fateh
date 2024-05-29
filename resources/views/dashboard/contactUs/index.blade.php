@@ -21,7 +21,7 @@
       <div class="col">
         <div class="card">
           <div class="card-header">
-            Contact Us
+            Contact Us (Main branch)
           </div>
           <div class="card-body">
             <form method="POST" action="{{ isset($contactUs) ? route('contact-us.update', $contactUs->id) : route('contact-us.store') }}">
@@ -29,10 +29,10 @@
               @isset($contactUs)
                 @method('PUT')
               @endisset
-              <div class="mb-3">
+              {{-- <div class="mb-3">
                 <label for="phone_number" class="form-label">Phone Number</label>
                 <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ $contactUs->phone_number ?? '' }}">
-              </div>
+              </div> --}}
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" value="{{ $contactUs->email ?? '' }}">

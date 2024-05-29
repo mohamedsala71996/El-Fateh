@@ -36,14 +36,40 @@
                         <span class="ms-2">{{ __('Why us') }}</span>
                     </a>
                 </li>
+                <!-- Dropdown for Contact and Branches -->
                 <li>
-                    <a class="m-link {{ Route::is('contact-us.*') ? 'active' : '' }}" href="{{ route('contact-us.index') }}">
-                        <span class="ms-2">Contact us</span>
+                    <a class="m-link {{ Route::is('contact-us.*') || Route::is('branches.*') || Route::is('phone-numbers.*') ? 'active' : '' }} collapsed" data-bs-toggle="collapse" href="#contactBranches" aria-expanded="false" aria-controls="contactBranches">
+                        <span class="ms-2">{{ __('Contact us') }}</span>
+                        <i class="fas fa-chevron-down ms-auto"></i>
                     </a>
+                    <div class="collapse" id="contactBranches">
+                        <ul class="sub-menu">
+                            <li>
+                                <a class="m-link {{ Route::is('contact-us.*') ? 'active' : '' }}" href="{{ route('contact-us.index') }}">
+                                    <span class="ms-3">Main branch</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="m-link {{ Route::is('branches.*') ? 'active' : '' }}" href="{{ route('branches.index') }}">
+                                    <span class="ms-3">Branches</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="m-link {{ Route::is('phone-numbers.*') ? 'active' : '' }}" href="{{ route('phone-numbers.index') }}">
+                                    <span class="ms-3">Branches numbers</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <a class="m-link {{ Route::is('about-us.*') ? 'active' : '' }}" href="{{ route('about-us.index') }}">
                         <span class="ms-2">{{ __('About us') }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="m-link {{ Route::is('social-media.*') ? 'active' : '' }}" href="{{ route('social-media.index') }}">
+                        <span class="ms-2">{{ __('Social media links') }}</span>
                     </a>
                 </li>
                 <li>
@@ -65,3 +91,4 @@
         </div>
     </div>
 </div>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">

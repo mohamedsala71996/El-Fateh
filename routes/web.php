@@ -7,6 +7,7 @@ use App\Http\Controllers\WebSite\AboutController;
 use App\Http\Controllers\WebSite\ArticleController;
 use App\Http\Controllers\WebSite\HomeController;
 use App\Http\Controllers\WebSite\RequestUserController;
+use App\Http\Controllers\WebSite\WebBranchController;
 use App\Http\Controllers\WebSite\WhyUsController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
@@ -70,6 +71,8 @@ Route::get('/clear-cache', function () {
     Route::post('/comments', [ArticleController::class, 'store'])->name('comments.store');
     
     Route::resource('requestUser', RequestUserController::class);
+
+    Route::get('/web-branches', [WebBranchController::class, 'index'])->name('web_branches.index');
 
 
 require __DIR__.'/admin.php';

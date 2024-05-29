@@ -13,11 +13,17 @@ class ContactUs extends Model
 
 
     protected $fillable = [
-        'phone_number',
+        // 'phone_number',
         'en_address',
         'ar_address',
         'email',
         'en_terms_conditions',
         'ar_terms_conditions',
     ];
+
+
+    public function phoneNumbers()
+    {
+        return $this->hasMany(PhoneNumber::class, 'contactUs_id');
+    }
 }

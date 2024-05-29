@@ -31,7 +31,7 @@
             <table class="table table-bordered text-center">
               <thead>
                 <tr>
-                  <th>Phone Number</th>
+                  {{-- <th>Phone Number</th> --}}
                   <th>Address (English)</th>
                   <th>Address (Arabic)</th>
                   <th>Actions</th>
@@ -40,7 +40,7 @@
               <tbody>
                 @forelse($branches as $branch)
                 <tr class="align-middle">
-                  <td>{{ $branch->phone_number }}</td>
+                  {{-- <td>{{ $branch->phone_number }}</td> --}}
                   <td>{{ $branch->en_address }}</td>
                   <td>{{ $branch->ar_address }}</td>
                   <td>

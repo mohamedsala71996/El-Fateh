@@ -25,7 +25,7 @@
               <form method="POST" action="{{ route('branches.update', $branch->id) }}">
                 @csrf
                 @method('PUT')
-                <div class="form-group mb-4">
+                {{-- <div class="form-group mb-4">
                   <label for="phone_number">{{ __('Phone Number') }}</label>
                   <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number', $branch->phone_number) }}" required autocomplete="phone_number" autofocus>
                   @error('phone_number')
@@ -33,7 +33,7 @@
                     <strong>{{ $message }}</strong>
                   </span>
                   @enderror
-                </div>
+                </div> --}}
                 <div class="form-group mb-4">
                   <label for="en_address">{{ __('Address (English)') }}</label>
                   <textarea id="en_address" class="form-control @error('en_address') is-invalid @enderror" name="en_address" required>{{ old('en_address', $branch->en_address) }}</textarea>

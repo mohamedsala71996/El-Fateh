@@ -3,13 +3,16 @@
 use App\Http\Controllers\Dashboard\AboutUsController;
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\ArticleController;
+use App\Http\Controllers\Dashboard\BranchController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\ContactUsController;
 use App\Http\Controllers\Dashboard\MediaFileController;
 use App\Http\Controllers\Dashboard\PerviousWorkController;
+use App\Http\Controllers\Dashboard\PhoneNumberController;
 use App\Http\Controllers\Dashboard\PreviousWorkController;
 use App\Http\Controllers\Dashboard\RequestController;
 use App\Http\Controllers\Dashboard\SettingController;
+use App\Http\Controllers\Dashboard\SocialMediaController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\WhyUsController;
 use App\Http\Controllers\ProfileController;
@@ -59,6 +62,14 @@ Route::prefix('/dashboard')->middleware(['admin'])->group(function () {
     Route::resource('contactRequest', RequestController::class);
 
     Route::resource('media-files', MediaFileController::class);
+
+    Route::resource('social-media', SocialMediaController::class);
+
+    Route::resource('branches', BranchController::class);
+
+    Route::resource('phone-numbers', PhoneNumberController::class);
+
+    Route::get('show-branches', [PhoneNumberController::class, 'showBranches'])->name('show_branches');
 
 
 });

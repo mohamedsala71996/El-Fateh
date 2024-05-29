@@ -10,9 +10,12 @@ class Branch extends Model
     use HasFactory;
 
     protected $fillable = [
-        'phone_number',
+        // 'phone_number',
         'en_address',
         'ar_address',
     ];
-
+    public function phoneNumbers()
+    {
+        return $this->hasMany(PhoneNumber::class, 'branch_id');
+    }
 }

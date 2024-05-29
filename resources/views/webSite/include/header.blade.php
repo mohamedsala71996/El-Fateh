@@ -23,6 +23,9 @@
                 <a class="nav-link" href="{{ route('whyUs.index') }}" style="color: darkgoldenrod;" >{{ __('Why Us') }}</a>
             </li>
             <li class="nav-item" style="margin: 20px;">
+                <a class="nav-link" href="{{ route('web_branches.index') }}" style="color: darkgoldenrod;" >{{ __('Branches') }}</a>
+            </li>
+            <li class="nav-item" style="margin: 20px;">
                 <a class="nav-link" href="{{ route('about.index') }}" style="color: darkgoldenrod;" >{{ __('About') }}</a>
             </li>
             <li class="nav-item" style="margin: 20px;">

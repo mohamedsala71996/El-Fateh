@@ -19,9 +19,16 @@
                 <div class="card">
                     <div class="card-body">
                         <p class="card-text">
-                            {{ __('Address') }}: {{ $branch->{app()->getLocale() . '_address' } }}
+                            <span style="color: darkgoldenrod; font-weight:bold;">{{ __('Address') }}:</span> {{ $branch->{app()->getLocale() . '_address' } }}
                         </p>
-                        <p class="card-text">{{ __('Phone number') }}: {{ $branch->phone_number }}</p>
+                        @foreach ($branch->phoneNumbers as $number)
+                        <p class="card-text"><i style="color: darkgoldenrod;" class="
+                            {{ 
+                                ($number->en_title == 'whatsapp') ? 'fab fa-whatsapp' : 
+                                (($number->en_title == 'telegram') ? 'fab fa-telegram-plane' : 'fas fa-phone') 
+                            }}">
+                        </i> <span style="color: darkgoldenrod;font-weight:bold;">{{ $number->{app()->getLocale() . '_title'} }}:</span> {{ $number->phone_number }}</p>
+                        @endforeach
                     </div>
                 </div>
             </div>
