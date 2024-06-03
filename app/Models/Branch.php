@@ -10,6 +10,8 @@ class Branch extends Model
     use HasFactory;
 
     protected $fillable = [
+        'en_name',
+        'ar_name',
         // 'phone_number',
         'en_address',
         'ar_address',

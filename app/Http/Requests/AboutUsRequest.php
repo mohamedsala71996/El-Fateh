@@ -22,12 +22,14 @@ class AboutUsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'en_company_name' => 'required|string|max:255',
-            'ar_company_name' => 'required|string|max:255',
-            'en_about_text' => 'required|string',
-            'ar_about_text' => 'required|string',
-            'founded_date' => 'required|date',
-            'website' => 'required|string|max:255',
+            'en_company_name' => 'nullable|string|max:255',
+            'ar_company_name' => 'nullable|string|max:255',
+            'en_about_text' => 'nullable|string',
+            'ar_about_text' => 'nullable|string',
+            'founded_date' => 'nullable|date',
+            'website' => 'nullable|string|max:255',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+
        ];
     }
 }

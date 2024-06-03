@@ -33,6 +33,8 @@
             <table class="table table-bordered text-center">
                 <thead>
                     <tr>
+                        <th>Branch name (English)</th>
+                        <th>Branch name (Arabic)</th>
                         <th>Address (English)</th>
                         <th>Address (Arabic)</th>
                         <th>Phone Numbers</th>
@@ -41,6 +43,8 @@
                 </thead>
                 <tbody>
                   <tr class="align-middle">
+                    <td>Main Branch</td>
+                    <td>الفرع الرئيسي</td>
                     <td>{{ $mainBranch->en_address }}</td>
                     <td>{{ $mainBranch->ar_address }}</td>
                     <td>
@@ -51,6 +55,8 @@
                 </tr>
                     @forelse($branches as $branch)
                     <tr class="align-middle">
+                        <td>{{ $branch->en_name }}</td>
+                        <td>{{ $branch->ar_name }}</td>
                         <td>{{ $branch->en_address }}</td>
                         <td>{{ $branch->ar_address }}</td>
                         <td>

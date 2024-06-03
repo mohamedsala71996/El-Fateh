@@ -25,15 +25,24 @@
               <form method="POST" action="{{ route('branches.update', $branch->id) }}">
                 @csrf
                 @method('PUT')
-                {{-- <div class="form-group mb-4">
-                  <label for="phone_number">{{ __('Phone Number') }}</label>
-                  <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number', $branch->phone_number) }}" required autocomplete="phone_number" autofocus>
-                  @error('phone_number')
+                <div class="form-group mb-4">
+                  <label for="en_name">{{ __('Branch Name (English)') }}</label>
+                  <input id="en_name" type="text" class="form-control @error('en_name') is-invalid @enderror" name="en_name" value="{{ old('en_name', $branch->en_name) }}" required autocomplete="en_name" autofocus>
+                  @error('en_name')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
                   @enderror
-                </div> --}}
+                </div>
+                <div class="form-group mb-4">
+                  <label for="ar_name">{{ __('Branch Name (Arabic)') }}</label>
+                  <input id="ar_name" type="text" class="form-control @error('ar_name') is-invalid @enderror" name="ar_name" value="{{ old('ar_name', $branch->ar_name) }}" required autocomplete="ar_name" autofocus>
+                  @error('ar_name')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </div>
                 <div class="form-group mb-4">
                   <label for="en_address">{{ __('Address (English)') }}</label>
                   <textarea id="en_address" class="form-control @error('en_address') is-invalid @enderror" name="en_address" required>{{ old('en_address', $branch->en_address) }}</textarea>

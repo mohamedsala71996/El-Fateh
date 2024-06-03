@@ -1,7 +1,7 @@
 {
     "Arabic": "عربي",
     "English": "انجليزي",
-    "EL-fateh":"الفاتح",
+    "EL-Fateh":"الفاتح",
     "El-FATEH":"الفاتح",
     "Articles":"المقالات",
     "Requests":"الطلبات",
@@ -55,5 +55,8 @@
     "login":"تسجيل الدخول",
     "Preview PDF":"عرض الملف",
     "Download PDF":"تحميل الملف",
-    "Branches":"الفروع"
+    "Branches":"الفروع",
+    "since":"منذ",
+    "Branch name":"اسم الفرع"
+
 }

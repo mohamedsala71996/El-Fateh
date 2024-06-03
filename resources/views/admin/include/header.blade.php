@@ -1,9 +1,12 @@
 <header class="page-header sticky-top px-xl-4 px-sm-2 px-0 py-lg-2 py-1">
+    @php
+    $aboutUs = \App\Models\AboutUs::first();
+    @endphp
     <div class="container-fluid">
         <nav class="navbar">
             <div class="d-flex">
                 <a href="{{ route('dashboard') }}" class="brand-icon d-flex align-items-center mx-2 mx-sm-3 text-primary">
-                    <h4>El-Fateh</h4>
+                    <h4>{{ $aboutUs->en_company_name ?? 'El-Fateh' }}</h4>
                 </a>
             </div>
 
@@ -72,7 +75,11 @@
                 <li>
                     <div class="dropdown morphing scale-left user-profile mx-lg-3 mx-2">
                         <a class="nav-link dropdown-toggle rounded-circle after-none p-0" href="#" role="button" data-bs-toggle="dropdown">
-                        <img class="avatar img-thumbnail rounded-circle shadow" src="{{ url('/') }}/assets/images/logo.jpeg" alt="">
+                            @if (isset($aboutUs->logo))
+                            <img class="avatar img-thumbnail rounded-circle shadow" src="{{ Storage::url($aboutUs->logo) }}" alt="">
+                            @else
+                            <img class="avatar img-thumbnail rounded-circle shadow" src="{{ url('/') }}/assets/images/logo.jpeg" alt="">
+                            @endif
                         </a>
                         <div class="dropdown-menu border-0 rounded-4 shadow p-0">
                             <div class="card border-0 w240">

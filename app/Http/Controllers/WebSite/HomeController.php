@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\WebSite;
 
 use App\Http\Controllers\Controller;
+use App\Models\AboutUs;
 use App\Models\Category;
 use App\Models\PreviousWork;
 use Illuminate\Http\Request;
@@ -11,7 +12,8 @@ class HomeController extends Controller
 {
     public function index(){
         $categories=Category::get();
-        return view('index',compact('categories'));
+        $aboutUs= AboutUs::first();
+        return view('index',compact('categories','aboutUs'));
     }
     public function allPreviousWorks($category_id){
         $previousWorks=PreviousWork::where('category_id',$category_id)->get();

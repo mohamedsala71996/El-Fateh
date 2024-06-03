@@ -32,6 +32,8 @@
               <thead>
                 <tr>
                   {{-- <th>Phone Number</th> --}}
+                  <th>Name (English)</th>
+                  <th>Name (Arabic)</th>
                   <th>Address (English)</th>
                   <th>Address (Arabic)</th>
                   <th>Actions</th>
@@ -41,6 +43,8 @@
                 @forelse($branches as $branch)
                 <tr class="align-middle">
                   {{-- <td>{{ $branch->phone_number }}</td> --}}
+                  <td>{{ $branch->en_name }}</td>
+                  <td>{{ $branch->ar_name }}</td>
                   <td>{{ $branch->en_address }}</td>
                   <td>{{ $branch->ar_address }}</td>
                   <td>
@@ -54,7 +58,7 @@
                 </tr>
                 @empty
                 <tr>
-                  <td colspan="4" class="text-center">There are no branches available.</td>
+                  <td colspan="6" class="text-center">There are no branches available.</td>
                 </tr>
                 @endforelse
               </tbody>

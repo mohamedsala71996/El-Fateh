@@ -23,7 +23,9 @@ class BranchRequest extends FormRequest
     {
         return [
             // 'phone_number' => 'required|string|max:20',
-            'en_address' => 'required',
+            'en_name' => 'required',
+            'ar_name' => 'required',
+            'ar_address' => 'required',
             'ar_address' => 'required',
         ];
     }

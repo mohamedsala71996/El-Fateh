@@ -16,12 +16,12 @@ class CreateAboutUsTable extends Migration
     {
         Schema::create('about_us', function (Blueprint $table) {
             $table->id();
-            $table->string('en_company_name');
-            $table->string('ar_company_name');
-            $table->text('en_about_text');
-            $table->text('ar_about_text');
-            $table->date('founded_date');
-            $table->string('website');
+            $table->string('en_company_name')->nullable();
+            $table->string('ar_company_name')->nullable();
+            $table->text('en_about_text')->nullable();
+            $table->text('ar_about_text')->nullable();
+            $table->date('founded_date')->nullable();
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }

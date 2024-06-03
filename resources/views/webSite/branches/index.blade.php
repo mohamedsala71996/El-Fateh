@@ -19,16 +19,33 @@
                 <div class="card">
                     <div class="card-body">
                         <p class="card-text">
+                            <span style="color: darkgoldenrod; font-weight:bold;">{{ __('Branch name') }}:</span> {{ $branch->{app()->getLocale() . '_name' } }}
+                        </p>
+                        <p class="card-text">
                             <span style="color: darkgoldenrod; font-weight:bold;">{{ __('Address') }}:</span> {{ $branch->{app()->getLocale() . '_address' } }}
                         </p>
                         @foreach ($branch->phoneNumbers as $number)
-                        <p class="card-text"><i style="color: darkgoldenrod;" class="
-                            {{ 
-                                ($number->en_title == 'whatsapp') ? 'fab fa-whatsapp' : 
-                                (($number->en_title == 'telegram') ? 'fab fa-telegram-plane' : 'fas fa-phone') 
-                            }}">
-                        </i> <span style="color: darkgoldenrod;font-weight:bold;">{{ $number->{app()->getLocale() . '_title'} }}:</span> {{ $number->phone_number }}</p>
-                        @endforeach
+                        <p class="card-text">
+                            @if($number->en_title == 'whatsapp')
+                                <a href="https://api.whatsapp.com/send?phone={{ $number->phone_number }}" target="_blank" style="color: darkgoldenrod; text-decoration: underline;" title="Open WhatsApp">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <span style="font-weight:bold;">{{ $number->{app()->getLocale() . '_title'} }}: </span>
+                                    <span style="color: darkgoldenrod; font-weight:bold">{{ $number->phone_number }}</span>
+                                </a>
+                            @elseif($number->en_title == 'telegram')
+                                <a href="https://t.me/{{ $number->phone_number }}" target="_blank" style="color: darkgoldenrod; text-decoration: underline;" title="Open Telegram">
+                                    <i class="fab fa-telegram-plane"></i>
+                                    <span style="font-weight:bold;">{{ $number->{app()->getLocale() . '_title'} }}: </span>
+                                    <span style="color: darkgoldenrod; font-weight:bold">{{ $number->phone_number }}</span>
+                                </a>
+                            @else
+                                <i style="color: darkgoldenrod;" class="fas fa-phone"></i>
+                                <span style="color: darkgoldenrod; font-weight:bold;">{{ $number->{app()->getLocale() . '_title'} }}:</span>
+                                <span style="color: darkgoldenrod; font-weight:bold"> {{ $number->phone_number }}</span>
+                            @endif
+                        </p>
+                    @endforeach
+                    
                     </div>
                 </div>
             </div>

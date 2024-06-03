@@ -24,34 +24,64 @@
             About Us
           </div>
           <div class="card-body">
-            <form method="POST" action="{{ isset($aboutUs) ? route('about-us.update', $aboutUs->id) : route('about-us.store') }}">
+            <form method="POST" action="{{ isset($aboutUs) ? route('about-us.update', $aboutUs->id) : route('about-us.store') }}" enctype="multipart/form-data">
               @csrf
               @isset($aboutUs)
                 @method('PUT')
               @endisset
               <div class="mb-3">
                 <label for="ar_company_name" class="form-label">Company Name (Arabic)</label>
-                <input type="text" class="form-control" id="ar_company_name" name="ar_company_name" value="{{ $aboutUs->ar_company_name ?? '' }}">
+                <input type="text" class="form-control @error('ar_company_name') is-invalid @enderror" id="ar_company_name" name="ar_company_name" value="{{ old('ar_company_name', $aboutUs->ar_company_name ?? '') }}">
+                @error('ar_company_name')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
               </div>
               <div class="mb-3">
                 <label for="en_company_name" class="form-label">Company Name (English)</label>
-                <input type="text" class="form-control" id="en_company_name" name="en_company_name" value="{{ $aboutUs->en_company_name ?? '' }}">
+                <input type="text" class="form-control @error('en_company_name') is-invalid @enderror" id="en_company_name" name="en_company_name" value="{{ old('en_company_name', $aboutUs->en_company_name ?? '') }}">
+                @error('en_company_name')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
               </div>
               <div class="mb-3">
                 <label for="ar_about_text" class="form-label">About Text (Arabic)</label>
-                <textarea class="form-control" id="ar_about_text" name="ar_about_text">{{ $aboutUs->ar_about_text ?? '' }}</textarea>
+                <textarea class="form-control @error('ar_about_text') is-invalid @enderror" id="ar_about_text" name="ar_about_text">{{ old('ar_about_text', $aboutUs->ar_about_text ?? '') }}</textarea>
+                @error('ar_about_text')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
               </div>
               <div class="mb-3">
                 <label for="en_about_text" class="form-label">About Text (English)</label>
-                <textarea class="form-control" id="en_about_text" name="en_about_text">{{ $aboutUs->en_about_text ?? '' }}</textarea>
+                <textarea class="form-control @error('en_about_text') is-invalid @enderror" id="en_about_text" name="en_about_text">{{ old('en_about_text', $aboutUs->en_about_text ?? '') }}</textarea>
+                @error('en_about_text')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
               </div>
               <div class="mb-3">
                 <label for="founded_date" class="form-label">Founded Date</label>
-                <input type="date" class="form-control" id="founded_date" name="founded_date" value="{{ $aboutUs->founded_date ?? '' }}">
+                <input type="date" class="form-control @error('founded_date') is-invalid @enderror" id="founded_date" name="founded_date" value="{{ old('founded_date', $aboutUs->founded_date ?? '') }}">
+                @error('founded_date')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
               </div>
               <div class="mb-3">
                 <label for="website" class="form-label">Website</label>
-                <input type="text" class="form-control" id="website" name="website" value="{{ $aboutUs->website ?? '' }}">
+                <input type="text" class="form-control @error('website') is-invalid @enderror" id="website" name="website" value="{{ old('website', $aboutUs->website ?? '') }}">
+                @error('website')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="mb-3">
+                <label for="logo" class="form-label">Logo</label>
+                <input type="file" class="form-control @error('logo') is-invalid @enderror" id="logo" name="logo">
+                @if(isset($aboutUs->logo))
+                  <div class="mt-2">
+                    <img src="{{ Storage::url($aboutUs->logo) }}" alt="Current Logo" style="max-height: 100px;">
+                  </div>
+                @endif
+                @error('logo')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
               </div>
               <div class="text-center">
                 <button type="submit" class="btn btn-primary">{{ isset($aboutUs) ? 'Update About Us' : 'Add About Us' }}</button>

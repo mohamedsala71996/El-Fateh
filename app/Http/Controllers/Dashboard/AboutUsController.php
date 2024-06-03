@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AboutUsRequest;
 use App\Models\AboutUs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AboutUsController extends Controller
 {
@@ -21,7 +22,13 @@ class AboutUsController extends Controller
      */
     public function store(AboutUsRequest $request)
     {
-        AboutUs::create($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('logo')) {
+            $data['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
+        AboutUs::create($data);
         return redirect()->route('about-us.index')->with('success', 'Data saved successfully');
     }
 
@@ -32,9 +39,18 @@ class AboutUsController extends Controller
      */
     public function update(AboutUsRequest $request,  $id)
     {
-        $aboutUs=AboutUs::findOrFail($id);
-        $aboutUs->update($request->all());
-        return redirect()->route('about-us.index')->with('success', 'Data saved successfully.');
+        $aboutUs = AboutUs::findOrFail($id);
+        $data = $request->all();
+
+        if ($request->hasFile('logo')) {
+            if ($aboutUs->logo) {
+                Storage::disk('public')->delete($aboutUs->logo);
+            }
+            $data['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
+        $aboutUs->update($data);
+        return redirect()->route('about-us.index')->with('success', 'Data updated successfully.');
     }
 
 

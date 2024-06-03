@@ -64,9 +64,9 @@
                                 <label for="branch_id">{{ __('Branch') }}</label>
                                 <select id="branch_id" class="form-control @error('branch_id') is-invalid @enderror" name="branch_id">
                                     <option value=""disabled>{{ __('Select Branch') }}</option>
-                                    <option value="0" @if(old('branch_id', $phoneNumber->contactUs_id) == $mainBranch->id) selected @endif>{{ $mainBranch->en_address }} (main branch)</option>
+                                    <option value="0" @if(old('branch_id', $phoneNumber->contactUs_id) == $mainBranch->id) selected @endif>main branch</option>
                                     @foreach($branches as $branch)
-                                        <option value="{{ $branch->id }}" @if(old('branch_id', $phoneNumber->branch_id) == $branch->id) selected @endif>{{ $branch->en_address }}</option>
+                                        <option value="{{ $branch->id }}" @if(old('branch_id', $phoneNumber->branch_id) == $branch->id) selected @endif>{{ $branch->en_name }}</option>
                                     @endforeach
                                 </select>
 

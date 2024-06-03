@@ -23,14 +23,18 @@
     /*  */
     </style>
     <div class="col-12">
-        <div class="col-12">
+        <div class="col-12 text-center">
 
-            <h1 style="color: darkgoldenrod;" id="mbody1">{{ __('EL-fateh') }}</h1>
+            <h1 style="color: darkgoldenrod;" >{{ $aboutUs->{app()->getLocale() . '_company_name'} ??  __('El-Fateh') }}</h1>
         </div>
+        <div class="col-12 text-center">
+            <p style="color: darkgoldenrod;" >{{ $aboutUs->{app()->getLocale() . '_about_text'} ??  '' }}</p>
+        </div>
+        <br>
         @foreach ($categories as $category)
             <div class="col">
                 <div class="row" id="mbody2">
-                    <img src="{{ asset("storage/$category->photo") }}" class="card-img">
+                    <img src="{{ asset("storage/$category->photo") }}" class="card-img responsive-img"> <!-- Added responsive-img class here -->
                     <div class="col" id="mbody1">
                         <h1 style="margin-bottom: 15px;">{{ $category->{app()->getLocale() . '_name'} }}</h1>
                         <p style=" font-size:large;" style="margin-bottom: 15px;">
@@ -47,7 +51,7 @@
                                     <i class="fas fa-file-pdf"></i> {{ __('Download PDF') }}
                                 </a>
                             @endif
-    
+
                     </div>
 
                 </div>

@@ -17,5 +17,6 @@ class AboutUs extends Model
         'ar_about_text',
         'founded_date',
         'website',
+        'logo'
     ];
 }

@@ -1,7 +1,10 @@
 <div class="sidebar p-2">
     <div class="container-fluid">
+        @php
+        $aboutUs = \App\Models\AboutUs::first();
+        @endphp
         <div class="title-tex my-3">
-            <h4 class="sidebar-titl"><span>El-Fateh Admin</span></h4>
+            <h4 class="sidebar-titl"><span>{{ $aboutUs->en_company_name ?? 'El-Fateh' }} Admin</span></h4>
         </div>
         <div class="main-menu">
             <ul class="menu-list my-0">
@@ -39,7 +42,7 @@
                 <!-- Dropdown for Contact and Branches -->
                 <li>
                     <a class="m-link {{ Route::is('contact-us.*') || Route::is('branches.*') || Route::is('phone-numbers.*') ? 'active' : '' }} collapsed" data-bs-toggle="collapse" href="#contactBranches" aria-expanded="false" aria-controls="contactBranches">
-                        <span class="ms-2">{{ __('Contact us') }}</span>
+                        <span class="ms-2">Contact us</span>
                         <i class="fas fa-chevron-down ms-auto"></i>
                     </a>
                     <div class="collapse" id="contactBranches">

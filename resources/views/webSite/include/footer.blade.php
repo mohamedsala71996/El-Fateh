@@ -5,11 +5,17 @@
       <!-- Social Media Section -->
       <section class="col-md-6 col-12 align-self-center">
         <h1  href="#">
-          <span style="color: darkgoldenrod; font-weight: bold;">{{ __('EL-fateh') }}</span>
+        @php
+           $aboutUs=\App\Models\AboutUs::first();
+        @endphp
+          <span style="color: darkgoldenrod; font-weight: bold;">{{ $aboutUs->{app()->getLocale() . '_company_name'} ??  __('El-Fateh') }}</span>
         </h1>
         <p style="font-family: Poppins; font-size: 15px; font-weight: 400; line-height: 23px; text-align: left;">
-          {{ (\App\Models\ContactUs::first()->email ?? '') }}
-        </p>
+          <a href="mailto:{{ \App\Models\ContactUs::first()->email ?? '' }}" style="color: darkgoldenrod;text-decoration: underline">
+              <i class="fas fa-envelope" style="color: darkgoldenrod;"></i> 
+              {{ \App\Models\ContactUs::first()->email ?? '' }}
+          </a>
+      </p>
         <div class="font-asm d-flex" style="margin-top: 40px">
           @php
               $socialLinks=\App\Models\SocialMedia::get();
@@ -34,29 +40,34 @@
       <!-- Contact Us Section -->
       <section class="col-md-6 col-12 align-self-center">
         <h1 style="font-family: Poppins; font-size: 24px; font-weight: 600; line-height: 36px; text-align: left;">
-          {{ __('Contact us') }}
+            {{ __('Contact us') }}
         </h1>
         <p style="font-family: Poppins; font-size: 15px; font-weight: 400; line-height: 23px; text-align: left;">
-          {{ __('Address') }}: {{ (\App\Models\ContactUs::first()->{app()->getLocale() . '_address' } ?? '') }}
+            {{ __('Address') }}: {{ (\App\Models\ContactUs::first()->{app()->getLocale() . '_address' } ?? '') }}
         </p>
         @foreach (\App\Models\ContactUs::first()->phoneNumbers as $number)
         <p style="font-family: Poppins;
-        font-size: 15px;
-        font-weight: 400;
-        line-height: 23px;
-        letter-spacing: 0em;
-        text-align: left;
-        ">
-        <i class="
-        {{ 
-            ($number->en_title == 'whatsapp') ? 'fab fa-whatsapp' : 
-            (($number->en_title == 'telegram') ? 'fab fa-telegram-plane' : 'fas fa-phone') 
-        }}">
-    </i> {{ $number->{app()->getLocale() . '_title'} }}: {{ $number->phone_number }}</p>
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 23px;
+            letter-spacing: 0em;
+            text-align: left;
+            ">
+            @if($number->en_title == 'whatsapp')
+                <a href="https://api.whatsapp.com/send?phone={{ $number->phone_number }}" target="_blank" style="color:darkgoldenrod;text-decoration: underline">
+                    <i class="fab fa-whatsapp"></i> {{ $number->{app()->getLocale() . '_title'} }}: {{ $number->phone_number }}
+                </a>
+            @elseif($number->en_title == 'telegram')
+                <a href="https://t.me/{{ $number->phone_number }}" target="_blank" style="color:darkgoldenrod;text-decoration: underline">
+                    <i class="fab fa-telegram-plane"></i> {{ $number->{app()->getLocale() . '_title'} }}: {{ $number->phone_number }}
+                </a>
+            @else
+                <i class="fas fa-phone"></i> {{ $number->{app()->getLocale() . '_title'} }}: {{ $number->phone_number }}
+            @endif
+        </p>
         @endforeach
-
-
-      </section>
+    </section>
+    
 
     </div>
             {{-- <h4 >

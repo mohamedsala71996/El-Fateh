@@ -19,7 +19,7 @@
         </div>
         <!-- معلومات الشركة -->
         <div id="mbody1" style="color: darkgoldenrod;" class="col">
-            <h2>{{ ($aboutUs->{app()->getLocale() . '_company_name'} ?? '') }}</h2>
+            <h2>{{ $aboutUs->{app()->getLocale() . '_company_name'} ??  __('El-Fateh') }}</h2>
             <p>{{ ($aboutUs->{app()->getLocale() . '_about_text'} ?? '') }}</p>
         </div>
     </div>
