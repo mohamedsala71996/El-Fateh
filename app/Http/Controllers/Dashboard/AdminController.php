@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest;
+use App\Http\Requests\AdminUpdateRequest;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -59,10 +60,13 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(AdminRequest $request, Admin $admin)
+    public function update(AdminUpdateRequest $request, Admin $admin)
     {
-
-        $admin->update($request->all());
+        if ($request->password) {
+         $admin->update($request->all());
+        }else{
+            $admin->update($request->except('password'));
+        }
         return redirect()->route('admins.index')->with('success', 'Data saved successfully.');
     }
 

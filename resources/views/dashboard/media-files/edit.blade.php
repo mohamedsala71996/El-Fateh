@@ -44,6 +44,22 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="about_video" class="form-label">{{ __('About Video') }}</label><br>
+                            @if ($mediaFile->about_video)
+                            <video width="320" height="240" controls>
+                                <source src="{{ asset("storage/$mediaFile->about_video") }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            @else
+                            <p>No about video available</p>
+                            @endif
+                            <input type="file" class="form-control @error('about_video') is-invalid @enderror" id="about_video" name="about_video" accept="video/*">
+                            @error('about_video')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
                             <label for="article_sliders[]" class="form-label">{{ __('Article Sliders') }}</label><br>
                             @if ($mediaFile->article_sliders)
                                 @foreach (json_decode($mediaFile->article_sliders) as $slider)
@@ -59,17 +75,14 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="about_video" class="form-label">{{ __('About Video') }}</label><br>
-                            @if ($mediaFile->about_video)
-                            <video width="320" height="240" controls>
-                                <source src="{{ asset("storage/$mediaFile->about_video") }}" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
+                            <label for="qr_photo" class="form-label">{{ __('QR Photo') }}</label><br>
+                            @if ($mediaFile->qr_photo)
+                                <img src="{{ asset("storage/$mediaFile->qr_photo") }}" alt="QR Photo" style="max-width: 100px;">
                             @else
-                            <p>No about video available</p>
+                                <p>No QR photo available</p>
                             @endif
-                            <input type="file" class="form-control @error('about_video') is-invalid @enderror" id="about_video" name="about_video" accept="video/*">
-                            @error('about_video')
+                            <input type="file" class="form-control @error('qr_photo') is-invalid @enderror" id="qr_photo" name="qr_photo" accept="image/*">
+                            @error('qr_photo')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

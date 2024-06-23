@@ -37,7 +37,7 @@
                     @forelse($comments as $comment)
                     <tr class="align-middle">
                         <td>{{ $comment->content }}</td>
-                        <td>{{ $comment->user->first_name.' '.$comment->user->last_name }}</td>
+                        <td>{{ $comment->user_name }}</td>
                         <td>
                             <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" style="display: inline-block;">
                                 @csrf

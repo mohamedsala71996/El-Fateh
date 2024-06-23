@@ -27,7 +27,7 @@ class PreviousWorkController extends Controller
     {
         $categories = Category::all();
 
-        return view('dashboard.previousWorks.create',compact('categories'));
+        return view('dashboard.previousWorks.create', compact('categories'));
     }
 
     /**
@@ -35,13 +35,23 @@ class PreviousWorkController extends Controller
      */
     public function store(PreviousWorkRequest $request)
     {
-        $data = $request->validated();
-        
-        // Handling image upload
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('previousWorks', 'public');
+        $data = $request->all();
+        if ($request->hasFile('pdf')) {
+            $data['pdf'] = $request->file('pdf')->store('previousWorks', 'public');
         }
-        
+        // Handling image upload
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+            $imagePaths = [];
+
+            foreach ($images as $image) {
+                $paths = $image->store('previousWorks', 'public');
+                $imagePaths[] = $paths;
+            }
+
+            $data['images'] = json_encode($imagePaths);
+        }
+
         PreviousWork::create($data);
 
         return redirect()->route('previousWorks.index')->with('success', 'Data saved successfully');
@@ -68,33 +78,60 @@ class PreviousWorkController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PreviousWorkRequest $request, PreviousWork $previousWork)
+    public function update(PreviousWorkRequest $request, $id)
     {
-        $data = $request->validated();
+        // Retrieve the existing record
+        $previousWork = PreviousWork::findOrFail($id);
+        $data = $request->all();
 
+        if ($request->hasFile('pdf')) {
+            if(isset($previousWork->pdf)){
+                Storage::disk('public')->delete($previousWork->pdf);
+            }
+            $data['pdf'] = $request->file('pdf')->store('previousWorks', 'public');
+        }
         // Handling image upload
-        if ($request->hasFile('image')) {
-            // Delete previous image
-            Storage::disk('public')->delete($previousWork->image);
-            // Store new image
-            $data['image'] = $request->file('image')->store('previousWorks', 'public');
+        if ($request->hasFile('images')) {
+
+            $photos = json_decode($previousWork->images, true);
+            foreach ($photos as $photo) {
+                Storage::disk('public')->delete($photo);
+            }
+            $images = $request->file('images');
+            $imagePaths = [];
+
+            foreach ($images as $image) {
+                $paths = $image->store('previousWorks', 'public');
+                $imagePaths[] = $paths;
+            }
+
+            // Encode the new images as a JSON string
+            $data['images'] = json_encode($imagePaths);
         }
 
+        // Update the record with the new data
         $previousWork->update($data);
 
-        return redirect()->route('previousWorks.index')->with('success', 'Data saved successfully.');
+        return redirect()->route('previousWorks.index')->with('success', 'Data updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(PreviousWork $previousWork)
     {
-        // Delete associated image
-        if ($previousWork->image) {
-            Storage::disk('public')->delete($previousWork->image);
+        if ($previousWork->pdf) {
+            Storage::disk('public')->delete($previousWork->pdf);
         }
-        
+        // Delete associated image
+        if ($previousWork->images) {
+            $photos = json_decode($previousWork->images, true);
+            foreach ($photos as $photo) {
+                Storage::disk('public')->delete($photo);
+            }
+        }
+
         $previousWork->delete();
 
         return redirect()->route('previousWorks.index')->with('success', 'Data deleted successfully.');

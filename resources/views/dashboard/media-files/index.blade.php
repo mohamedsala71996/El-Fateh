@@ -38,8 +38,9 @@
                                 <thead>
                                     <tr>
                                         <th>Home Video</th>
-                                        <th>Article Sliders</th>
                                         <th>About Video</th>
+                                        <th>Article Sliders</th>
+                                        <th>QR Photo</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -48,8 +49,17 @@
                                         <tr class="align-middle">
                                             <td>
                                                 @if ($mediaFile->home_video)
-                                                    <video width="320" height="240" controls>
+                                                    <video width="200" height="200" controls>
                                                         <source src="{{ asset("storage/$mediaFile->home_video") }}"
+                                                            type="video/mp4">
+                                                        Your browser does not support the video tag.
+                                                    </video>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($mediaFile->about_video)
+                                                    <video width="200" height="200" controls>
+                                                        <source src="{{ asset("storage/$mediaFile->about_video") }}"
                                                             type="video/mp4">
                                                         Your browser does not support the video tag.
                                                     </video>
@@ -59,17 +69,14 @@
                                                 @if (isset($mediaFile->article_sliders))
                                                 @foreach ($article_sliders as $item)
                                                 <img src="{{ asset("storage/$item") }}"
-                                                alt="Article Sliders" style="max-width: 75px;max-hight: 100px;">
+                                                alt="Article Sliders" style="max-width: 75px; max-height: 100px;">
                                                 @endforeach
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($mediaFile->about_video)
-                                                    <video width="320" height="240" controls>
-                                                        <source src="{{ asset("storage/$mediaFile->about_video") }}"
-                                                            type="video/mp4">
-                                                        Your browser does not support the video tag.
-                                                    </video>
+                                                @if ($mediaFile->qr_photo)
+                                                    <img src="{{ asset("storage/$mediaFile->qr_photo") }}"
+                                                        alt="QR Photo" style="max-width: 75px; max-height: 100px;">
                                                 @endif
                                             </td>
                                             <td>
@@ -85,7 +92,7 @@
                                         </tr>
                                     @else
                                         <tr>
-                                            <td colspan="4" class="text-center">There are no media files available.</td>
+                                            <td colspan="5" class="text-center">There are no media files available.</td>
                                         </tr>
                                     @endif
                                 </tbody>

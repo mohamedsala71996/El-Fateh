@@ -11,7 +11,7 @@ class PreviousWork extends Model
     use HasFactory;
     protected $table = "previous_works";
     protected $fillable = [
-        'image',
+        'images',
         'en_engineer_name',
         'en_title',
         'ar_engineer_name',
@@ -28,6 +28,7 @@ class PreviousWork extends Model
         'total_units',
         'total_concrete',
         'category_id',
+        'pdf'
     ];
 
     public function category(): BelongsTo

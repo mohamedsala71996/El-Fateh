@@ -16,7 +16,7 @@ class CreatePreviousWorksTable extends Migration
     {
         Schema::create('previous_works', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
+            $table->text('images');
             $table->string('en_engineer_name');
             $table->string('en_title');
             $table->string('ar_engineer_name');

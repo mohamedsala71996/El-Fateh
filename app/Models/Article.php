@@ -16,5 +16,6 @@ class Article extends Model
         'ar_content',
         'image',
         'admin_id',
+        'pdf'
     ];
 }

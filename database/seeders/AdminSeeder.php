@@ -20,6 +20,8 @@ class AdminSeeder extends Seeder
             'email' => 'mohamed_sala712@yahoo.com',
             'password' => Hash::make('123456789'),
             'phone' => '01066943748', 
+            'status' => 'active',
+            'type' => 'superAdmin',
         ]);  
       }
 }

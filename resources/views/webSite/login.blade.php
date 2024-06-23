@@ -37,22 +37,20 @@
                                 <div class="col-12 text-center mb-5">
                                     <h1>{{ __('Sign in') }}</h1>
                                 </div>
-                                {{-- <div class="col-12 text-center mb-4"> --}}
-                                    @if (session('error'))
+                                @if (session('error'))
                                     <div class="alert alert-danger">
                                         {{ session('error') }}
                                     </div>
-                                    @endif
-                                    @if ($errors->any())
+                                @endif
+                                @if ($errors->any())
                                     <div class="alert alert-danger">
                                         <ul>
                                             @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
+                                                <li>{{ $error }}</li>
                                             @endforeach
                                         </ul>
                                     </div>
-                                    @endif
-                                {{-- </div> --}}
+                                @endif
                                 <div class="col-12">
                                     <div class="mb-2">
                                         <label class="form-label">{{ __('Email address') }}</label>
@@ -67,7 +65,9 @@
                                             name="password" maxlength="255" placeholder="{{ __('Enter the password') }}" required>
                                     </div>
                                 </div>
-
+                                <div class="col-12 text-right">
+                                    <a href="{{ route('password.request') }}" class="text-muted">{{ __('Forgot password?') }}</a>
+                                </div>
                                 <div class="col-12 text-center mt-4">
                                     <button type="submit" class="btn btn-lg btn-block btn-dark lift text-uppercase">
                                         {{ __('SIGN IN') }}</button>

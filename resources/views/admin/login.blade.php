@@ -36,6 +36,11 @@
                             <form class="row g-3" action="{{ route('checkAdmin') }}" method="POST">
                                 @csrf
                                 <div class="col-12 text-center mb-5">
+                                    @if(session('success'))
+                                    <div class="alert alert-success">
+                                      {{ session('success') }}
+                                    </div>
+                                    @endif
                                     <h1>{{ __('Sign in admin') }}</h1>
                                 </div>
                                 {{-- <div class="col-12 text-center mb-4"> --}}

@@ -21,7 +21,7 @@ class CreateAboutUsTable extends Migration
             $table->text('en_about_text')->nullable();
             $table->text('ar_about_text')->nullable();
             $table->date('founded_date')->nullable();
-            $table->string('website')->nullable();
+            $table->string('email');
             $table->timestamps();
         });
     }

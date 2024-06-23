@@ -24,11 +24,11 @@ class ArticleController extends Controller
 
     public function store(CommentRequest $request)
     {
-        $user_id=auth()->guard('web')->user()->id;
+        // $user_id=auth()->guard('web')->user()->id;
         $comment=Comment::create([
             'content' => $request->content,
             'article_id' => $request->article_id,
-            'user_id' => $user_id,
+            'user_name' => $request->user_name,
         ]);
         return redirect()->back()->with('success', ' Comment sent successfully.');
     }

@@ -53,8 +53,8 @@
                         <td>{{ $admin->last_name }}</td>
                         <td>{{ $admin->email }}</td>
                         <td>{{ $admin->phone }}</td>
-                        <td>{{ $admin->type }}</td>
-                        <td>{{ $admin->status }}</td>
+                        <td>{{ $admin->type == 'admin' ? 'admin':'super admin' }}</td>
+                        <td class="text-{{ $admin->status == 'active' ? 'success':'danger'  }}">{{ $admin->status == 'active' ? 'active':'not active'  }}</td>
                         @if ( Auth::guard('admin')->user()->type ==='superAdmin')
                         <td>
                             <a href="{{ route('admins.edit', $admin->id) }}" class="btn btn-primary">Edit</a>

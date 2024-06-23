@@ -7,7 +7,7 @@
            $aboutUs=\App\Models\AboutUs::first();
         @endphp
         @if (isset($aboutUs->logo))
-        <link rel="icon" href="{{ Storage::url($aboutUs->logo) }}" type="image/x-icon">
+        <link rel="icon" href="{{ asset('storage/'.$aboutUs->logo) }}" type="image/x-icon">
         @else
         <link rel="icon" href="{{ url('/') }}/assets/images/logo.jpeg" type="image/x-icon">
         @endif

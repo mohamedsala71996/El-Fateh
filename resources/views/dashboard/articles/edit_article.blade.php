@@ -21,28 +21,28 @@
       @csrf
       @method('PUT')
       <div class="mb-3">
-        <label for="en_title" class="form-label">English Title</label>
+        <label for="en_title" class="form-label">Title (English)</label>
         <input type="text" class="form-control" id="en_title" name="en_title" value="{{ $article->en_title }}">
         @error('en_title')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
       <div class="mb-3">
-        <label for="ar_title" class="form-label">العنوان</label>
+        <label for="ar_title" class="form-label">Title (Arabic)</label>
         <input type="text" class="form-control" id="ar_title" name="ar_title" value="{{ $article->ar_title }}">
         @error('ar_title')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
       <div class="mb-3">
-        <label for="en_content" class="form-label">English Content</label>
+        <label for="en_content" class="form-label">Content (English)</label>
         <textarea class="form-control" id="en_content" name="en_content" rows="3">{{ $article->en_content }}</textarea>
         @error('en_content')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
       <div class="mb-3">
-        <label for="ar_content" class="form-label">الموضوع</label>
+        <label for="ar_content" class="form-label">Content (Arabic)</label>
         <textarea class="form-control" id="ar_content" name="ar_content" rows="3">{{ $article->ar_content }}</textarea>
         @error('ar_content')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -50,24 +50,42 @@
       </div>
       <div class="form-row">
         <div class="col-12">
-          <label for="image">Update image if you need</label>
+          <label for="image">Update image</label>
+        </div>
+        <div class="form-group mb-4">
+          @if ($article->image)
           <input type="file" name="image" id="image" class="form-control">
           @error('image')
           <div class="alert alert-danger">{{ $message }}</div>
           @enderror
-        </div>
-        <div class="col-4 mt-3">
-          @if ($article->image)
-          <div class="card">
-            <img src="{{ asset('dist/img/articles/' . $article->image) }}" alt="Article Image" class="card-img-top article-image" style="object-fit: cover; height: 200px;">
-            <div class="card-body">
+          <div class="card-body">
+            <img src="{{ asset('dist/img/articles/' . $article->image) }}" alt="Article Image"  style="max-width: 100px;max-height:100px">
+            {{-- <div class="card-body">
               <h5 class="card-title">Article Image</h5>
-            </div>
+            </div> --}}
           </div>
-          @else
-          <div class="alert alert-warning">No image available</div>
           @endif
         </div>
+        <div class="form-group mb-4">
+          <label for="pdf">{{ __('Article PDF') }}</label>
+          @if ($article->pdf)
+          <div class="mb-3">
+              <a href="{{ asset('dist/img/articles/'.$article->pdf) }}" target="_blank"
+                  class="btn btn-info">View PDF</a>
+              {{-- <a href="{{ asset("storage/$category->pdf") }}" download class="btn btn-secondary">Download PDF</a> --}}
+          </div>
+      @endif
+          <div class="card">
+              {{-- <div class="card-body "> --}}
+                <input type="file" class="form-control-file @error('pdf') is-invalid @enderror" id="pdf" name="pdf" accept="application/pdf">
+                @error('pdf')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
+              {{-- </div> --}}
+          </div>
+      </div>
       </div>
       <button type="submit" class="btn btn-primary mt-3">Submit</button>
     </form>

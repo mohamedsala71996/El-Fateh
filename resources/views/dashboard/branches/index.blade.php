@@ -18,7 +18,11 @@
     </div>
     <div class="row mb-3">
       <div class="col">
+        @if ($branches->count()==0)
+        <a href="{{ route('branches.create') }}" class="btn btn-success">Add Main Branch</a>
+        @else
         <a href="{{ route('branches.create') }}" class="btn btn-success">Add New Branch</a>
+        @endif
       </div>
     </div>
     <div class="row">
@@ -31,22 +35,28 @@
             <table class="table table-bordered text-center">
               <thead>
                 <tr>
-                  {{-- <th>Phone Number</th> --}}
                   <th>Name (English)</th>
                   <th>Name (Arabic)</th>
                   <th>Address (English)</th>
                   <th>Address (Arabic)</th>
+                  <th>Phone Numbers</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                @forelse($branches as $branch)
+                @forelse($branches as $key => $branch)
                 <tr class="align-middle">
-                  {{-- <td>{{ $branch->phone_number }}</td> --}}
-                  <td>{{ $branch->en_name }}</td>
-                  <td>{{ $branch->ar_name }}</td>
+                  <td>{{ $branch->en_name }} {{ ($key == 0) ? '(Main branch)':''  }} </td>
+                  <td>{{ $branch->ar_name }} {{ ($key == 0) ? '(Main branch)':''  }}</td>
                   <td>{{ $branch->en_address }}</td>
                   <td>{{ $branch->ar_address }}</td>
+                  <td>
+                    @forelse($branch->phoneNumbers as $number)
+                      <p>{{ $number->en_title }}: {{ $number->phone_number }}</p>
+                    @empty
+                      <p>No phone numbers available.</p>
+                    @endforelse
+                  </td>
                   <td>
                     <a href="{{ route('branches.edit', $branch->id) }}" class="btn btn-primary">Edit</a>
                     <form action="{{ route('branches.destroy', $branch->id) }}" method="POST" style="display: inline-block;">

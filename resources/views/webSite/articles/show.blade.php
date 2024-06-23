@@ -33,7 +33,7 @@
         @forelse ($comments as $comment)
             <div class="row mt-4" style="margin-left:  50px;margin-right:  50px; padding-bottom: 30px;">
                 <div class="col">
-                    <h5> {{ $comment->user->first_name . ' ' . $comment->user->last_name }}</h3>
+                    <h5> {{ $comment->user_name }}</h3>
                         <div id="commentsSection">
                             <p> {{ $comment->content }} </p>
                         </div>
@@ -49,7 +49,7 @@
             </div>
         @endforelse
 
-        @if (Auth::guard('web')->user())
+        {{-- @if (Auth::guard('web')->user()) --}}
             <!-- Add Article Section -->
             <div class="row mt-4" style="margin: 40px; padding-top: 20px;">
                 <div class="col">
@@ -59,9 +59,16 @@
                         @method('post')
                         <input type="hidden" name="article_id" value="{{ $article->id }}">
                         <div class="form-group">
+                            <label for="user_name">{{ __('User Name') }}:</label>
+                            <input type="text" name="user_name" class="form-control @error('user_name') is-invalid @enderror" value="{{ old('user_name') }}" required>
+                            @error('user_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                             <label for="newArticleContent">{{ __('The content') }}:</label>
                             <textarea class="form-control @error('content') is-invalid @enderror" name="content" id="newArticleContent"
-                                rows="3">{{ old('content') }}</textarea>
+                                rows="3" required>{{ old('content') }}</textarea>
                             @error('content')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -73,13 +80,13 @@
                     </form>
                 </div>
             </div>
-        @else
+        {{-- @else
             <div class="row mt-4" style="margin: 40px; padding-top: 20px;">
                 <div class="col">
                     <h3 class="text-danger">{{ __('Login to add a comment') }}</h3>
                 </div>
             </div>
-        @endif
+        @endif --}}
 
 
     </div>

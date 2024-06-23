@@ -16,7 +16,7 @@ class AboutUs extends Model
         'en_about_text',
         'ar_about_text',
         'founded_date',
-        'website',
+        'email',
         'logo'
     ];
 }

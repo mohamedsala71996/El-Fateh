@@ -37,8 +37,10 @@
                     <th scope="col">{{ __('Title') }}</th>
                     <th scope="col">{{ __('Location') }}</th>
                     <th scope="col">{{ __('Category') }}</th>
-                    <th scope="col">{{ __('Image') }}</th> <!-- New Column for Image -->
+                    <th scope="col">{{ __('PDF') }}</th>
+                    <th scope="col">{{ __('Images') }}</th> <!-- New Column for Image -->
                     <th scope="col">{{ __('Actions') }}</th>
+
                   </tr>
                 </thead>
                 <tbody>
@@ -49,7 +51,26 @@
                     <td>{{ $previousWork->en_title }}</td>
                     <td>{{ $previousWork->en_location }}</td>
                     <td>{{ $previousWork->category->en_name }}</td>
-                    <td><img src="{{ asset("storage/{$previousWork->image}") }}"  style="max-width: 100px;"></td> <!-- Display Image -->
+                    <td>
+                      @if($previousWork->pdf)
+                      <a href="{{ asset("storage/$previousWork->pdf") }}" target="_blank" class="btn btn-info">Preview</a>
+                      {{-- <a href="{{ asset("storage/$previousWork->pdf") }}" download class="btn btn-secondary">Download</a> --}}
+                      @else
+                      <span class="text-center">No PDF</span>
+                      @endif
+                  </td>
+
+                    <td>
+                      @if (isset($previousWork->images))
+                      @php
+                          $images=json_decode($previousWork->images);
+                      @endphp
+                      @foreach ( $images as $item)
+                      <img src="{{ asset("storage/$item") }}"
+                      alt="Article Sliders" style="width: 50px; height: 50px;">
+                      @endforeach
+                      @endif                    
+                    </td> 
                     <td>
                       <a href="{{ route('previousWorks.edit', $previousWork->id) }}" class="btn btn-sm btn-primary">{{ __('Edit') }}</a>
                       <form action="{{ route('previousWorks.destroy', $previousWork->id) }}" method="POST" style="display: inline-block;">

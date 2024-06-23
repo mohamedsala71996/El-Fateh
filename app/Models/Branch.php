@@ -12,9 +12,11 @@ class Branch extends Model
     protected $fillable = [
         'en_name',
         'ar_name',
-        // 'phone_number',
+        'email',
         'en_address',
         'ar_address',
+        'latitude',
+        'longitude',
     ];
     public function phoneNumbers()
     {

@@ -3,7 +3,7 @@
 @section('content')
 
     <div data-wow-duration="3s" data-wow-delay="0.7s" style="padding:10px;" id="box2">
-        <video autoplay muted loop style="width:100%">
+        <video autoplay controls muted loop style="width:100%">
             <source src="{{ asset("storage/" . (\App\Models\MediaFile::first()->home_video ?? '')) }}" type="video/mp4">
         </video>
     </div>
@@ -22,7 +22,7 @@
     }
     /*  */
     </style>
-    <div class="col-12">
+    {{-- <div class="col-12">
         <div class="col-12 text-center">
 
             <h1 style="color: darkgoldenrod;" >{{ $aboutUs->{app()->getLocale() . '_company_name'} ??  __('El-Fateh') }}</h1>
@@ -59,6 +59,45 @@
         @endforeach
 
 
-    </div>
+    </div> --}}
+    {{-- <div class="filters-content"> --}}
+        {{-- <div class="row" > --}}
+            <div class="row">
+                @foreach ($categories as $category)
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <div class="box">
+                        <div>
+                            <div class="img-box">
+                                <img class="card-img img-fluid" style="width: 100%; height: 700px; object-fit: cover;" src="{{ asset("storage/$category->photo") }}" alt="">
+                            </div>
+                            <div class="detail-box text-center" >
+                                <h5>
+                                    {{ $category->{app()->getLocale() . '_name'} }}
+                                </h5>
+                                <p>
+                                    {{ $category->{app()->getLocale() . '_content'} }}
+                                </p>
+                                <div class="options" style="text-align: center; margin-top: 20px;">
+                                    <a href="{{ route('allPreviousWorks', $category->id) }}" class="btn btn-primary">{{ __('Take a look') }}</a>
+                                    @if($category->pdf)
+                                    <a href="{{ asset("storage/$category->pdf") }}" target="_blank" class="btn btn-danger">
+                                        <i class="fas fa-file-pdf"></i> {{ __('attachment') }}
+                                    </a>
+                                    {{-- <a href="{{ asset("storage/$category->pdf") }}" download class="btn btn-danger">
+                                        <i class="fas fa-file-pdf"></i> {{ __('Download attachment') }}
+                                    </a> --}}
+                                @endif
+    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        {{-- </div> --}}
+    {{-- </div> --}}
+    
+    
     {{-- End Body --}}
 @endsection

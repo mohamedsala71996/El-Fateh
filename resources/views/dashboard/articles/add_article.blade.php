@@ -20,28 +20,28 @@
     <form method="POST" action="{{ route('store_article') }}" enctype="multipart/form-data">
       @csrf
       <div class="mb-3">
-        <label for="en_title" class="form-label">English Title</label>
+        <label for="en_title" class="form-label">Title (English)</label>
         <input type="text" class="form-control" id="en_title" name="en_title" value="{{ old('en_title') }}">
         @error('en_title')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
       <div class="mb-3">
-        <label for="ar_title" class="form-label">العنوان</label>
+        <label for="ar_title" class="form-label">Title (Arabic)</label>
         <input type="text" class="form-control" id="ar_title" name="ar_title" value="{{ old('ar_title') }}">
         @error('ar_title')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
       <div class="mb-3">
-        <label for="en_content" class="form-label">English Content</label>
+        <label for="en_content" class="form-label">Content (English)</label>
         <textarea class="form-control" id="en_content" name="en_content" rows="3">{{ old('en_content') }}</textarea>
         @error('en_content')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
       <div class="mb-3">
-        <label for="ar_content" class="form-label">الموضوع</label>
+        <label for="ar_content" class="form-label">Content (Arabic)</label>
         <textarea class="form-control" id="ar_content" name="ar_content" rows="3">{{ old('ar_content') }}</textarea>
         @error('ar_content')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -50,15 +50,26 @@
       @if ($errors->has('general'))
       <div class="alert alert-danger">{{ $errors->first('general') }}</div>
       @endif
-      <div class="form-row">
-        <div class="col-12">
-          <label for="image">Img</label>
-          <input type="file" name="image" id="image" class="form-control">
+      <div class="form-group mb-4">
+        <label for="image">Img</label>
+        <div class="card">
+          <input type="file" name="image" id="image" class="form-control-file @error('image') is-invalid @enderror" accept="image/*"> 
           @error('image')
           <div class="alert alert-danger">{{ $message }}</div>
           @enderror
         </div>
       </div>
+      <div class="form-group mb-4">
+        <label for="pdf">{{ __('Article PDF') }}</label>
+        <div class="card">
+            <input type="file" class="form-control-file @error('pdf') is-invalid @enderror" id="pdf" name="pdf" accept="application/pdf">
+            @error('pdf')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        </div>
       <button type="submit" class="btn btn-primary mt-3">Submit</button>
     </form>
   </div>

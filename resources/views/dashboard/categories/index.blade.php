@@ -53,7 +53,7 @@
                         <td>
                           @if($category->pdf)
                           <a href="{{ asset("storage/$category->pdf") }}" target="_blank" class="btn btn-info">Preview</a>
-                          <a href="{{ asset("storage/$category->pdf") }}" download class="btn btn-secondary">Download</a>
+                          {{-- <a href="{{ asset("storage/$category->pdf") }}" download class="btn btn-secondary">Download</a> --}}
                           @else
                           <span class="text-center">No PDF</span>
                           @endif

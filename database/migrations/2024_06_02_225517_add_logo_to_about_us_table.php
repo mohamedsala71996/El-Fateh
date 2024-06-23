@@ -14,7 +14,7 @@ class AddLogoToAboutUsTable extends Migration
     public function up()
     {
         Schema::table('about_us', function (Blueprint $table) {
-            $table->string('logo')->nullable()->after('website');
+            $table->string('logo')->nullable()->after('email');
         });
     }
 

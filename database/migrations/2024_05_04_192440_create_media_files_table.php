@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('home_video');
             $table->json('article_sliders');
             $table->string('about_video');
+            $table->string('qr_photo')->nullable();
             $table->timestamps();
         });
     }

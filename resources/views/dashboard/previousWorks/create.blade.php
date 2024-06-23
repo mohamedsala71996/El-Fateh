@@ -81,7 +81,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group mb-4">
-                                        <label for="started_at">{{ __('Started At') }}</label>
+                                        <label for="started_at">Started At</label>
                                         <input id="started_at" type="date"
                                             class="form-control @error('started_at') is-invalid @enderror" name="started_at"
                                             value="{{ old('started_at') }}" required>
@@ -93,7 +93,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group mb-4">
-                                        <label for="ended_at">{{ __('Ended At') }}</label>
+                                        <label for="ended_at">Ended At</label>
                                         <input id="ended_at" type="date"
                                             class="form-control @error('ended_at') is-invalid @enderror" name="ended_at"
                                             value="{{ old('ended_at') }}" required>
@@ -179,7 +179,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group mb-4">
-                                        <label for="total_area">{{ __('Total Area') }}</label>
+                                        <label for="total_area">Total Area</label>
                                         <input id="total_area" type="text"
                                             class="form-control @error('total_area') is-invalid @enderror"
                                             name="total_area" value="{{ old('total_area') }}" autocomplete="total_area">
@@ -192,7 +192,7 @@
                                     </div>
 
                                     <div class="form-group mb-4">
-                                        <label for="total_units">{{ __('Total Units') }}</label>
+                                        <label for="total_units">Total Units</label>
                                         <input id="total_units" type="text"
                                             class="form-control @error('total_units') is-invalid @enderror"
                                             name="total_units" value="{{ old('total_units') }}"
@@ -206,7 +206,7 @@
                                     </div>
 
                                     <div class="form-group mb-4">
-                                        <label for="total_concrete">{{ __('Total Concrete') }}</label>
+                                        <label for="total_concrete">Total Concrete</label>
                                         <input id="total_concrete" type="text"
                                             class="form-control @error('total_concrete') is-invalid @enderror"
                                             name="total_concrete" value="{{ old('total_concrete') }}"
@@ -239,17 +239,34 @@
                                     </div>
 
                                     <div class="form-group mb-4">
-                                        <label for="image">{{ __('Image') }}</label>
+                                        <div class="card">
+                                        <label for="images">{{ __('Images') }}</label>
+                                        <br>
                                         <input type="file"
-                                            class="form-control-file @error('image') is-invalid @enderror" id="image"
-                                            name="image" accept="image/*" required>
+                                            class="form-control-file @error('image') is-invalid @enderror" id="images"
+                                            name="images[]" accept="image/*" multiple required>
 
-                                        @error('image')
+                                        @error('images')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
+                                    </div>
+
+                                    <div class="form-group mb-4">
+                                        <div class="card">
+                                            <label for="pdf">{{ __('Previous Work PDF') }}</label>
+                                            <input type="file" class="form-control-file @error('pdf') is-invalid @enderror" id="pdf" name="pdf" accept="application/pdf">
+                
+                                            @error('pdf')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        </div>
+            
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary">
                                             {{ __('Add Previous Work') }}

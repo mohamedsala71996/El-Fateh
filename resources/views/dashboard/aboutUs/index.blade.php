@@ -65,18 +65,18 @@
                 @enderror
               </div>
               <div class="mb-3">
-                <label for="website" class="form-label">Website</label>
-                <input type="text" class="form-control @error('website') is-invalid @enderror" id="website" name="website" value="{{ old('website', $aboutUs->website ?? '') }}">
-                @error('website')
+                <label for="email" class="form-label">Email</label>
+                <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email', $aboutUs->email ?? '') }}">
+                @error('email')
                   <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="mb-3">
-                <label for="logo" class="form-label">Logo</label>
+                <label for="logo" class="form-label">Logo (optional)</label>
                 <input type="file" class="form-control @error('logo') is-invalid @enderror" id="logo" name="logo">
                 @if(isset($aboutUs->logo))
                   <div class="mt-2">
-                    <img src="{{ Storage::url($aboutUs->logo) }}" alt="Current Logo" style="max-height: 100px;">
+                    <img src="{{ asset('storage/'.$aboutUs->logo) }}" alt="Current Logo" style="max-height: 100px;">
                   </div>
                 @endif
                 @error('logo')

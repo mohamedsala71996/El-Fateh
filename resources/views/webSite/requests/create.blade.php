@@ -15,7 +15,7 @@
             </div>
         @endif
 
-        @if (Auth::guard('web')->user())
+        {{-- @if (Auth::guard('web')->user()) --}}
             <!-- Add Article Section -->
             <div class="row mt-4" style="margin: 40px; padding-top: 20px;">
                 <div class="col">
@@ -89,13 +89,13 @@
                     </form>
                 </div>
             </div>
-        @else
+        {{-- @else
             <div class="row mt-4" style="margin: 40px; padding-top: 20px;">
                 <div class="col">
                     <h3 class="text-danger">{{ __('Login to send a request') }}</h3>
                 </div>
             </div>
-        @endif
+        @endif --}}
 
 
     </div>

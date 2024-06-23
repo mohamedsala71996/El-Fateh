@@ -9,6 +9,6 @@ class MediaFile extends Model
 {
     use HasFactory;
     protected $table = 'media_files';
-    protected $fillable = ['section', 'file_type', 'file_path'];
+    protected $fillable = ['home_video', 'article_sliders', 'about_video','qr_photo'];
 
 }

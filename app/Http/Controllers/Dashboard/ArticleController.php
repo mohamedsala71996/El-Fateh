@@ -39,6 +39,10 @@ class ArticleController extends Controller
             $photoName = $this->upload_image($request->image, 'articles');
             $data['image'] = $photoName;
         }
+        if ($request->hasFile('pdf')) {
+            $pdfName = $this->upload_image($request->pdf, 'articles');
+            $data['pdf'] = $pdfName;
+        }
 
         DB::table('articles')->insert($data);
         return redirect()->route('all_articles')->with('success', 'Article created successfully!');
@@ -57,6 +61,8 @@ class ArticleController extends Controller
 
         $oldImageName = DB::table('articles')->select('image')->where('id', $id)->first()->image;
 
+        $oldPdfName = DB::table('articles')->select('pdf')->where('id', $id)->first()->pdf;
+
         if ($request->has('image')) {
             if (empty($request->image)) {
                 $image_path = public_path('/dist/img/articles/' . $oldImageName);
@@ -69,6 +75,18 @@ class ArticleController extends Controller
                 $data['image'] = $photoName;
             }
         }
+        if ($request->has('pdf')) {
+            if (empty($request->pdf)) {
+                $pdf_path = public_path('/dist/img/articles/' . $oldPdfName);
+                $data['pdf'] = $pdf_path;
+            } else {
+                $oldPdfPath = public_path('/dist/img/articles/' . $oldPdfName);
+                $this->delete_image($oldPdfPath);
+
+                $pdfName = $this->upload_image($request->pdf, 'articles');
+                $data['pdf'] = $pdfName;
+            }
+        }
 
         DB::table('articles')->where('id', $id)->update($data);
         return redirect()->route('all_articles')->with('success', 'Article updated successfully!');
@@ -79,13 +97,18 @@ class ArticleController extends Controller
 
     public function delete_article($id)
     {
-        $article = DB::table('articles')->select('image')->where('id', $id)->first();
+        $article = DB::table('articles')->select(['image','pdf'])->where('id', $id)->first();
         $oldImageName = $article->image;
+        $oldPdfName = $article->pdf;
 
         $image_path = public_path('/dist/img/articles/' . $oldImageName);
+        $pdf_path = public_path('/dist/img/articles/' . $oldPdfName);
 
         if (file_exists($image_path) && is_file($image_path)) {
             unlink($image_path);
+        }
+        if (file_exists($pdf_path) && is_file($pdf_path)) {
+            unlink($pdf_path);
         }
 
         $article = DB::table('articles')->where('id', $id)->first();

@@ -71,6 +71,7 @@
                                     </span>
                                 @enderror
                             </div>
+                            @if ($admin->type == 'superAdmin')
                             <div class="form-group mb-4">
                                 <label for="type">{{ __('Type') }}</label>
                                 <select id="type" class="form-control @error('type') is-invalid @enderror" name="type" required autocomplete="type">
@@ -95,6 +96,8 @@
                                     </span>
                                 @enderror
                             </div>
+                            @endif
+
     
                             <input type="hidden" name="id" value="{{ $admin->id }}">
                             <div class="form-group">

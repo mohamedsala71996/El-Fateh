@@ -22,7 +22,7 @@ class PreviousWorkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'image|mimes:jpeg,png,jpg,gif',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif',
             'en_engineer_name' => 'required|string|max:255',
             'en_title' => 'required|string|max:255',
             'ar_engineer_name' => 'required|string|max:255',

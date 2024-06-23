@@ -38,7 +38,7 @@
                   @forelse($comments as $comment)
                   <tr class="align-middle">
                       <td>{{ $comment->content }}</td>
-                      <td>{{ $comment->user->first_name }} {{ $comment->user->last_name }}</td>
+                      <td>{{$comment->user_name }}</td>
                       <td>
                           @if($comment->status == 'approved')
                               <span class="badge bg-success">Approved</span>

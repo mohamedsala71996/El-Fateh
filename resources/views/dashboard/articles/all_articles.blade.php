@@ -25,7 +25,7 @@
     </div>
     <div class="row mb-3">
       <div class="col">
-        <a href="{{ route('pending_comments') }}" class="btn btn-info">Pending comments</a>
+        <a href="{{ route('pending_comments') }}" class="btn btn-warning">Pending comments</a>
       </div>
     </div>
     <!-- Cards to display articles -->
@@ -38,12 +38,20 @@
             <h5 class="card-title">{{ $article->ar_title }}</h5>
             <p class="card-text">{{ $article->ar_content }}</p>
             <a href="{{ route('edit_article', $article->id) }}" class="btn btn-primary">Edit</a>
+
             <form action="{{ route('delete_article', $article->id) }}" method="POST" style="display: inline-block; margin-top: 10px;">
               @csrf
               @method('DELETE')
               <button type="submit" class="btn btn-danger">Delete</button>
             </form>
-            <a href="{{ route('show_comments', $article->id) }}" class="btn btn-primary">Comments</a>
+            @if($article->pdf)
+            <a href="{{ asset('dist/img/articles/'.$article->pdf) }}" target="_blank" class="btn btn-info">PDF</a>
+            {{-- <a href="{{ asset('dist/img/articles/'.$article->pdf) }}" download class="btn btn-secondary">Download</a> --}}
+            @else
+            {{-- <span class="text-center">No PDF</span> --}}
+            @endif
+
+            <a href="{{ route('show_comments', $article->id) }}" class="btn btn-dark">Comments</a>
 
           </div>
         </div>

@@ -42,8 +42,9 @@ class AdminController extends Controller
             'phone' => $request->phone,
             'password' =>  Hash::make($request->password),
         ]);
-        Auth::guard('admin')->loginUsingId($admin->id);
-        return redirect()->route('dashboard');
+        // Auth::guard('admin')->loginUsingId($admin->id);
+        // return redirect()->route('dashboard');
+        return redirect()->route('login')->with('success', 'Waiting for approved registration');
 
     }
     
@@ -54,7 +55,7 @@ class AdminController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::guard('admin')->attempt(['email' => $request->email,'password' => $request->password ])) {
+        if (Auth::guard('admin')->attempt(['email' => $request->email,'password' => $request->password ,'status' => 'active'])) {
 
             // toastr()->success('تم تسجيل الدخول بنجاح ');
 

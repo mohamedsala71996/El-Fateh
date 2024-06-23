@@ -13,7 +13,7 @@ class AddPdfToCategoriesTable extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->string('pdf')->nullable(); 
+            $table->string('pdf')->nullable()->after('photo'); 
         });
     }
 

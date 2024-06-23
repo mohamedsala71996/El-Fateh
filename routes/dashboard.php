@@ -55,7 +55,7 @@ Route::prefix('/dashboard')->middleware(['admin'])->group(function () {
 
     Route::resource('about-us', AboutUsController::class);
 
-    Route::resource('contact-us', ContactUsController::class);
+    // Route::resource('contact-us', ContactUsController::class);
 
     Route::resource('reasons', WhyUsController::class);
 
@@ -67,9 +67,9 @@ Route::prefix('/dashboard')->middleware(['admin'])->group(function () {
 
     Route::resource('branches', BranchController::class);
 
-    Route::resource('phone-numbers', PhoneNumberController::class);
+    // Route::resource('phone-numbers', PhoneNumberController::class);
 
-    Route::get('show-branches', [PhoneNumberController::class, 'showBranches'])->name('show_branches');
+    // Route::get('show-branches', [PhoneNumberController::class, 'showBranches'])->name('show_branches');
 
 
 });

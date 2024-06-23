@@ -10,7 +10,7 @@
         <meta name="description" content="Responsive Bootstrap 5 admin dashboard template & web App ui kit.">
         <meta name="keyword" content="LUNO, Bootstrap 5, ReactJs, Angular, Laravel, VueJs, ASP .Net, Admin Dashboard, Admin Theme, HRMS, Projects, Hospital Admin, CRM Admin, Events, Fitness, Music, Inventory, Job Portal">
         @if (isset($aboutUs->logo))
-        <link rel="icon" href="{{ Storage::url($aboutUs->logo) }}" type="image/x-icon">
+        <link rel="icon" href="{{ asset('storage/'.$aboutUs->logo) }}" type="image/x-icon">
         @else
         <link rel="icon" href="{{ url('/') }}/assets/images/logo.jpeg" type="image/x-icon">
         @endif
@@ -68,6 +68,7 @@
         opacity: 0;
         }
     </style>
+    @yield('styles')
     </head>
 
     <body class="layout-1" data-luno="theme-blue">
@@ -92,6 +93,8 @@
         </div>
 
         <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="{{ url('/') }}/admin/assets/js/theme.js"></script>
+        @yield('scripts')
+
     </body>
 
 </html>

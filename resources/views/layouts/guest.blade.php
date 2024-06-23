@@ -18,7 +18,18 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
             <div>
                 <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                    {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
+                    @php
+                        $aboutUs=\App\Models\AboutUs::first();
+                    @endphp
+                    @if (isset($aboutUs->logo))
+                    <img src="{{ asset('storage/'.$aboutUs->logo) }}" id="navbar-brand" style="position: relative; width:100px"
+                        alt="">
+                    @else
+                    <img src="{{ url('/') }}/assets/images/logo.jpeg" id="navbar-brand"
+                        style="position: relative; width:100px" alt="">
+                    @endif
+
                 </a>
             </div>
 

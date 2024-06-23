@@ -2,10 +2,12 @@
     "Arabic": "عربي",
     "English": "انجليزي",
     "EL-Fateh":"الفاتح",
+    "El-Fateh":"الفاتح",
     "El-FATEH":"الفاتح",
     "Articles":"المقالات",
     "Requests":"الطلبات",
     "Why Us":"لماذا نحن؟",
+    "Our Company":"عن شركتنا",
     "About":"معلومات عنا",
     "Sign out":"تسجيل الخروج",
     "Login":"تسجيل الدخول",
@@ -53,10 +55,15 @@
     "Enter the password":"الرقم السري",
     "SIGN UP":"إنشاء الحساب",
     "login":"تسجيل الدخول",
-    "Preview PDF":"عرض الملف",
-    "Download PDF":"تحميل الملف",
+    "Preview attachment":"عرض المرفق",
+    "Download attachment":"تحميل المرفق",
+    "attachment":"مرفق",
     "Branches":"الفروع",
     "since":"منذ",
-    "Branch name":"اسم الفرع"
-
+    "Branch name":"اسم الفرع",
+    "What We Do":"ماذا نفعل",
+    "Scan":"مسح",
+    "User Name":"اسم المستخدم",
+    "Email Password Reset Link":"إرسال رابط إعادة تعيين كلمة المرور",
+    "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.":"نسيت كلمة المرور؟ لا مشكلة. فقط أخبرنا بعنوان بريدك الإلكتروني وسنرسل لك رابط إعادة تعيين كلمة المرور الذي سيمكنك من اختيار كلمة مرور جديدة"
 }

@@ -72,7 +72,7 @@
                             </div>
 
                             <div class="form-group mb-4">
-                                <label for="started_at">{{ __('Started At') }}</label>
+                                <label for="started_at">Started At</label>
                                 <input id="started_at" type="date" class="form-control @error('started_at') is-invalid @enderror" name="started_at" value="{{ $previousWork->started_at }}" required>
     
                                 @error('started_at')
@@ -83,7 +83,7 @@
                             </div>
 
                             <div class="form-group mb-4">
-                                <label for="ended_at">{{ __('Ended At') }}</label>
+                                <label for="ended_at">Ended At</label>
                                 <input id="ended_at" type="date" class="form-control @error('ended_at') is-invalid @enderror" name="ended_at" value="{{ $previousWork->ended_at }}" required>
     
                                 @error('ended_at')
@@ -158,7 +158,7 @@
                             </div>
 
                             <div class="form-group mb-4">
-                                <label for="total_area">{{ __('Total Area') }}</label>
+                                <label for="total_area">Total Area</label>
                                 <input id="total_area" type="text" class="form-control @error('total_area') is-invalid @enderror" name="total_area" value="{{ $previousWork->total_area }}" autocomplete="total_area">
     
                                 @error('total_area')
@@ -169,7 +169,7 @@
                             </div>
 
                             <div class="form-group mb-4">
-                                <label for="total_units">{{ __('Total Units') }}</label>
+                                <label for="total_units">Total Units</label>
                                 <input id="total_units" type="text" class="form-control @error('total_units') is-invalid @enderror" name="total_units" value="{{ $previousWork->total_units }}" autocomplete="total_units">
     
                                 @error('total_units')
@@ -180,7 +180,7 @@
                             </div>
 
                             <div class="form-group mb-4">
-                                <label for="total_concrete">{{ __('Total Concrete') }}</label>
+                                <label for="total_concrete">Total Concrete</label>
                                 <input id="total_concrete" type="text" class="form-control @error('total_concrete') is-invalid @enderror" name="total_concrete" value="{{ $previousWork->total_concrete }}" autocomplete="total_concrete">
     
                                 @error('total_concrete')
@@ -206,12 +206,20 @@
                             </div>
 
                             <div class="form-group mb-4">
-                                <label for="image">{{ __('Previous Work Photo') }}</label>
-                                <div class="d-flex align-items-center">
+                                <label for="image">{{ __('Previous Work Photos') }}</label>
+                                <div class="card">
                                     <div style="max-width: 100px; overflow: hidden;">
-                                        <img src="{{ asset("storage/$previousWork->image") }}"  style="width: 100%; height: auto;">
-                                    </div>
-                                    <input type="file" class="form-control-file ml-3 @error('image') is-invalid @enderror" id="image" name="image" accept="image/*">
+                                        @if (isset($previousWork->images))
+                                        @php
+                                            $images=json_decode($previousWork->images);
+                                        @endphp
+                                        @foreach ( $images as $item)
+                                        <img src="{{ asset("storage/$item") }}"
+                                        alt="Previous Work Photos" style="width: 20px; height: 20px;">
+                                        @endforeach
+                                        @endif   
+                                        </div>
+                                    <input type="file" class="form-control-file ml-3 @error('image') is-invalid @enderror" id="image" name="images[]" accept="image/*" multiple >
                                 </div>
                                 @error('image')
                                     <span class="invalid-feedback" role="alert">
@@ -219,6 +227,29 @@
                                     </span>
                                 @enderror
                             </div>
+                            <div class="form-group mb-4">
+                                <label for="pdf">{{ __('Category PDF') }}</label>
+                                <div class="card">
+                                    <div class="card-body ">
+                                        @if ($previousWork->pdf)
+                                            <div class="mb-3">
+                                                <a href="{{ asset("storage/$previousWork->pdf") }}" target="_blank"
+                                                    class="btn btn-info">View PDF</a>
+                                                {{-- <a href="{{ asset("storage/$category->pdf") }}" download class="btn btn-secondary">Download PDF</a> --}}
+                                            </div>
+                                        @endif
+                                        <input type="file"
+                                            class="form-control-file @error('pdf') is-invalid @enderror"
+                                            id="pdf" name="pdf" accept="application/pdf">
+                                        @error('pdf')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Update Previous Work') }}
