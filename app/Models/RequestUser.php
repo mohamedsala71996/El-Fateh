@@ -12,9 +12,19 @@ class RequestUser extends Model
     protected $fillable = [
         'name',
         'phone_number',
-        'governorate',
         'city',
-        'detailed_address',
+        'request_type_id',
+        'request_service_id',
         'description',
     ];
+
+    public function requestType()
+{
+    return $this->belongsTo(RequestType::class);
+}
+
+public function requestService()
+{
+    return $this->belongsTo(RequestService::class);
+}
 }

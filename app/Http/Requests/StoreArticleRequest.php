@@ -27,23 +27,13 @@ class StoreArticleRequest extends FormRequest
             'ar_title' => 'required|string|max:255',
             'en_content' => 'required|string',
             'ar_content' => 'required|string',
-            'image' => ['required', 'mimes:png,jpg,jpeg'],
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif', 
+            'pdf' => 'nullable|mimes:pdf',
+            'article_category_id' => 'required|exists:article_categories,id',
+            'link' => 'nullable|string',
+
+
         ];
     }
 
-    /**
-     * Get custom error messages for validation rules.
-     *
-     * @return array<string, string>
-     */
-    public function messages(): array
-    {
-        return [
-            'en_title.required' => 'Title field is required.',
-            'ar_title.required' => 'حقل مطلوب.',
-            'en_content.required' => 'Content field is required.',
-            'ar_content.required' => 'حقل مطلوب.',
-            'image.required' => 'حقل مطلوب.',
-        ];
-    }
 }

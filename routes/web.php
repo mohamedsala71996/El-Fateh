@@ -7,6 +7,7 @@ use App\Http\Controllers\WebSite\AboutController;
 use App\Http\Controllers\WebSite\ArticleController;
 use App\Http\Controllers\WebSite\HomeController;
 use App\Http\Controllers\WebSite\RequestUserController;
+use App\Http\Controllers\WebSite\SearchController;
 use App\Http\Controllers\WebSite\WebBranchController;
 use App\Http\Controllers\WebSite\WhyUsController;
 use Illuminate\Support\Facades\App;
@@ -64,15 +65,19 @@ Route::get('/clear-cache', function () {
     
     Route::get('/about', [AboutController::class, 'index'])->name('about.index');
     
-    Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+    Route::get('/front-articles', [ArticleController::class, 'index'])->name('front_articles.index');
+    
+    Route::get('/show-articles/{articleCategoryId}', [ArticleController::class, 'showArticles'])->name('show_articles');
 
-    Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
+    Route::get('/front-articles/{id}', [ArticleController::class, 'show'])->name('front-articles.show');
 
     Route::post('/comments', [ArticleController::class, 'store'])->name('comments.store');
     
     Route::resource('requestUser', RequestUserController::class);
 
     Route::get('/web-branches', [WebBranchController::class, 'index'])->name('web_branches.index');
+    
+    Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 
 require __DIR__.'/admin.php';

@@ -94,3 +94,17 @@
   </div>
 </div>
 @endsection
+@section('scripts')
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#ar_about_text' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    ClassicEditor
+        .create( document.querySelector( '#en_about_text' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+@endsection

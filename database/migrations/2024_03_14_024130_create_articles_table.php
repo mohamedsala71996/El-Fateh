@@ -21,7 +21,7 @@ class CreateArticlesTable extends Migration
             $table->text('en_content');
             $table->text('ar_content');
             $table->string('image');
-            $table->foreignId('admin_id')->constrained('admins');
+            // $table->foreignId('admin_id')->constrained('admins');
             $table->timestamps();
         });
     }

@@ -69,7 +69,7 @@
                                                 @if (isset($mediaFile->article_sliders))
                                                 @foreach ($article_sliders as $item)
                                                 <img src="{{ asset("storage/$item") }}"
-                                                alt="Article Sliders" style="max-width: 75px; max-height: 100px;">
+                                                alt="Article Sliders" style="width: 30px; height: 30px;">
                                                 @endforeach
                                                 @endif
                                             </td>

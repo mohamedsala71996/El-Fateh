@@ -24,25 +24,12 @@ class CreateContactRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'phone_number' => 'required|string|max:255',
-            'governorate' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'detailed_address' => 'required|string',
-            'description' => 'required|string',
-        ];
+            'city' => 'nullable|string|max:255',
+            'request_type' => 'nullable|string|max:255',
+            'service_type' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            ];
     }
 
-    /**
-     * Get the error messages for the defined validation rules.
-     */
-    public function messages()
-    {
-        return [
-            'name.required' => 'Please provide a name.',
-            'phone_number.required' => 'Please provide a phone number.',
-            'governorate.required' => 'Please provide a governorate.',
-            'city.required' => 'Please provide a city.',
-            'detailed_address.required' => 'Please provide a detailed address.',
-            'description.required' => 'Please provide a description.',
-        ];
-    }
+   
 }

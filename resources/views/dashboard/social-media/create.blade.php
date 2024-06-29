@@ -12,7 +12,7 @@
       <div class="col">
         <ol class="breadcrumb bg-transparent mb-0">
           <li class="breadcrumb-item"><a class="text-secondary" href="{{ route('dashboard') }}">Dashboard</a></li>
-          <li class="breadcrumb-item active" aria-current="page">All Social Media</li>
+          {{-- <li class="breadcrumb-item active" aria-current="page">All Social Media</li> --}}
         </ol>
       </div>
     </div>

@@ -93,7 +93,9 @@ class MediaFileController extends Controller
         }
 
         if ($request->hasFile('qr_photo')) {
-            Storage::disk('public')->delete($mediaFile->qr_photo);
+            if(isset($mediaFile->qr_photo)){
+                Storage::disk('public')->delete($mediaFile->qr_photo);
+            }
             $qrPhoto = $request->file('qr_photo');
             $qrPhotoPath = $qrPhoto->store('media_files/qr_photo', 'public');
             $mediaFile->qr_photo = $qrPhotoPath;

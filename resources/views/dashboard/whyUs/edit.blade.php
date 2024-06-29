@@ -29,7 +29,7 @@
     
                             <div class="form-group mb-4">
                                 <label for="ar_title">{{ __('Title (Arabic)') }}</label>
-                                <input id="ar_title" type="text" class="form-control @error('ar_title') is-invalid @enderror" name="ar_title" value="{{ old('ar_title', $reason->ar_title) }}" required autocomplete="ar_title" autofocus>
+                                <textarea id="ar_title" class="form-control @error('ar_title') is-invalid @enderror" name="ar_title" required autocomplete="ar_title" autofocus>{{ old('ar_title', $reason->ar_title) }}</textarea>
     
                                 @error('ar_title')
                                     <span class="invalid-feedback" role="alert">
@@ -40,7 +40,7 @@
     
                             <div class="form-group mb-4">
                                 <label for="en_title">{{ __('Title (English)') }}</label>
-                                <input id="en_title" type="text" class="form-control @error('en_title') is-invalid @enderror" name="en_title" value="{{ old('en_title', $reason->en_title) }}" required autocomplete="en_title">
+                                <textarea id="en_title" class="form-control @error('en_title') is-invalid @enderror" name="en_title" required autocomplete="en_title">{{ old('en_title', $reason->en_title) }}</textarea>
     
                                 @error('en_title')
                                     <span class="invalid-feedback" role="alert">
@@ -84,4 +84,29 @@
     </div>
   </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#ar_title' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    ClassicEditor
+        .create( document.querySelector( '#en_title' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    ClassicEditor
+        .create( document.querySelector( '#en_content' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    ClassicEditor
+        .create( document.querySelector( '#ar_content' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 @endsection

@@ -15,7 +15,13 @@ class Article extends Model
         'en_content',
         'ar_content',
         'image',
-        'admin_id',
-        'pdf'
+        'link',
+        'pdf',
+        'article_category_id',
     ];
+
+    public function articleCategory()
+    {
+        return $this->belongsTo(ArticleCategory::class, 'article_category_id');
+    }
 }

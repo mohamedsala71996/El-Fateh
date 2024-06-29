@@ -18,11 +18,12 @@
 
     <h1 style="color: darkgoldenrod;" id="mbody1" data-ar="{{ __('Our services') }}" data-en="Our services">{{ __('Our services') }}</h1>
 </div>
+</div>
 
 @foreach ($reasons as $reason)
 <div class="col"  id="mbody1">
-       <div class="col"> <h1  style="font-size: large;  color: darkgoldenrod;">{{ $reason->{app()->getLocale().'_title'} }}</h2>
-        <p>{{ $reason->{app()->getLocale().'_content'} }}</p></div>
+       <div class="col"> <h1  style="font-size: large;  color: darkgoldenrod;">{!! $reason->{app()->getLocale().'_title'} !!}</h2>
+        <p>{!! $reason->{app()->getLocale().'_content'} !!}</p></div>
     </div>     
 
 </div>

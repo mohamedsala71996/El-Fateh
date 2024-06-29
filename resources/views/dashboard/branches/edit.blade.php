@@ -1,4 +1,5 @@
 @extends('layouts.admin.app')
+
 @section('content')
 @if(session('success'))
 <div class="alert alert-success">
@@ -11,11 +12,7 @@
       <div class="col">
         <ol class="breadcrumb bg-transparent mb-0">
           <li class="breadcrumb-item"><a class="text-secondary" href="{{ route('dashboard') }}">Dashboard</a></li>
-          @if ($mainBranch->id == $branch->id)
-          <li class="breadcrumb-item active" aria-current="page">Edit Main Branch</li>
-          @else
-          <li class="breadcrumb-item active" aria-current="page">Edit Branch</li>
-          @endif
+          <li class="breadcrumb-item active" aria-current="page">Branches</li>
         </ol>
       </div>
     </div>
@@ -23,18 +20,14 @@
       <div>
         <div>
           <div class="card">
-            @if ($mainBranch->id == $branch->id)
-            <div class="card-header">{{ __('Edit Main Branch') }}</div>
-            @else
             <div class="card-header">{{ __('Edit Branch') }}</div>
-            @endif
             <div class="card-body">
               <form method="POST" action="{{ route('branches.update', $branch->id) }}">
                 @csrf
                 @method('PUT')
                 <div class="form-group mb-4">
                   <label for="en_name">{{ __('Branch Name (English)') }}</label>
-                  <input id="en_name" type="text" class="form-control @error('en_name') is-invalid @enderror" name="en_name" value="{{ old('en_name', $branch->en_name) }}" required autocomplete="en_name" autofocus>
+                  <textarea id="en_name" class="form-control @error('en_name') is-invalid @enderror" name="en_name" required autocomplete="en_name" autofocus>{{ old('en_name', $branch->en_name) }}</textarea>
                   @error('en_name')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -43,7 +36,7 @@
                 </div>
                 <div class="form-group mb-4">
                   <label for="ar_name">{{ __('Branch Name (Arabic)') }}</label>
-                  <input id="ar_name" type="text" class="form-control @error('ar_name') is-invalid @enderror" name="ar_name" value="{{ old('ar_name', $branch->ar_name) }}" required autocomplete="ar_name" autofocus>
+                  <textarea id="ar_name" class="form-control @error('ar_name') is-invalid @enderror" name="ar_name" required autocomplete="ar_name" autofocus>{{ old('ar_name', $branch->ar_name) }}</textarea>
                   @error('ar_name')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -69,34 +62,29 @@
                   @enderror
                 </div>
 
-                <div class="form-group mb-4">
-                  <label>{{ __('Phone Numbers') }}</label>
-                  <div id="phoneNumbersContainer">
-                    @foreach($branch->phoneNumbers as $phoneNumber)
-                    <div class="phone-number-row mb-2">
-                      <input type="hidden" name="phone_numbers[{{ $loop->index }}][id]" value="{{ $phoneNumber->id }}">
-                      <input type="text" name="phone_numbers[{{ $loop->index }}][en_title]" class="form-control d-inline-block mb-1" value="{{ old('phone_numbers.' . $loop->index . '.en_title', $phoneNumber->en_title) }}" placeholder="English Title">
-                      <input type="text" name="phone_numbers[{{ $loop->index }}][ar_title]" class="form-control d-inline-block mb-1" value="{{ old('phone_numbers.' . $loop->index . '.ar_title', $phoneNumber->ar_title) }}" placeholder="Arabic Title">
-                      <input type="text" name="phone_numbers[{{ $loop->index }}][phone_number]" class="form-control d-inline-block" value="{{ old('phone_numbers.' . $loop->index . '.phone_number', $phoneNumber->phone_number) }}" placeholder="Phone Number">
-                      <button type="button" class="btn btn-danger btn-sm remove-phone-number">Remove</button>
-                    </div>
-                    @endforeach
-                  </div>
-                  <button type="button" class="btn btn-success btn-sm" id="addPhoneNumber">Add Phone Number</button>
-                </div>
-
-                <div id="map" style="height: 500px;width: 1000px;"></div>
                 <input type="hidden" name="latitude" value="{{ old('latitude', $branch->latitude) }}" id="latitude">
                 <input type="hidden" name="longitude" value="{{ old('longitude', $branch->longitude) }}" id="longitude">
+
+                <div id="phone-numbers">
+                    <label>{{ __('Phone Numbers') }}</label>
+                    @foreach($branch->phoneNumbers as $index => $phoneNumber)
+                    <div class="form-group mb-4">
+                        <select class="form-control" name="phone_numbers[{{ $index }}][title]" required>
+                            <option value="whatsapp" {{ $phoneNumber->title == 'whatsapp' ? 'selected' : '' }}>Whatsapp</option>
+                            <option value="mobile" {{ $phoneNumber->title == 'mobile' ? 'selected' : '' }}>Mobile</option>
+                            <option value="landline" {{ $phoneNumber->title == 'landline' ? 'selected' : '' }}>Landline</option>
+                            <option value="telegram" {{ $phoneNumber->title == 'telegram' ? 'selected' : '' }}>Telegram</option>
+                        </select>
+                        <input type="text" class="form-control" name="phone_numbers[{{ $index }}][phone_number]" placeholder="Phone Number" value="{{ old("phone_numbers.$index.phone_number", $phoneNumber->phone_number) }}" required>
+                    </div>
+                    @endforeach
+                </div>
+                <button type="button" class="btn btn-secondary" id="add-phone-number">{{ __('Add Phone Number') }}</button>
                 <br>
-                <div class="form-group">
-                  <button type="submit" class="btn btn-primary">
-                    @if ($mainBranch->id == $branch->id)
-                    {{ __('Update Main Branch') }}
-                    @else
-                    {{ __('Update Branch') }}
-                    @endif
-                  </button>
+                <br>
+                <div id="map" style="height: 500px;width: 1000px;"></div>
+                <div class="form-group mt-4">
+                  <button type="submit" class="btn btn-primary">{{ __('Update Branch') }}</button>
                 </div>
               </form>
             </div>
@@ -106,9 +94,11 @@
     </div>
   </div>
 </div>
+
 @endsection
 
 @section('scripts')
+
 <script>
   function initAutocomplete() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -142,30 +132,45 @@
     var infowindow = new google.maps.InfoWindow(options);
     map.setCenter(pos);
   }
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var phoneNumbersContainer = document.getElementById('phoneNumbersContainer');
-    var addPhoneNumberButton = document.getElementById('addPhoneNumber');
-
-    addPhoneNumberButton.addEventListener('click', function() {
-      var newIndex = phoneNumbersContainer.children.length;
-      var newPhoneNumberRow = document.createElement('div');
-      newPhoneNumberRow.classList.add('phone-number-row', 'mb-2');
-      newPhoneNumberRow.innerHTML = `
-        <input type="text" name="phone_numbers[${newIndex}][en_title]" class="form-control d-inline-block mb-1" placeholder="English Title">
-        <input type="text" name="phone_numbers[${newIndex}][ar_title]" class="form-control d-inline-block mb-1" placeholder="Arabic Title">
-        <input type="text" name="phone_numbers[${newIndex}][phone_number]" class="form-control d-inline-block" placeholder="Phone Number">
-        <button type="button" class="btn btn-danger btn-sm remove-phone-number">Remove</button>
+  document.getElementById('add-phone-number').addEventListener('click', function() {
+      var phoneNumbersDiv = document.getElementById('phone-numbers');
+      var index = phoneNumbersDiv.children.length;
+      var div = document.createElement('div');
+      div.className = 'form-group mb-4';
+      div.innerHTML = `
+          <select class="form-control" name="phone_numbers[${index}][title]" required>
+                      <option value="whatsapp">Whatsapp</option>
+                      <option value="mobile">Mobile</option>
+                      <option value="landline">Landline</option>
+                      <option value="telegram">Telegram</option>
+          </select>
+          <input type="text" class="form-control" name="phone_numbers[${index}][phone_number]" placeholder="Phone Number" required>
       `;
-      phoneNumbersContainer.appendChild(newPhoneNumberRow);
-    });
-
-    phoneNumbersContainer.addEventListener('click', function(e) {
-      if (e.target.classList.contains('remove-phone-number')) {
-        e.target.parentElement.remove();
-      }
-    });
+      phoneNumbersDiv.appendChild(div);
   });
+
 </script>
+{{-- <script>
+  ClassicEditor
+      .create( document.querySelector( '#en_name' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+  ClassicEditor
+      .create( document.querySelector( '#ar_name' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+  ClassicEditor
+      .create( document.querySelector( '#en_address' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+  ClassicEditor
+      .create( document.querySelector( '#ar_address' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+</script> --}}
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDc4op2z5AnCNM5hgYKl5M4mDsV_rILD4Y&libraries=places&callback=initAutocomplete&language=ar&region=EG" async defer></script>
 @endsection

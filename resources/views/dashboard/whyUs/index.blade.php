@@ -43,10 +43,10 @@
                 <tbody>
                     @forelse($reasons as $reason)
                     <tr class="align-middle">
-                        <td>{{ $reason->ar_title }}</td>
-                        <td>{{ $reason->en_title }}</td>
-                        <td>{{ $reason->ar_content }}</td>
-                        <td>{{ $reason->en_content }}</td>
+                        <td>{!! Str::limit($reason->ar_title, 255, '...') !!}</td>
+                        <td>{!! Str::limit($reason->en_title, 255, '...') !!}</td>
+                        <td>{!! Str::limit($reason->ar_content, 255, '...') !!}</td>
+                        <td>{!! Str::limit($reason->en_content, 255, '...') !!}</td>
                         <td>
                             <a href="{{ route('reasons.edit', $reason->id) }}" class="btn btn-primary">Edit</a>
                             <form action="{{ route('reasons.destroy',$reason->id) }}" method="POST" style="display: inline-block; margin-top: 10px;">

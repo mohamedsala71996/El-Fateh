@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\AboutUsController;
 use App\Http\Controllers\Dashboard\AdminController;
+use App\Http\Controllers\Dashboard\ArticleCategoryController;
 use App\Http\Controllers\Dashboard\ArticleController;
 use App\Http\Controllers\Dashboard\BranchController;
 use App\Http\Controllers\Dashboard\CategoryController;
@@ -11,8 +12,11 @@ use App\Http\Controllers\Dashboard\PerviousWorkController;
 use App\Http\Controllers\Dashboard\PhoneNumberController;
 use App\Http\Controllers\Dashboard\PreviousWorkController;
 use App\Http\Controllers\Dashboard\RequestController;
+use App\Http\Controllers\Dashboard\RequestServiceController;
+use App\Http\Controllers\Dashboard\RequestTypeController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\SocialMediaController;
+use App\Http\Controllers\Dashboard\SuccessPartnerController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\WhyUsController;
 use App\Http\Controllers\ProfileController;
@@ -23,17 +27,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('/dashboard')->middleware(['admin'])->group(function () {
-    Route::get('articles', [ArticleController::class, 'all_articles'])->name('all_articles');
 
-    Route::get('create_article', [ArticleController::class, 'create_article'])->name('create_article');
-
-    Route::post('store_article', [ArticleController::class, 'store_article'])->name('store_article');
-
-    Route::delete('delete/{id}', [ArticleController::class, 'delete_article'])->name('delete_article');
-
-    Route::get('edit_article/{id}', [ArticleController::class, 'edit_article'])->name('edit_article');
-
-    Route::put('update_article/{id}', [ArticleController::class, 'update_article'])->name('update_article');
+    Route::resource('articles', ArticleController::class);
 
     Route::get('comments/{id}', [ArticleController::class, 'show_comments'])->name('show_comments');
 
@@ -46,6 +41,8 @@ Route::prefix('/dashboard')->middleware(['admin'])->group(function () {
     Route::resource('previousWorks', PreviousWorkController::class);
 
     Route::resource('categories', CategoryController::class);
+
+    Route::resource('article-categories', ArticleCategoryController::class);
 
     Route::resource('admins', AdminController::class);
 
@@ -66,6 +63,12 @@ Route::prefix('/dashboard')->middleware(['admin'])->group(function () {
     Route::resource('social-media', SocialMediaController::class);
 
     Route::resource('branches', BranchController::class);
+
+    Route::resource('request-types', RequestTypeController::class);
+
+    Route::resource('request-services', RequestServiceController::class);
+
+    Route::resource('success-partners', SuccessPartnerController::class);
 
     // Route::resource('phone-numbers', PhoneNumberController::class);
 

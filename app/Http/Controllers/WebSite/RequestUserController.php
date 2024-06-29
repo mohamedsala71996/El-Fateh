@@ -4,6 +4,8 @@ namespace App\Http\Controllers\WebSite;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateContactRequest;
+use App\Models\RequestService;
+use App\Models\RequestType;
 use App\Models\RequestUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +17,9 @@ class RequestUserController extends Controller
      */
     public function index()
     {
-        return view('website.requests.create');
+        $requestTypes =RequestType::all();
+       $requestServices =RequestService::all();
+        return view('website.requests.create',compact('requestTypes','requestServices'));
     }
 
     // public function create()
@@ -30,11 +34,11 @@ class RequestUserController extends Controller
      */
     public function store(CreateContactRequest $request, RequestUser $requestUser)
     {
-        $validData = $request->validated();
-//        dd($validData);
+        
+         $data = $request->all();
         try {
             DB::beginTransaction();
-            $requestUser->create($validData);
+            $requestUser->create($data);
             DB::commit();
             return redirect()->back()->with('success', 'Successfully Send Contact Request');
 

@@ -18,8 +18,8 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('en_name');
             $table->string('ar_name');
-            $table->text('en_content'); 
-            $table->text('ar_content'); 
+            $table->text('en_content')->nullable(); 
+            $table->text('ar_content')->nullable(); 
             $table->string('photo'); 
             $table->timestamps();
         });

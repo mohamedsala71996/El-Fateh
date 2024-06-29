@@ -34,9 +34,9 @@
     </style>
     <div class="col">
         <p id="mbody2" style="font-size: 50px;color: darkgoldenrod;margin:40px;">
-            {{ $previousWork->{app()->getLocale() . '_title'} }}</p>
+            {!! $previousWork->{app()->getLocale() . '_title'} !!}</p>
         <p id="mbody2" style=" font-size: large;font-weight: bold;margin:40px;" >
-            {{ $previousWork->{app()->getLocale() . '_description'} }}</p>
+            {!! $previousWork->{app()->getLocale() . '_description'} !!}</p>
         <ul id="mbody2" class="list-unstyled" style="font-size: 16px;margin:40px;">
             <li><strong>{{ __('Client') }}:</strong> {{ $previousWork->{app()->getLocale() . '_client'} }}</li>
             <li><strong>{{ __('Engineer name') }}:</strong> {{ $previousWork->{app()->getLocale() . '_engineer_name'} }}</li>

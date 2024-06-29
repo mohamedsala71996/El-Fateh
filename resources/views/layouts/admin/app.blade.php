@@ -18,6 +18,8 @@
 
         <link rel="stylesheet" href="{{ url('/') }}/admin/assets/css/luno-style.css">
 
+
+
         <script src="{{ url('/') }}/admin/assets/js/plugins.js"></script>
 
         <style>
@@ -91,8 +93,8 @@
         {{-- @include('admin.include.footer') --}}
         {{-- Start Footer --}}
         </div>
-
         <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="{{ url('/') }}/admin/assets/js/theme.js"></script>
+        <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
         @yield('scripts')
 
     </body>

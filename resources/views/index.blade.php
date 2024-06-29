@@ -64,7 +64,7 @@
         {{-- <div class="row" > --}}
             <div class="row">
                 @foreach ($categories as $category)
-                <div class="col-sm-6 col-lg-4 mb-4">
+                <div class="col-sm-6 col-lg-6 mb-4">
                     <div class="box">
                         <div>
                             <div class="img-box">
@@ -72,10 +72,10 @@
                             </div>
                             <div class="detail-box text-center" >
                                 <h5>
-                                    {{ $category->{app()->getLocale() . '_name'} }}
+                                    {!! $category->{app()->getLocale() . '_name'} !!}
                                 </h5>
                                 <p>
-                                    {{ $category->{app()->getLocale() . '_content'} }}
+                                    {!! $category->{app()->getLocale() . '_content'} !!}
                                 </p>
                                 <div class="options" style="text-align: center; margin-top: 20px;">
                                     <a href="{{ route('allPreviousWorks', $category->id) }}" class="btn btn-primary">{{ __('Take a look') }}</a>

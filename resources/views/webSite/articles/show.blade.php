@@ -13,13 +13,16 @@
                 {{ session('success') }}
             </div>
         @endif
-         <img src="{{ asset('dist/img/articles/' . $article->image) }}" class="card-img-top" style="height: 300px; padding-top:10px ;"
+         <img src="{{ asset("storage/$article->image") }}" class="card-img-top" style="height: 300px; padding-top:10px ;"
           alt="card image">
         <!-- Article Section -->
         <div class="row" style="margin-bottom: 30px;">
             <div class="col" style=" margin-inline: 30px;">
-                <h2>{{ $article->{app()->getLocale() . '_title'} }}</h2>
-                <p>{{ $article->{app()->getLocale() . '_content'} }}</p>
+                <h2>{!! $article->{app()->getLocale() . '_title'} !!}</h2>
+                <p>{!! $article->{app()->getLocale() . '_content'} !!}</p>
+                @if ($article->link)
+                <a href="{{ $article->link }}" class="btn btn-primary" target="_blank">{{ __('Press here') }}</a>
+                @endif
             </div>
         </div>
 

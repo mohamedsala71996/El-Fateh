@@ -34,9 +34,12 @@
                     </div>
                 </div>
             </div>
-            <h3 class="col" style="text-align: center;">{{ $previousWork->{app()->getLocale().'_title'} }}</h5>
-                <p style="  margin-top: 30px; font-size: large; padding-inline:70px ; font-weight: bold;">{{
-                    $previousWork->{app()->getLocale().'_description'} }}</p>
+            <br>
+            <br>
+            <br>
+            <h3 class="col" style="text-align: center;">{!! $previousWork->{app()->getLocale().'_title'} !!}</h5>
+                <p style="  margin-top: 30px; font-size: large; padding-inline:70px ; font-weight: bold;">{!!
+                    $previousWork->{app()->getLocale().'_description'} !!}</p>
                 <div><a href="{{ route('previousWork', $previousWork->id) }}" class="btnn btn-primary" style="margin-top: 50px; background-color: darkgoldenrod;
     color: white;
     border: none;

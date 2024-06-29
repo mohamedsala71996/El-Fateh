@@ -59,15 +59,13 @@ class BranchController extends Controller
             if (isset($phoneNumber['id']) && $existingPhoneNumbers->has($phoneNumber['id'])) {
                 // Update existing phone number
                 $existingPhoneNumbers[$phoneNumber['id']]->update([
-                    'en_title' => $phoneNumber['en_title'],
-                    'ar_title' => $phoneNumber['ar_title'],
+                    'title' => $phoneNumber['title'],
                     'phone_number' => $phoneNumber['phone_number']
                 ]);
             } else {
                 // Create new phone number
                 $branch->phoneNumbers()->create([
-                    'en_title' => $phoneNumber['en_title'],
-                    'ar_title' => $phoneNumber['ar_title'],
+                    'title' => $phoneNumber['title'],
                     'phone_number' => $phoneNumber['phone_number']
                 ]);
             }

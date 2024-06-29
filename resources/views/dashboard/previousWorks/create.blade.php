@@ -26,6 +26,73 @@
                             <div class="card-body">
                                 <form method="POST" action="{{ route('previousWorks.store') }}" enctype="multipart/form-data">
                                     @csrf
+                                    <div class="form-group mb-4">
+                                        <label for="category_id">{{ __('Category') }}</label>
+                                        <select id="category_id"
+                                            class="form-control @error('category_id') is-invalid @enderror"
+                                            name="category_id" required>
+                                            <option value="">Select Category</option>
+                                            <!-- Populate options from database -->
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">
+                                                    {!! strip_tags($category->en_name . '/' . $category->ar_name) !!}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('category_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+
+                                    <div class="form-group mb-4">
+                                        <label for="en_title">{{ __('Title (English)') }}</label>
+                                        <textarea id="en_title" 
+                                            class="form-control @error('en_title') is-invalid @enderror" name="en_title"
+                                             autocomplete="en_title">{{ old('en_title') }}</textarea>
+
+                                        @error('en_title')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group mb-4">
+                                        <label for="ar_title">{{ __('Title (Arabic)') }}</label>
+                                        <textarea id="ar_title"
+                                            class="form-control @error('ar_title') is-invalid @enderror" name="ar_title"
+                                             autocomplete="ar_title">{{ old('ar_title') }}</textarea>
+
+                                        @error('ar_title')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    
+                                    <div class="form-group mb-4">
+                                        <label for="en_description">{{ __('Description (English)') }}</label>
+                                        <textarea id="en_description" class="form-control @error('en_description') is-invalid @enderror" name="en_description"
+                                            >{{ old('en_description') }}</textarea>
+                                        @error('en_description')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group mb-4">
+                                        <label for="ar_description">{{ __('Description (Arabic)') }}</label>
+                                        <textarea id="ar_description" class="form-control @error('ar_description') is-invalid @enderror" name="ar_description"
+                                            >{{ old('ar_description') }}</textarea>
+                                        @error('ar_description')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
 
                                     <div class="form-group mb-4">
                                         <label for="en_engineer_name">{{ __('Engineer Name (English)') }}</label>
@@ -56,31 +123,6 @@
                                     </div>
 
                                     <div class="form-group mb-4">
-                                        <label for="en_title">{{ __('Title (English)') }}</label>
-                                        <input id="en_title" type="text"
-                                            class="form-control @error('en_title') is-invalid @enderror" name="en_title"
-                                            value="{{ old('en_title') }}" required autocomplete="en_title">
-
-                                        @error('en_title')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group mb-4">
-                                        <label for="ar_title">{{ __('Title (Arabic)') }}</label>
-                                        <input id="ar_title" type="text"
-                                            class="form-control @error('ar_title') is-invalid @enderror" name="ar_title"
-                                            value="{{ old('ar_title') }}" required autocomplete="ar_title">
-
-                                        @error('ar_title')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group mb-4">
                                         <label for="started_at">Started At</label>
                                         <input id="started_at" type="date"
                                             class="form-control @error('started_at') is-invalid @enderror" name="started_at"
@@ -99,27 +141,6 @@
                                             value="{{ old('ended_at') }}" required>
 
                                         @error('ended_at')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label for="en_description">{{ __('Description (English)') }}</label>
-                                        <textarea id="en_description" class="form-control @error('en_description') is-invalid @enderror" name="en_description"
-                                            required>{{ old('en_description') }}</textarea>
-                                        @error('en_description')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group mb-4">
-                                        <label for="ar_description">{{ __('Description (Arabic)') }}</label>
-                                        <textarea id="ar_description" class="form-control @error('ar_description') is-invalid @enderror" name="ar_description"
-                                            required>{{ old('ar_description') }}</textarea>
-                                        @error('ar_description')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -220,25 +241,6 @@
                                     </div>
 
                                     <div class="form-group mb-4">
-                                        <label for="category_id">{{ __('Category') }}</label>
-                                        <select id="category_id"
-                                            class="form-control @error('category_id') is-invalid @enderror"
-                                            name="category_id" required>
-                                            <option value="">Select Category</option>
-                                            <!-- Populate options from database -->
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">
-                                                    {{ $category->en_name . '/' . $category->ar_name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('category_id')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group mb-4">
                                         <div class="card">
                                         <label for="images">{{ __('Images') }}</label>
                                         <br>
@@ -280,4 +282,28 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#ar_title' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    ClassicEditor
+        .create( document.querySelector( '#en_title' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    ClassicEditor
+        .create( document.querySelector( '#en_description' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    ClassicEditor
+        .create( document.querySelector( '#ar_description' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 @endsection

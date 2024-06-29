@@ -29,20 +29,31 @@
                     </a>
                 </li>
                 <li>
-                    <a class="m-link {{ Route::is('all_articles') ? 'active' : '' }}" href="{{ route('all_articles') }}">
-                        <span class="ms-2">Articles</span>
+                    <a class="m-link {{ Route::is('success-partners.*') ? 'active' : '' }}" href="{{ route('success-partners.index') }}">
+                        <span class="ms-2">Success Partners</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="m-link {{ Route::is('article-categories.*') ? 'active' : '' }}" href="{{ route('article-categories.index') }}">
+                        <span class="ms-2">Categories of Engineering libraries</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="m-link {{ Route::is('articles.*') ? 'active' : '' }}" href="{{ route('articles.index') }}">
+                        <span class="ms-2">Engineering libraries</span>
                     </a>
                 </li>
 
-                <li>
-                    <a class="m-link {{ Route::is('reasons.*') ? 'active' : '' }}" href="{{ route('reasons.index') }}">
-                        <span class="ms-2">{{ __('Why us') }}</span>
-                    </a>
-                </li>
+
 
                 <li>
                     <a class="m-link {{ Route::is('contactRequest.*') ? 'active' : '' }}" href="{{ route('contactRequest.index') }}">
                         <span class="ms-2">{{ __('Requests of users') }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="m-link {{ Route::is('request-types.*') ? 'active' : '' }}" href="{{ route('request-types.index') }}">
+                        <span class="ms-2">{{ __('Request (Types, Services)') }}</span>
                     </a>
                 </li>
                 <!-- Dropdown for Contact and Branches -->
@@ -71,11 +82,7 @@
                         </ul>
                     </div>
                 </li> --}}
-                <li>
-                    <a class="m-link {{ Route::is('about-us.*') ? 'active' : '' }}" href="{{ route('about-us.index') }}">
-                        <span class="ms-2">{{ __('About us') }}</span>
-                    </a>
-                </li>
+
                 <li>
                     <a class="m-link {{ Route::is('branches.*') ? 'active' : '' }}" href="{{ route('branches.index') }}">
                         <span class="ms-2">Branches</span>
@@ -90,6 +97,16 @@
                 <li>
                     <a class="m-link {{ Route::is('media-files.*') ? 'active' : '' }}" href="{{ route('media-files.index') }}">
                         <span class="ms-2">{{ __('Media files') }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="m-link {{ Route::is('reasons.*') ? 'active' : '' }}" href="{{ route('reasons.index') }}">
+                        <span class="ms-2">{{ __('Why us') }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="m-link {{ Route::is('about-us.*') ? 'active' : '' }}" href="{{ route('about-us.index') }}">
+                        <span class="ms-2">{{ __('About us') }}</span>
                     </a>
                 </li>
                 <li>

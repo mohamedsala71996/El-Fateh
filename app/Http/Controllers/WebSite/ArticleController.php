@@ -5,6 +5,7 @@ namespace App\Http\Controllers\WebSite;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentRequest;
 use App\Models\Article;
+use App\Models\ArticleCategory;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,18 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Article::all();
-        return view('website.articles.index', compact('articles'));
+        // $articles = Article::all();
+        $articleCategories= ArticleCategory::with('articles')->get();
+        return view('website.articles.index', compact('articleCategories'));
     }
+    public function showArticles($articleCategoryId)
+    {
+        $articles = Article::with('articleCategory')->where('article_category_id',$articleCategoryId)->get();
+        // $articleCategories= ArticleCategory::with('articles')->get();
+        return view('website.articles.show-articles', compact('articles'));
+    }
+
+
     public function show($id)
     {
         $article = Article::findOrFail($id);

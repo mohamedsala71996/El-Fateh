@@ -11,8 +11,7 @@
             <div class="row g-3 mb-3 align-items-center">
                 <div class="col">
                     <ol class="breadcrumb bg-transparent mb-0">
-                        <li class="breadcrumb-item"><a class="text-secondary" href="{{ route('dashboard') }}">Dashboard</a>
-                        </li>
+                        <li class="breadcrumb-item"><a class="text-secondary" href="{{ route('dashboard') }}">Dashboard</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ $category->en_name }}</li>
                     </ol>
                 </div>
@@ -24,29 +23,24 @@
                             <div class="card-header">{{ __('Update Category') }}</div>
 
                             <div class="card-body">
-                                <form method="POST" action="{{ route('categories.update', $category->id) }}"
-                                    enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('categories.update', $category->id) }}" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <input type="hidden" name="id" value="{{ $category->id }}">
+                                    
                                     <div class="form-group mb-4">
                                         <label for="ar_name">{{ __('Category Name (Arabic)') }}</label>
-                                        <input id="ar_name" type="text"
-                                            class="form-control @error('ar_name') is-invalid @enderror" name="ar_name"
-                                            value="{{ old('ar_name', $category->ar_name) }}" required autocomplete="ar_name"
-                                            autofocus>
+                                        <textarea id="ar_name" class="form-control @error('ar_name') is-invalid @enderror" name="ar_name" required>{{ old('ar_name', $category->ar_name) }}</textarea>
                                         @error('ar_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
+                                    
                                     <div class="form-group mb-4">
                                         <label for="en_name">{{ __('Category Name (English)') }}</label>
-                                        <input id="en_name" type="text"
-                                            class="form-control @error('en_name') is-invalid @enderror" name="en_name"
-                                            value="{{ old('en_name', $category->en_name) }}" required
-                                            autocomplete="en_name">
+                                        <textarea id="en_name" class="form-control @error('en_name') is-invalid @enderror" name="en_name" required>{{ old('en_name', $category->en_name) }}</textarea>
                                         @error('en_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -56,7 +50,7 @@
 
                                     <div class="form-group mb-4">
                                         <label for="en_content">{{ __('Category Content (English)') }}</label>
-                                        <textarea id="en_content" class="form-control @error('en_content') is-invalid @enderror" name="en_content" required>{{ old('en_content', $category->en_content) }}</textarea>
+                                        <textarea id="en_content" class="form-control @error('en_content') is-invalid @enderror" name="en_content">{{ old('en_content', $category->en_content) }}</textarea>
                                         @error('en_content')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -66,7 +60,7 @@
 
                                     <div class="form-group mb-4">
                                         <label for="ar_content">{{ __('Category Content (Arabic)') }}</label>
-                                        <textarea id="ar_content" class="form-control @error('ar_content') is-invalid @enderror" name="ar_content" required>{{ old('ar_content', $category->ar_content) }}</textarea>
+                                        <textarea id="ar_content" class="form-control @error('ar_content') is-invalid @enderror" name="ar_content">{{ old('ar_content', $category->ar_content) }}</textarea>
                                         @error('ar_content')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -77,15 +71,12 @@
                                     <div class="form-group mb-4">
                                         <label for="photo">{{ __('Category Photo') }}</label>
                                         <div class="card">
-                                            <div class="card-body ">
+                                            <div class="card-body">
                                                 @if ($category->photo)
-                                                    <img src="{{ asset("storage/$category->photo") }}" alt="Category Photo"
-                                                        class="img-fluid mb-3" style="max-width: 200px;">
+                                                    <img src="{{ asset("storage/$category->photo") }}" alt="Category Photo" class="img-fluid mb-3" style="max-width: 200px;">
                                                     <br>
                                                 @endif
-                                                <input type="file"
-                                                    class="form-control-file @error('photo') is-invalid @enderror"
-                                                    id="photo" name="photo" accept="image/*">
+                                                <input type="file" class="form-control-file @error('photo') is-invalid @enderror" id="photo" name="photo" accept="image/*">
                                                 @error('photo')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -98,17 +89,13 @@
                                     <div class="form-group mb-4">
                                         <label for="pdf">{{ __('Category PDF') }}</label>
                                         <div class="card">
-                                            <div class="card-body ">
+                                            <div class="card-body">
                                                 @if ($category->pdf)
                                                     <div class="mb-3">
-                                                        <a href="{{ asset("storage/$category->pdf") }}" target="_blank"
-                                                            class="btn btn-info">View PDF</a>
-                                                        {{-- <a href="{{ asset("storage/$category->pdf") }}" download class="btn btn-secondary">Download PDF</a> --}}
+                                                        <a href="{{ asset("storage/$category->pdf") }}" target="_blank" class="btn btn-info">View PDF</a>
                                                     </div>
                                                 @endif
-                                                <input type="file"
-                                                    class="form-control-file @error('pdf') is-invalid @enderror"
-                                                    id="pdf" name="pdf" accept="application/pdf">
+                                                <input type="file" class="form-control-file @error('pdf') is-invalid @enderror" id="pdf" name="pdf" accept="application/pdf">
                                                 @error('pdf')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -117,6 +104,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary">
                                             {{ __('Update Category') }}
@@ -130,4 +118,32 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+<script>
+    ClassicEditor
+        .create(document.querySelector('#ar_name'))
+        .catch(error => {
+            console.error(error);
+        });
+
+    ClassicEditor
+        .create(document.querySelector('#en_name'))
+        .catch(error => {
+            console.error(error);
+        });
+
+    ClassicEditor
+        .create(document.querySelector('#en_content'))
+        .catch(error => {
+            console.error(error);
+        });
+
+    ClassicEditor
+        .create(document.querySelector('#ar_content'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 @endsection

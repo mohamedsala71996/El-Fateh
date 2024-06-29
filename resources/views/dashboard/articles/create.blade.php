@@ -17,18 +17,34 @@
         </ol>
       </div>
     </div>
-    <form method="POST" action="{{ route('store_article') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('articles.store') }}" enctype="multipart/form-data">
       @csrf
       <div class="mb-3">
+        <label for="article_category_id" class="form-label">Article Category</label>
+        <select class="form-control" id="article_category_id" name="article_category_id">
+          <option value="">Select Category</option>
+          @foreach($categories as $category)
+            <option value="{{ $category->id }}" {{ old('article_category_id') == $category->id ? 'selected' : '' }}>{!! strip_tags($category->en_name.'/'.$category->ar_name) !!}</option>
+          @endforeach
+        </select>
+        @error('article_category_id')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
+      @if ($errors->has('general'))
+      <div class="alert alert-danger">{{ $errors->first('general') }}</div>
+      @endif
+
+      <div class="mb-3">
         <label for="en_title" class="form-label">Title (English)</label>
-        <input type="text" class="form-control" id="en_title" name="en_title" value="{{ old('en_title') }}">
+        <textarea class="form-control" id="en_title" name="en_title" rows="3">{{ old('en_title') }}</textarea>
         @error('en_title')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
       <div class="mb-3">
         <label for="ar_title" class="form-label">Title (Arabic)</label>
-        <input type="text" class="form-control" id="ar_title" name="ar_title" value="{{ old('ar_title') }}">
+        <textarea class="form-control" id="ar_title" name="ar_title" rows="3">{{ old('ar_title') }}</textarea>
         @error('ar_title')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
@@ -50,6 +66,13 @@
       @if ($errors->has('general'))
       <div class="alert alert-danger">{{ $errors->first('general') }}</div>
       @endif
+      <div class="mb-3">
+        <label for="link" class="form-label">Link</label>
+        <input type="text" class="form-control" id="link" name="link" value="{{ old('link') }}">
+        @error('link')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
       <div class="form-group mb-4">
         <label for="image">Img</label>
         <div class="card">
@@ -74,4 +97,29 @@
     </form>
   </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#en_title' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    ClassicEditor
+        .create( document.querySelector( '#ar_title' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    ClassicEditor
+        .create( document.querySelector( '#en_content' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    ClassicEditor
+        .create( document.querySelector( '#ar_content' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 @endsection

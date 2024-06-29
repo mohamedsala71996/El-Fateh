@@ -12,7 +12,7 @@
       <div class="col">
         <ol class="breadcrumb bg-transparent mb-0">
           <li class="breadcrumb-item"><a class="text-secondary" href="{{ route('dashboard') }}">Dashboard</a></li>
-          <li class="breadcrumb-item active" aria-current="page"> Branches</li>
+          <li class="breadcrumb-item active" aria-current="page">Branches</li>
         </ol>
       </div>
     </div>
@@ -30,7 +30,7 @@
                 @csrf
                 <div class="form-group mb-4">
                   <label for="en_name">{{ __('Branch Name (English)') }}</label>
-                  <input id="en_name" type="text" class="form-control @error('en_name') is-invalid @enderror" name="en_name" value="{{ old('en_name') }}" required autocomplete="en_name" autofocus>
+                  <textarea id="en_name" class="form-control @error('en_name') is-invalid @enderror" name="en_name"  autocomplete="en_name" autofocus>{{ old('en_name') }}</textarea>
                   @error('en_name')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="form-group mb-4">
                   <label for="ar_name">{{ __('Branch Name (Arabic)') }}</label>
-                  <input id="ar_name" type="text" class="form-control @error('ar_name') is-invalid @enderror" name="ar_name" value="{{ old('ar_name') }}" required autocomplete="ar_name" autofocus>
+                  <textarea id="ar_name" class="form-control @error('ar_name') is-invalid @enderror" name="ar_name"  autocomplete="ar_name" autofocus>{{ old('ar_name') }}</textarea>
                   @error('ar_name')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="form-group mb-4">
                   <label for="en_address">{{ __('Address (English)') }}</label>
-                  <textarea id="en_address" class="form-control @error('en_address') is-invalid @enderror" name="en_address" required>{{ old('en_address') }}</textarea>
+                  <textarea id="en_address" class="form-control @error('en_address') is-invalid @enderror" name="en_address" >{{ old('en_address') }}</textarea>
                   @error('en_address')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="form-group mb-4">
                   <label for="ar_address">{{ __('Address (Arabic)') }}</label>
-                  <textarea id="ar_address" class="form-control @error('ar_address') is-invalid @enderror" name="ar_address" required>{{ old('ar_address') }}</textarea>
+                  <textarea id="ar_address" class="form-control @error('ar_address') is-invalid @enderror" name="ar_address" >{{ old('ar_address') }}</textarea>
                   @error('ar_address')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -65,21 +65,25 @@
                   @enderror
                 </div>
 
-                <input type="hidden" name="latitude" value="" id="latitude">
-                <input type="hidden" name="longitude" value="" id="longitude">
+                <input type="hidden" name="latitude" value="{{ old('latitude') }}" id="latitude">
+                <input type="hidden" name="longitude" value="{{ old('longitude') }}" id="longitude">
 
                 <div id="phone-numbers">
                     <label>{{ __('Phone Numbers') }}</label>
                     <div class="form-group mb-4">
-                        <input type="text" class="form-control" name="phone_numbers[0][en_title]" placeholder="Phone Type (English)" required>
-                        <input type="text" class="form-control" name="phone_numbers[0][ar_title]" placeholder="Phone Type (Arabic)" required>
-                        <input type="text" class="form-control" name="phone_numbers[0][phone_number]" placeholder="Phone Number" required>
+                        <select class="form-control" name="phone_numbers[0][title]" required>
+                            <option value="whatsapp">Whatsapp</option>
+                            <option value="mobile">Mobile</option>
+                            <option value="landline">Landline</option>
+                            <option value="telegram">Telegram</option>
+                        </select>
+                        <input type="text" class="form-control" name="phone_numbers[0][phone_number]" placeholder="Phone Number" >
                     </div>
                 </div>
                 <button type="button" class="btn btn-secondary" id="add-phone-number">{{ __('Add Phone Number') }}</button>
                 <br>
                 <br>
-                <div id="map" style="height: 500px;width: 1000px;"></div>
+                <div id="map" style="height: 500px;width: 100%;"></div>
                 <div class="form-group mt-4">
                   <button type="submit" class="btn btn-primary">
                     @if ($branches->count()==0)
@@ -157,6 +161,7 @@
           content: content
       };
       var infowindow = new google.maps.InfoWindow(options);
+      infowindow.open(map);
       map.setCenter(pos);
   }
 
@@ -166,13 +171,40 @@
       var div = document.createElement('div');
       div.className = 'form-group mb-4';
       div.innerHTML = `
-          <input type="text" class="form-control" name="phone_numbers[${index}][en_title]" placeholder="Phone Type (English)">
-          <input type="text" class="form-control" name="phone_numbers[${index}][ar_title]" placeholder="Phone Type (Arabic)">
-          <input type="text" class="form-control" name="phone_numbers[${index}][phone_number]" placeholder="Phone Number">
+          <select class="form-control" name="phone_numbers[${index}][title]" required>
+                      <option value="whatsapp">Whatsapp</option>
+                      <option value="mobile">Mobile</option>
+                      <option value="landline">Landline</option>
+                      <option value="telegram">Telegram</option>
+          </select>
+          <input type="text" class="form-control" name="phone_numbers[${index}][phone_number]" placeholder="Phone Number" required>
       `;
       phoneNumbersDiv.appendChild(div);
   });
 
 </script>
+{{-- <script>
+  ClassicEditor
+      .create( document.querySelector( '#en_name' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+  ClassicEditor
+      .create( document.querySelector( '#ar_name' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+  ClassicEditor
+      .create( document.querySelector( '#en_address' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+  ClassicEditor
+      .create( document.querySelector( '#ar_address' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+</script> --}}
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDc4op2z5AnCNM5hgYKl5M4mDsV_rILD4Y&libraries=places&callback=initAutocomplete&language=ar&region=EG" async defer></script>
 @endsection

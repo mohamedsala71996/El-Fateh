@@ -48,9 +48,9 @@
                   <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $previousWork->en_engineer_name }}</td>
-                    <td>{{ $previousWork->en_title }}</td>
+                    <td>{!! Str::limit($previousWork->en_title, 255, '...') !!}</td>
                     <td>{{ $previousWork->en_location }}</td>
-                    <td>{{ $previousWork->category->en_name }}</td>
+                    <td>{!! Str::limit($previousWork->category->en_name, 255, '...') !!}</td>
                     <td>
                       @if($previousWork->pdf)
                       <a href="{{ asset("storage/$previousWork->pdf") }}" target="_blank" class="btn btn-info">Preview</a>
@@ -67,7 +67,7 @@
                       @endphp
                       @foreach ( $images as $item)
                       <img src="{{ asset("storage/$item") }}"
-                      alt="Article Sliders" style="width: 50px; height: 50px;">
+                      alt="Article Sliders" style="width: 20px; height: 20px;">
                       @endforeach
                       @endif                    
                     </td> 

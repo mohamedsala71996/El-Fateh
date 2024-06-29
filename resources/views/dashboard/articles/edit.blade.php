@@ -1,7 +1,7 @@
 @extends('layouts.admin.app')
 
 @section('content')
-<!-- desplay success message -->
+<!-- Display success message -->
 @if(session('success'))
 <div class="alert alert-success">
   {{ session('success') }}
@@ -17,19 +17,33 @@
         </ol>
       </div>
     </div>
-    <form method="POST" action="{{ route('update_article', $article->id) }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('articles.update', $article->id) }}" enctype="multipart/form-data">
       @csrf
       @method('PUT')
       <div class="mb-3">
+        <label for="article_category_id" class="form-label">Category</label>
+        <select class="form-control" id="article_category_id" name="article_category_id">
+          @foreach($categories as $category)
+            <option value="{{ $category->id }}" {{ $article->article_category_id == $category->id ? 'selected' : '' }}>
+              {!! strip_tags($category->ar_name."/".$category->en_name) !!}
+            </option>
+          @endforeach
+        </select>
+        @error('article_category_id')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
+
+      <div class="mb-3">
         <label for="en_title" class="form-label">Title (English)</label>
-        <input type="text" class="form-control" id="en_title" name="en_title" value="{{ $article->en_title }}">
+        <textarea class="form-control" id="en_title" name="en_title" rows="2">{{ $article->en_title }}</textarea>
         @error('en_title')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
       <div class="mb-3">
         <label for="ar_title" class="form-label">Title (Arabic)</label>
-        <input type="text" class="form-control" id="ar_title" name="ar_title" value="{{ $article->ar_title }}">
+        <textarea class="form-control" id="ar_title" name="ar_title" rows="2">{{ $article->ar_title }}</textarea>
         @error('ar_title')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
@@ -48,6 +62,13 @@
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
+      <div class="mb-3">
+        <label for="link" class="form-label">Link</label>
+        <input type="text" class="form-control" id="link" name="link" value="{{ $article->link }}">
+        @error('link')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
       <div class="form-row">
         <div class="col-12">
           <label for="image">Update image</label>
@@ -59,10 +80,7 @@
           <div class="alert alert-danger">{{ $message }}</div>
           @enderror
           <div class="card-body">
-            <img src="{{ asset('dist/img/articles/' . $article->image) }}" alt="Article Image"  style="max-width: 100px;max-height:100px">
-            {{-- <div class="card-body">
-              <h5 class="card-title">Article Image</h5>
-            </div> --}}
+            <img src="{{ asset("storage/$article->image") }}" alt="Article Image" style="max-width: 100px; max-height:100px">
           </div>
           @endif
         </div>
@@ -70,22 +88,18 @@
           <label for="pdf">{{ __('Article PDF') }}</label>
           @if ($article->pdf)
           <div class="mb-3">
-              <a href="{{ asset('dist/img/articles/'.$article->pdf) }}" target="_blank"
-                  class="btn btn-info">View PDF</a>
-              {{-- <a href="{{ asset("storage/$category->pdf") }}" download class="btn btn-secondary">Download PDF</a> --}}
+              <a href="{{ asset("storage/$article->pdf") }}" target="_blank" class="btn btn-info">View PDF</a>
           </div>
-      @endif
+          @endif
           <div class="card">
-              {{-- <div class="card-body "> --}}
-                <input type="file" class="form-control-file @error('pdf') is-invalid @enderror" id="pdf" name="pdf" accept="application/pdf">
-                @error('pdf')
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
-                      </span>
-                  @enderror
-              {{-- </div> --}}
+            <input type="file" class="form-control-file @error('pdf') is-invalid @enderror" id="pdf" name="pdf" accept="application/pdf">
+            @error('pdf')
+              <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+              </span>
+            @enderror
           </div>
-      </div>
+        </div>
       </div>
       <button type="submit" class="btn btn-primary mt-3">Submit</button>
     </form>
@@ -94,4 +108,29 @@
 <br>
 <br>
 <br>
+@endsection
+
+@section('scripts')
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#en_title' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    ClassicEditor
+        .create( document.querySelector( '#ar_title' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    ClassicEditor
+        .create( document.querySelector( '#en_content' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    ClassicEditor
+        .create( document.querySelector( '#ar_content' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 @endsection

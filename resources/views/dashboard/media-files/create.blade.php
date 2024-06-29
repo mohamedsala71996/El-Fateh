@@ -57,7 +57,7 @@
                                 <div class="mb-3">
                                     <label for="qr_photo" class="form-label">{{ __('QR Photo') }}</label>
                                     <input type="file" class="form-control @error('qr_photo') is-invalid @enderror"
-                                        id="qr_photo" name="qr_photo" accept="image/*" required>
+                                        id="qr_photo" name="qr_photo" accept="image/*" >
                                     @error('qr_photo')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

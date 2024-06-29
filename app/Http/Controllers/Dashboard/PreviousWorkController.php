@@ -37,7 +37,7 @@ class PreviousWorkController extends Controller
     {
         $data = $request->all();
         if ($request->hasFile('pdf')) {
-            $data['pdf'] = $request->file('pdf')->store('previousWorks', 'public');
+            $data['pdf'] = $request->file('pdf')->store('previous-works', 'public');
         }
         // Handling image upload
         if ($request->hasFile('images')) {
@@ -45,7 +45,7 @@ class PreviousWorkController extends Controller
             $imagePaths = [];
 
             foreach ($images as $image) {
-                $paths = $image->store('previousWorks', 'public');
+                $paths = $image->store('previous-works', 'public');
                 $imagePaths[] = $paths;
             }
 
@@ -88,7 +88,7 @@ class PreviousWorkController extends Controller
             if(isset($previousWork->pdf)){
                 Storage::disk('public')->delete($previousWork->pdf);
             }
-            $data['pdf'] = $request->file('pdf')->store('previousWorks', 'public');
+            $data['pdf'] = $request->file('pdf')->store('previous-works', 'public');
         }
         // Handling image upload
         if ($request->hasFile('images')) {
@@ -101,7 +101,7 @@ class PreviousWorkController extends Controller
             $imagePaths = [];
 
             foreach ($images as $image) {
-                $paths = $image->store('previousWorks', 'public');
+                $paths = $image->store('previous-works', 'public');
                 $imagePaths[] = $paths;
             }
 

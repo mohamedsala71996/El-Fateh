@@ -28,6 +28,63 @@
                             @method('PUT')
 
                             <div class="form-group mb-4">
+                                <label for="category_id">{{ __('Category') }}</label>
+                                <select id="category_id" class="form-control @error('category_id') is-invalid @enderror" name="category_id" required>
+                                    <!-- Populate options from database -->
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}" {{ $previousWork->category_id == $category->id ? 'selected' : '' }}>{{ strip_tags($category->en_name.'/'.$category->ar_name) }}</option>
+                                    @endforeach
+                                </select>
+                                @error('category_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label for="en_title">{{ __('Title (English)') }}</label>
+                                <textarea id="en_title" class="form-control @error('en_title') is-invalid @enderror" name="en_title" >{{ $previousWork->en_title }}</textarea>
+    
+                                @error('en_title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label for="ar_title">{{ __('Title (Arabic)') }}</label>
+                                <textarea id="ar_title" class="form-control @error('ar_title') is-invalid @enderror" name="ar_title" >{{ $previousWork->ar_title }}</textarea>
+    
+                                @error('ar_title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label for="en_description">{{ __('Description (English)') }}</label>
+                                <textarea id="en_description" class="form-control @error('en_description') is-invalid @enderror" name="en_description" >{{ $previousWork->en_description }}</textarea>
+                                @error('en_description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label for="ar_description">{{ __('Description (Arabic)') }}</label>
+                                <textarea id="ar_description" class="form-control @error('ar_description') is-invalid @enderror" name="ar_description" >{{ $previousWork->ar_description }}</textarea>
+                                @error('ar_description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-4">
                                 <label for="en_engineer_name">{{ __('Engineer Name (English)') }}</label>
                                 <input id="en_engineer_name" type="text" class="form-control @error('en_engineer_name') is-invalid @enderror" name="en_engineer_name" value="{{ $previousWork->en_engineer_name }}" required autocomplete="en_engineer_name" autofocus>
     
@@ -43,28 +100,6 @@
                                 <input id="ar_engineer_name" type="text" class="form-control @error('ar_engineer_name') is-invalid @enderror" name="ar_engineer_name" value="{{ $previousWork->ar_engineer_name }}" required autocomplete="ar_engineer_name">
     
                                 @error('ar_engineer_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="form-group mb-4">
-                                <label for="en_title">{{ __('Title (English)') }}</label>
-                                <input id="en_title" type="text" class="form-control @error('en_title') is-invalid @enderror" name="en_title" value="{{ $previousWork->en_title }}" required autocomplete="en_title">
-    
-                                @error('en_title')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="form-group mb-4">
-                                <label for="ar_title">{{ __('Title (Arabic)') }}</label>
-                                <input id="ar_title" type="text" class="form-control @error('ar_title') is-invalid @enderror" name="ar_title" value="{{ $previousWork->ar_title }}" required autocomplete="ar_title">
-    
-                                @error('ar_title')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -93,25 +128,6 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group mb-4">
-                                <label for="en_description">{{ __('Description (English)') }}</label>
-                                <textarea id="en_description" class="form-control @error('en_description') is-invalid @enderror" name="en_description" required>{{ $previousWork->en_description }}</textarea>
-                                @error('en_description')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="form-group mb-4">
-                                <label for="ar_description">{{ __('Description (Arabic)') }}</label>
-                                <textarea id="ar_description" class="form-control @error('ar_description') is-invalid @enderror" name="ar_description" required>{{ $previousWork->ar_description }}</textarea>
-                                @error('ar_description')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
 
                             <div class="form-group mb-4">
                                 <label for="en_location">{{ __('Location (English)') }}</label>
@@ -190,20 +206,6 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group mb-4">
-                                <label for="category_id">{{ __('Category') }}</label>
-                                <select id="category_id" class="form-control @error('category_id') is-invalid @enderror" name="category_id" required>
-                                    <!-- Populate options from database -->
-                                    @foreach($categories as $category)
-                                        <option value="{{ $category->id }}" {{ $previousWork->category_id == $category->id ? 'selected' : '' }}>{{ $category->en_name.'/'.$category->ar_name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('category_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
 
                             <div class="form-group mb-4">
                                 <label for="image">{{ __('Previous Work Photos') }}</label>
@@ -263,4 +265,28 @@
     </div>
   </div>
 </div>
+@endsection
+@section('scripts')
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#ar_title' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    ClassicEditor
+        .create( document.querySelector( '#en_title' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    ClassicEditor
+        .create( document.querySelector( '#en_description' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    ClassicEditor
+        .create( document.querySelector( '#ar_description' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 @endsection

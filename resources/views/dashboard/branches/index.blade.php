@@ -46,13 +46,13 @@
               <tbody>
                 @forelse($branches as $key => $branch)
                 <tr class="align-middle">
-                  <td>{{ $branch->en_name }} {{ ($key == 0) ? '(Main branch)':''  }} </td>
-                  <td>{{ $branch->ar_name }} {{ ($key == 0) ? '(Main branch)':''  }}</td>
-                  <td>{{ $branch->en_address }}</td>
-                  <td>{{ $branch->ar_address }}</td>
+                  <td>{!! Str::limit($branch->en_name, 255, '...') !!} {{ ($key == 0) ? '(Main branch)':''  }} </td>
+                  <td>{!! Str::limit($branch->ar_name, 255, '...') !!} {{ ($key == 0) ? '(Main branch)':''  }}</td>
+                  <td>{!! Str::limit($branch->en_address, 255, '...') !!}</td>
+                  <td>{!! Str::limit($branch->ar_address, 255, '...') !!}</td>
                   <td>
                     @forelse($branch->phoneNumbers as $number)
-                      <p>{{ $number->en_title }}: {{ $number->phone_number }}</p>
+                      <p>{{ $number->title }}: {{ $number->phone_number }}</p>
                     @empty
                       <p>No phone numbers available.</p>
                     @endforelse

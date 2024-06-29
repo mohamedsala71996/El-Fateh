@@ -31,50 +31,49 @@
           </div>
           <div class="card-body">
             <table class="table table-bordered text-center">
-                <thead>
-                    <tr>
-                        <th>Name (Arabic)</th>
-                        <th>Name (English)</th>
-                        <th>Content (Arabic)</th>
-                        <th>Content (English)</th>
-                        <th>Photo</th>
-                        <th>PDF</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($categories as $category)
-                    <tr class="align-middle">
-                        <td>{{ $category->ar_name }}</td>
-                        <td>{{ $category->en_name }}</td>
-                        <td>{{ $category->ar_content }}</td>
-                        <td>{{ $category->en_content }}</td>
-                        <td><img src="{{ asset("storage/$category->photo") }}" alt="Category Photo" style="max-width: 100px;"></td>
-                        <td>
-                          @if($category->pdf)
-                          <a href="{{ asset("storage/$category->pdf") }}" target="_blank" class="btn btn-info">Preview</a>
-                          {{-- <a href="{{ asset("storage/$category->pdf") }}" download class="btn btn-secondary">Download</a> --}}
-                          @else
-                          <span class="text-center">No PDF</span>
-                          @endif
-                      </td>
-                        <td>
-                            <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary">Edit</a>
-                            <form action="{{ route('categories.destroy',$category->id) }}" method="POST" style="display: inline-block; margin-top: 10px;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="6" class="text-center" >There is no data available.</td>
-                    </tr>
-                    @endforelse
-                </tbody>
+              <thead>
+                <tr>
+                  <th>Name (Arabic)</th>
+                  <th>Name (English)</th>
+                  <th>Content (Arabic)</th>
+                  <th>Content (English)</th>
+                  <th>Photo</th>
+                  <th>PDF</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                @forelse($categories as $category)
+                <tr class="align-middle">
+                  <td>{!! Str::limit($category->ar_name, 255, '...') !!}</td>
+                  <td>{!! Str::limit($category->en_name, 255, '...') !!}</td>
+                  <td>{!! Str::limit($category->ar_content, 255, '...') !!}</td>
+                  <td>{!! Str::limit($category->en_content, 255, '...') !!}</td>
+                  <td><img src="{{ asset("storage/$category->photo") }}" alt="Category Photo" style="max-width: 100px;"></td>
+                  <td>
+                    @if($category->pdf)
+                    <a href="{{ asset("storage/$category->pdf") }}" target="_blank" class="btn btn-info">Preview</a>
+                    @else
+                    <span class="text-center">No PDF</span>
+                    @endif
+                  </td>
+                  <td>
+                    <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary">Edit</a>
+                    <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display: inline-block; margin-top: 10px;">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                  </td>
+                </tr>
+                @empty
+                <tr>
+                  <td colspan="7" class="text-center">There is no data available.</td>
+                </tr>
+                @endforelse
+              </tbody>
             </table>
-        </div>
+          </div>
         </div>
       </div>
     </div>

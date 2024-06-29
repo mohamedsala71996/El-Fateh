@@ -1,58 +1,105 @@
 @extends('layouts.site.app')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
+
+    {{-- <div data-wow-duration="3s" data-wow-delay="0.7s" style="padding:10px;" id="box2">
+        <video autoplay controls muted loop style="width:100%">
+            <source src="{{ asset("storage/" . (\App\Models\MediaFile::first()->home_video ?? '')) }}" type="video/mp4">
+        </video>
+    </div> --}}
+
+    {{-- Start Body --}}
+    <style>
+   #mbody1 {
+        direction: {{ app()->getLocale() == 'en' ? 'ltr' : 'rtl' }};
+        text-align: {{ app()->getLocale() == 'en' ? 'left' : 'right' }};
+        margin: 15px;
+    }
+
+    #mbody2 {
+        direction: {{ app()->getLocale() == 'en' ? 'ltr' : 'rtl' }};
+        margin: 15px;
+    }
+    /*  */
+    </style>
+    {{-- <div class="col-12">
+        <div class="col-12 text-center">
+
+            <h1 style="color: darkgoldenrod;" >{{ $aboutUs->{app()->getLocale() . '_company_name'} ??  __('El-Fateh') }}</h1>
+        </div>
+        <div class="col-12 text-center">
+            <p style="color: darkgoldenrod;" >{{ $aboutUs->{app()->getLocale() . '_about_text'} ??  '' }}</p>
+        </div>
+        <br>
+        @foreach ($categories as $category)
             <div class="col">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        @if (isset(\App\Models\MediaFile::first()->article_sliders))
-                            @foreach (json_decode(\App\Models\MediaFile::first()->article_sliders) as $key => $slider)
-                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                    <img src="{{ asset('storage/' . $slider) }}" class="d-block w-100"
-                                        alt="Slide {{ $key }}" style="object-fit: cover; height: 600px;">
-                                </div>
-                            @endforeach
-                        @endif
+                <div class="row" id="mbody2">
+                    <img src="{{ asset("storage/$category->photo") }}" class="card-img responsive-img"> <!-- Added responsive-img class here -->
+                    <div class="col" id="mbody1">
+                        <h1 style="margin-bottom: 15px;">{{ $category->{app()->getLocale() . '_name'} }}</h1>
+                        <p style=" font-size:large;" style="margin-bottom: 15px;">
+                            {{ $category->{app()->getLocale() . '_content'} }}</p>
+
+                        <a href="{{ route('allPreviousWorks', $category->id) }}"
+                            class="btn btn-warning">{{ __('Take a look') }}</a>
+
+                            @if($category->pdf)
+                                <a href="{{ asset("storage/$category->pdf") }}" target="_blank" class="btn btn-info">
+                                    <i class="fas fa-file-pdf"></i> {{ __('Preview PDF') }}
+                                </a>
+                                <a href="{{ asset("storage/$category->pdf") }}" download class="btn btn-danger">
+                                    <i class="fas fa-file-pdf"></i> {{ __('Download PDF') }}
+                                </a>
+                            @endif
+
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+
                 </div>
             </div>
-        </div>
+        @endforeach
 
-        <div class="row mt-4">
-            @foreach ($articles as $article)
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                    <div class="card h-100" style="border: 1px solid #000000; box-shadow: 0px 0px 10px 0px #0000000D;">
-                        <img src="{{ asset('dist/img/articles/' . $article->image) }}" class="card-img-top"
-                            alt="card image">
-                        <div class="card-body" style="text-align:center;">
-                            <h5>{{ $article->{app()->getLocale() . '_title'} }}</h5>
-                            <p>{{ $article->{app()->getLocale() . '_content'} }}</p>
-                            <div class="options" style="text-align: center; margin-top: 20px;">
-                                <a href="{{ route('articles.show', $article->id) }}" class="btn btn-primary"
-                                    style="background-color: darkgoldenrod;">{{ __('Take a look') }}</a>
-                                    @if($article->pdf)
-                                    <a href="{{ asset('dist/img/articles/'.$article->pdf) }}" target="_blank" class="btn btn-danger">
+
+    </div> --}}
+    {{-- <div class="filters-content"> --}}
+        <div class="row" >
+            <br>
+            {{-- <div class="row"> --}}
+                {{-- Article Category --}}
+                @foreach ($articleCategories as $category)
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <div class="box">
+                        <div>
+                            <div class="img-box">
+                                <img class="card-img img-fluid" style="width: 100%; height: 700px; object-fit: cover;" src="{{ asset("storage/$category->photo") }}" alt="">
+                            </div>
+                            <div class="detail-box text-center" >
+                                <h5>
+                                    {!! $category->{app()->getLocale() . '_name'} !!}
+                                </h5>
+                                <p>
+                                    {!! $category->{app()->getLocale() . '_content'} !!}
+                                </p>
+                                <div class="options" style="text-align: center; margin-top: 20px;">
+                                    <a href="{{ route('show_articles', $category->id) }}" class="btn btn-primary">{{ __('Take a look') }}</a>
+                                    @if($category->pdf)
+                                    <a href="{{ asset("storage/$category->pdf") }}" target="_blank" class="btn btn-danger">
                                         <i class="fas fa-file-pdf"></i> {{ __('attachment') }}
                                     </a>
-                                    {{-- <a href="{{ asset('dist/img/articles/'.$article->pdf) }}" download class="btn btn-danger">
+                                    {{-- <a href="{{ asset("storage/$category->pdf") }}" download class="btn btn-danger">
                                         <i class="fas fa-file-pdf"></i> {{ __('Download attachment') }}
                                     </a> --}}
-                                    @endif
-                
+                                @endif
+    
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            @endforeach
+                @endforeach
+            {{-- </div> --}}
         </div>
-    </div>
+    {{-- </div> --}}
+    
+    
+    {{-- End Body --}}
 @endsection

@@ -18,10 +18,10 @@ class CreateRequestsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone_number');
-            $table->string('governorate');
-            $table->string('city');
-            $table->text('detailed_address'); // العنوان بالتفصيل
-            $table->text('description');
+            $table->string('city')->nullable();
+            $table->foreignId('request_type_id')->nullable()->constrained('request_types')->cascadeOnDelete();
+            $table->foreignId('request_service_id')->nullable()->constrained('request_services')->cascadeOnDelete();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

@@ -9,7 +9,7 @@ class PhoneNumber extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['branch_id', 'en_title', 'ar_title', 'phone_number'];
+    protected $fillable = ['branch_id', 'title', 'phone_number'];
 
 
     public function branch()

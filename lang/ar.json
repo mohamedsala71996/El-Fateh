@@ -4,7 +4,7 @@
     "EL-Fateh":"الفاتح",
     "El-Fateh":"الفاتح",
     "El-FATEH":"الفاتح",
-    "Articles":"المقالات",
+    "Engineering Library":"المكتبة الهندسية",
     "Requests":"الطلبات",
     "Why Us":"لماذا نحن؟",
     "Our Company":"عن شركتنا",
@@ -63,7 +63,14 @@
     "Branch name":"اسم الفرع",
     "What We Do":"ماذا نفعل",
     "Scan":"مسح",
+    "Request Type":"نوع الطلب",
+    "Service Type":"نوع الخدمة",
     "User Name":"اسم المستخدم",
+    "Select":"اختر",
+    "Show all":"عرض الكل",
+    "Press here":"اضغط هنا",
     "Email Password Reset Link":"إرسال رابط إعادة تعيين كلمة المرور",
+    "Search":"ابحث",
+    "No results found":"لا توجد نتائج",
     "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.":"نسيت كلمة المرور؟ لا مشكلة. فقط أخبرنا بعنوان بريدك الإلكتروني وسنرسل لك رابط إعادة تعيين كلمة المرور الذي سيمكنك من اختيار كلمة مرور جديدة"
 }
