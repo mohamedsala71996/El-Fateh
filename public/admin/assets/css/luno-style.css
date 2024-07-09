@@ -35092,3 +35092,28 @@ table.dataTable.dtr-inline.collapsed.d-row > tbody > tr[role=row] > td:first-chi
 }
 
 /*# sourceMappingURL=luno-style.css.map */
+#myList{
+    display: none;
+}
+
+
+
+@media (max-width:1200px) {
+    .gooo{
+        position: absolute !important;
+        left: -260px;
+        top: 0 !important;
+        z-index: 100 !important;
+        display: flex !important;
+    }
+    #myList{
+        display: block;
+        font-size: 30px;
+        position: fixed;
+        top: 10%;
+        /* left: 0; */
+        z-index: 1001;
+        transition:all .5s;
+        cursor: pointer;
+    }
+}

@@ -1,4 +1,4 @@
-<div class="sidebar p-2">
+<div class="sidebar p-0 gooo ">
     <div class="container-fluid">
         @php
         $aboutUs = \App\Models\AboutUs::first();
@@ -6,7 +6,7 @@
         <div class="title-tex my-3">
             <h4 class="sidebar-titl"><span>{{ $aboutUs->en_company_name ?? 'El-Fateh' }} Admin</span></h4>
         </div>
-        <div class="main-menu">
+        <div class="main-menu ">
             <ul class="menu-list my-0">
                 <li>
                     <a class="m-link {{ Route::is('admins.*') ? 'active' : '' }}" href="{{ route('admins.index') }}">
@@ -118,4 +118,19 @@
         </div>
     </div>
 </div>
+<i class="fa-solid fa-list p-2" style="background-color: #EEEEEE;border-radius: 8px;" onclick="showSideBar()" id="myList"></i>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<script>
+    let listIcon= document.getElementById("myList")
+let go = document.querySelector(".gooo")
+function showSideBar(){
+    if(go.style.left=="-260px"){
+        go.style.left = 0
+        listIcon.style.left= "260px"
+    }
+    else{
+        go.style.left = "-260px"
+        listIcon.style.left= 0
+    }
+}
+</script>

@@ -210,7 +210,7 @@
                                         cursor: pointer;
                                         border-radius: 5px;"> {{ __('Take a look') }}</a>
                                         @if($result->pdf)
-                                        <a href="{{ asset("storage/$previousWork->pdf") }}" target="_blank" class="btn btn-danger">
+                                        <a href="{{ asset("storage/$result->pdf") }}" target="_blank" class="btn btn-danger">
                                             <i class="fas fa-file-pdf"></i> {{ __('attachment') }}
                                         </a>
                                         @endif

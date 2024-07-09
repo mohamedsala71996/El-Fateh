@@ -32,7 +32,8 @@
 
         }
     </style>
-    <div class="col">
+    <div id="mbody2" class="col">
+       <br>
         <p id="mbody2" style="font-size: 50px;color: darkgoldenrod;margin:40px;">
             {!! $previousWork->{app()->getLocale() . '_title'} !!}</p>
         <p id="mbody2" style=" font-size: large;font-weight: bold;margin:40px;" >
